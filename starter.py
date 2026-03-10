@@ -19,7 +19,6 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 
 # load data
 
-
 def generate_track1_dev_splits(language_pair):
     # Given a path to the dev jsonl file, load the lines and return three lists:
     # - noterm: list of dicts with 'en' and 'de'
@@ -140,48 +139,8 @@ src_tgt = {
 # %%
 
 # Change this to the exact Gemma variant you want, e.g. "google/gemma-2-4b-it" or a local path.
-model_id = "Qwen/Qwen2.5-3B-Instruct"  # example; replace with e.g. "gemma-3-4b-it" when available
+model_id = "Qwen/Qwen2.5-3B-Instruct"  # example; replace with e.g. "gemma-3-4b-it" 
 
-
-# prompt = (
-#     "Translate the following sentence to Chinese, respecting the given terminology.\n\n"
-#     "Source: The patient was diagnosed with chronic kidney disease.\n"
-#     "Terminology: chronic kidney disease → 慢性肾脏病\n\n"
-#     "Translation:"
-# )
-
-# tokenizer = AutoTokenizer.from_pretrained(model_id)
-# model = AutoModelForCausalLM.from_pretrained(
-#     model_id,
-#     torch_dtype=torch.bfloat16,
-#     device_map="auto",
-# )
-
-
-# messages = [
-#     {"role": "user", "content": prompt}
-# ]
-
-# text = tokenizer.apply_chat_template(
-#     messages,
-#     tokenize=False,
-#     add_generation_prompt=True,
-#     # enable_thinking=False # Switches between thinking and non-thinking modes. Default is True.
-# )
-# model_inputs = tokenizer([text], return_tensors="pt").to(model.device)
-# generated_ids = model.generate(
-#     **model_inputs,
-#     max_new_tokens=32768,
-#     temperature=0.7,
-#     top_p=0.8
-# )
-# output_ids = generated_ids[0][len(model_inputs.input_ids[0]):].tolist()
-# content = tokenizer.decode(output_ids, skip_special_tokens=True).strip("\n")
-# print(content)
-
-# from transformers import TextStreamer
-
-# streamer = TextStreamer(tokenizer, skip_prompt=True, skip_special_tokens=True)
 
 def generate_translations(inputs, model_id, src_tgt_pair):
     """
@@ -321,6 +280,8 @@ training_config = SFTConfig(
 train_dataset = Dataset.from_list(train_ds[:-10])
 eval_dataset = Dataset.from_list(train_ds[-10:])
 
+
+# TODO: uncomment this when you have a training dataset
 # trainer = SFTTrainer(
 #     model=model_sft,
 #     processing_class=tokenizer,
@@ -404,10 +365,13 @@ def generate_and_save_translations(src_tgt_pair, setting, model_id, local=False)
     inputs = src_tgt[src_tgt_pair][setting][0:10]
 
     translations = generate_translations(inputs, model_id, src_tgt_pair)
+
     if local: 
         folder = "local"
     else:
         folder = "submissions"
+
+    # TODO: change name to your team name, for easy evaluation in wmt25 format for track1
     output_path = f"wmt25-terminology/ranking/{folder}/track1/TEAMNAME/TEAMNAME.{src_tgt_pair}.{setting}.jsonl"
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     
@@ -421,8 +385,12 @@ def generate_and_save_translations(src_tgt_pair, setting, model_id, local=False)
 
     return translations
 
+# you will need to run this for all 3 settings, and all 3 language pairs (9 overall for each modification/method)
+# however, don't always run all 9 -- be sensible in what you evaluate and when.
+# also TODO: process the test data (with references too) so that you can also evaluate your systems on the test set.
+# but always make sure you only run test at the end; make hyperparameter decisions based on dev set performance!
 
-generate_and_save_translations("ende", "proper", model_id)
+translations = generate_and_save_translations("ende", "proper", model_id)
 
 
 # %%
@@ -440,3 +408,6 @@ generate_and_save_translations("ende", "proper", model_id)
 #     cwd="wmt25-terminology/ranking/metric_track1",
 #     check=True
 # )
+
+
+# then run: `nlp2-26/wmt25-terminology/ranking/metric_track1/consistency_script_track1.py -s {src: en} -t {tgt: de/ru/es} -m {mode: noterm/random/proper}`
