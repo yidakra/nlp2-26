@@ -1,0 +1,54 @@
+{
+    "de": {
+        "noterm": {
+            "TEAMNAME": {},
+            "tower": {
+                "bleu4": 36.2801537421086,
+                "chrf2++": 61.1584305183955,
+                "proper_term_success_rate": 0.39594843462246776,
+                "random_term_success_rate": 0.6878048780487804
+            }
+        },
+        "proper": {
+            "TEAMNAME": {
+                "bleu4": 0.02460419682324454,
+                "chrf2++": 10.466394662514057,
+                "proper_term_success_rate": 0.03683241252302026,
+                "random_term_success_rate": 0.03902439024390244
+            },
+            "tower": {}
+        },
+        "random": {
+            "TEAMNAME": {},
+            "tower": {}
+        }
+    },
+    "es": {
+        "noterm": {
+            "TEAMNAME": {},
+            "tower": {}
+        },
+        "proper": {
+            "TEAMNAME": {},
+            "tower": {}
+        },
+        "random": {
+            "TEAMNAME": {},
+            "tower": {}
+        }
+    },
+    "ru": {
+        "noterm": {
+            "TEAMNAME": {},
+            "tower": {}
+        },
+        "proper": {
+            "TEAMNAME": {},
+            "tower": {}
+        },
+        "random": {
+            "TEAMNAME": {},
+            "tower": {}
+        }
+    }
+}

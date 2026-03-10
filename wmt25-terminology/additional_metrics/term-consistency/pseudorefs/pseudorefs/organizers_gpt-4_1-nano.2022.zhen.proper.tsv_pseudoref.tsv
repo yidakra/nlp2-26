@@ -1,0 +1,1346 @@
+	tgt	pseudoref_first	tgt	pseudoref_frequent	tgt	pseudoref_predefined
+0	covid	covid	covid	covid	covid	covid
+1	economic environment	economic environment	economic environment	macroeconomic environment	economic environment	economic environment
+2	monetary tightening policy	monetary tightening policy	monetary tightening policy	monetary tightening policy	monetary tightening policy	▁247
+3	inflationary pressure	inflationary pressure	inflationary pressure	inflation pressure	inflationary pressure	inflationary pressure
+4	financial market	financial market	financial market	financial market	financial market	financial market
+5	control measure	control measure	control measure	control measure	control measure	▁298
+6	control measure and quarantine restriction	control measure and quarantine restriction	control measure and quarantine restriction	control measure and quarantine restriction	control measure and quarantine restriction	▁299
+7	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit
+8	2022 sustainability report	2022 sustainability report	2022 sustainability report	2022 sustainability report	2022 sustainability report	sustainability report 2022
+9	2022 annual report	2022 annual report	2022 annual report	2022 annual report	2022 annual report	▁13
+10	sustainable institution	sustainable institution	sustainable institution	sustainable institution	sustainable institution	▁71
+11	sustainability report	sustainability report	sustainability report	sustainability report	sustainability report	sustainability report
+12	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance
+13	green and sustainable finance hub	green and sustainable finance hub	green and sustainable finance hub	green and sustainable finance	green and sustainable finance hub	green and sustainable finance hub
+14	responsible investor	responsible investor	responsible investor	responsible investment	responsible investor	responsible investment
+15	responsible investor	responsible investor	responsible investor	responsible investor	responsible investor	responsible investor
+16	banking stability	banking stability	banking stability	banking stability	banking stability	banking stability
+17	exchange rate	exchange rate	exchange rate	exchange rate	exchange rate	▁65
+18	dollar	dollar	dollar	$	dollar	hkd
+19	us federal reserve	us federal reserve	us federal reserve	us federal reserve	us federal reserve	us federal reserve
+20	▔	▁26	▔	▁23	▔	▁227
+21	system	system	system	exchange system	system	lers
+22	federal reserve	federal reserve	federal reserve	federal reserve	federal reserve	federal reserve
+23	imf	imf	imf	imf	imf	international monetary fund
+24	imf	imf	imf	fund	imf	imf
+25	sector report	sector report	sector report	external sector report	sector report	external sector report
+26	▔	system	▔	exchange system	▔	lers
+27	media	media	media	media	media	▁103
+28	market surveillance	market surveillance	market surveillance	market surveillance	market surveillance	market surveillance
+29	lers	system	lers	exchange system	lers	lers
+30	statutory minimum	statutory minimum	statutory minimum	statutory minimum	statutory minimum	statutory minimum requirement
+31	liquidity	liquidity	liquidity	liquidity	liquidity	▁176
+32	classify loan ratio	classify loan ratio	classify loan ratio	classify loan ratio	classify loan ratio	classify loan ratio
+33	capital adequacy	capital adequacy	capital adequacy	capital adequacy	capital adequacy	capital adequacy
+34	adequacy ratio	adequacy ratio	adequacy ratio	adequacy ratio	adequacy ratio	▁252
+35	asset quality	asset quality	asset quality	asset quality	asset quality	asset quality
+36	and kong	and kong	and kong	and kong	and kong	▁47
+37	covid	covid	covid	covid	covid	covid
+38	liquidity	liquidity	liquidity	liquidity	liquidity	▁176
+39	liquidity position	liquidity position	liquidity position	liquidity position	liquidity position	liquidity condition
+40	asset quality	asset quality	asset quality	asset quality	asset quality	asset quality
+41	currency stability	currency stability	currency stability	monetary stability	currency stability	monetary stability
+42	▔	exchange rate	▔	exchange rate	▔	▁65
+43	and monetary market	and monetary market	and monetary market	and monetary market	and monetary market	▁93
+44	hong	dollar	hong	$	hong	hkd
+45	reserve management	reserve management	reserve management	reserve management	reserve management	reserve management
+46	▔	▁11	▔	return	▔	return
+47	diversified asset fund	diversified asset fund	diversified asset fund	diversified asset fund	diversified asset fund	▁101
+48	investment return	investment return	investment return	investment return	investment return	investment return
+49	asset class	asset class	asset class	asset class	asset class	asset class
+50	internal annualized return rate	internal annualized return rate	internal annualized return rate	internal annualized return rate	internal annualized return rate	internal rate of return
+51	internal annualized return rate	internal annualized return rate	internal annualized return rate	internal annualized return rate	internal annualized return rate	▁50
+52	▔	▁11	▔	return	▔	return
+53	responsible investment	responsible investor	responsible investment	responsible investment	responsible investment	responsible investment
+54	▔	▁34	▔	▁28	▔	▁294
+55	banking sector stability	banking stability	banking sector stability	banking stability	banking sector stability	banking stability
+56	cyber threat	cyber threat	cyber threat	cyber threat	cyber threat	cyber threat
+57	operational resilience	operational resilience	operational resilience	operational resilience	operational resilience	operational resilience
+58	operational resilience	operational resilience	operational resilience	operational resilience	operational resilience	operational resilience
+59	resilience and cyber resilience	resilience and cyber resilience	resilience and cyber resilience	operational resilience and cyber defense capability	resilience and cyber resilience	▁265
+60	financial market	financial market	financial market	financial market	financial market	financial market
+61	trust business	trust business	trust business	trust business	trust business	trust business
+62	credit datum	credit datum	credit datum	credit datum	credit datum	credit datum
+63	credit reference platform	credit reference platform	credit reference platform	credit data platform	credit reference platform	credit reference platform
+64	personal credit datum	personal credit datum	personal credit datum	personal credit datum	personal credit datum	▁35
+65	distribute investment product	distribute investment product	distribute investment product	distribute investment product	distribute investment product	▁60
+66	investment product	investment product	investment product	investment product	investment product	investment product
+67	payment arrangement	payment arrangement	payment arrangement	payment arrangement	payment arrangement	payment arrangement
+68	property refinancing	property refinancing	property refinancing	property refinancing	property refinancing	property refinancing
+69	regulatory regime	regulatory regime	regulatory regime	regulatory framework	regulatory regime	regulatory regime
+70	aml regtech lab	aml regtech lab	aml regtech lab	aml regtech lab	aml regtech lab	aml regtech lab
+71	counter financing	counter financing	counter financing	terrorist financing	counter financing	terrorist financing
+72	anti-money laundering	anti-money laundering	anti-money laundering	anti-money laundering	anti-money laundering	▁130
+73	▔	▁20	▔	▁18	▔	▁175
+74	regtech	regtech	regtech	regtech	regtech	▁193
+75	international regulatory standard	international regulatory standard	international regulatory standard	international regulatory standard	international regulatory standard	▁81
+76	staff	staff	staff	practitioner	staff	practitioner
+77	disclosure standard	disclosure standard	disclosure standard	disclosure standard	disclosure standard	disclosure standard
+78	capital adequacy	capital adequacy	capital adequacy	capital adequacy	capital adequacy	capital adequacy
+79	adequacy standard	adequacy standard	adequacy standard	adequacy standard	adequacy standard	capital adequacy
+80	domestic systemically important bank	domestic systemically important bank	domestic systemically important bank	domestic systemically important bank	domestic systemically important bank	domestic systemically important bank
+81	loss capacity resource	loss capacity resource	loss capacity resource	loss capacity resource	loss capacity resource	loss capacity resource
+82	regional crisis simulation exercise	regional crisis simulation exercise	regional crisis simulation exercise	regional crisis simulation exercise	regional crisis simulation exercise	regional crisis simulation exercise
+83	resolution standard	resolution standard	resolution standard	resolution standard	resolution standard	resolution standard
+84	resolution mechanism	resolution mechanism	resolution mechanism	resolution mechanism	resolution mechanism	resolution regime
+85	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit
+86	pboc	pboc	pboc	china	pboc	person 's 's bank of china
+87	platform	platform	platform	central	platform	▁6
+88	swap connect	swap connect	swap connect	swapconnect	swap connect	swap connect
+89	pboc	pboc	pboc	bank	pboc	pboc
+90	▔	▁28	▔	security	▔	security
+91	offshore rmb	offshore rmb	offshore rmb	offshore renminbi	offshore rmb	offshore renminbi
+92	offshore rmb business	offshore rmb business	offshore rmb business	offshore renminbi business	offshore rmb business	offshore renminbi business
+93	offshore rmb business hub	offshore rmb business hub	offshore rmb business hub	offshore renminbi business hub	offshore rmb business hub	offshore renminbi business hub
+94	corporate treasury centre	corporate treasury centre	corporate treasury centre	corporate treasury centre	corporate treasury centre	corporate treasury centre
+95	bond issuance	bond issuance	bond issuance	bond issuance	bond issuance	bond issuance
+96	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance
+97	asset and wealth management	asset and wealth management	asset and wealth management	asset and wealth management	asset and wealth management	asset and wealth management
+98	functional enhancement	functional enhancement	functional enhancement	functional enhancement	functional enhancement	▁62
+99	▔	▁31	▔	financial industry	▔	▁275
+100	fintech hub	fintech hub	fintech hub	fintech hub	fintech hub	fintech hub
+101	institutional functions	institutional functions	institutional functions	institutional functions	institutional functions	▁172
+102	workforce	workforce	workforce	workforce	workforce	workforce
+103	fiscal discipline	fiscal discipline	fiscal discipline	fiscal discipline	fiscal discipline	▁241
+104	information technology	information technology	information technology	information technology	information technology	information technology
+105	monetary stability	currency stability	monetary stability	monetary stability	monetary stability	monetary stability
+106	bond issuance	bond issuance	bond issuance	bond issuance	bond issuance	bond issuance
+107	government bond	government bond	government bond	government bond	government bond	government bond
+108	institutional bond issuance programme	institutional bond issuance programme	institutional bond issuance programme	institutional bond issuance programme	institutional bond issuance programme	institutional bond issuance programme
+109	dollar	dollar	dollar	$	dollar	hkd
+110	first issuance	first issuance	first issuance	first issuance	first issuance	▁319
+111	person 's 's bank of china	pboc	person 's 's bank of china	china	person 's 's bank of china	person 's 's bank of china
+112	bank	pboc	bank	bank	bank	pboc
+113	global exchange principle	global exchange principle	global exchange principle	global exchange principle	global exchange principle	▁51
+114	market participant	market participant	market participant	market participant	market participant	market participant
+115	declaration of commitment	declaration of commitment	declaration of commitment	declaration of commitment	declaration of commitment	▁133
+116	rmb liquidity arrangement	rmb liquidity arrangement	rmb liquidity arrangement	renminbi liquidity arrangement	rmb liquidity arrangement	▁20
+117	sfc	▁28	sfc	security	sfc	security
+118	terrorist financing	counter financing	terrorist financing	terrorist financing	terrorist financing	terrorist financing
+119	▔	▁20	▔	▁18	▔	▁175
+120	supervisory guideline	supervisory guideline	supervisory guideline	supervisory guidance	supervisory guideline	supervisory guidance
+121	virtual asset service provider	virtual asset service provider	virtual asset service provider	virtual asset service provider	virtual asset service provider	virtual asset service provider
+122	banking talent development scheme	banking talent development scheme	banking talent development scheme	banking talent development scheme	banking talent development scheme	▁284
+123	mortgage insurance	mortgage insurance	mortgage insurance	mortgage insurance	mortgage insurance	mortgage insurance
+124	mortgage insurance plan	mortgage insurance plan	mortgage insurance plan	mortgage insurance plan	mortgage insurance plan	▁140
+125	hkmc	▁28	hkmc	security	hkmc	security
+126	sme	sme	sme	sme	sme	sme
+127	▔	▁2	▔	▁1	▔	▁8
+128	trade finance	trade finance	trade finance	trade finance	trade finance	trade finance
+129	trade finance loan	trade finance loan	trade finance loan	trade finance loan	trade finance loan	▁251
+130	partial principal repayment option	partial principal repayment option	partial principal repayment option	partial principal repayment option	partial principal repayment option	▁267
+131	banking sector sme lending coordination mechanism	banking sector sme lending coordination mechanism	banking sector sme lending coordination mechanism	banking sector sme lending coordination mechanism	banking sector sme lending coordination mechanism	▁283
+132	▔	sme	▔	sme	▔	sme
+133	premium	premium	premium	premium	premium	▁27
+134	mainland bank account	mainland bank account	mainland bank account	mainland bank account	mainland bank account	mainland bank account
+135	regtech information platform	regtech information platform	regtech information platform	regtech information platform	regtech information platform	▁75
+136	banking graduate training scheme	banking graduate training scheme	banking graduate training scheme	banking graduate training scheme	banking graduate training scheme	▁286
+137	deposit	deposit	deposit	deposit	deposit	deposit
+138	deposit company	deposit company	deposit company	deposit company	deposit company	▁141
+139	roll bad apples	roll bad apples	roll bad apples	roll bad apples	roll bad apples	roll bad apples
+140	banks	banks	banks	hkba	banks	▁282
+141	rent deferment arrangement	rent deferment arrangement	rent deferment arrangement	rent deferment arrangement	rent deferment arrangement	▁156
+142	frontline	frontline	frontline	frontline	frontline	▁61
+143	incentive system	incentive system	incentive system	incentive system	incentive system	incentive system
+144	sound culture	sound culture	sound culture	sound culture	sound culture	sound culture
+145	trust business	trust business	trust business	trust business	trust business	trust business
+146	▔	▁22	▔	operational code	▔	▁178
+147	annuity	annuity	annuity	▁12	annuity	annuity
+148	▔	▁28	▔	security	▔	security
+149	medical and dental expenses special withdrawal	medical and dental expenses special withdrawal	medical and dental expenses special withdrawal	medical and dental expenses special withdrawal	medical and dental expenses special withdrawal	▁269
+150	kong scheme	kong scheme	kong scheme	kong scheme	kong scheme	▁320
+151	▔	▁32	▔	financial	▔	▁278
+152	banking ( capital ) ( amendment ) rule 2022	banking ( capital ) ( amendment ) rule 2022	banking ( capital ) ( amendment ) rule 2022	banking ( capital ) ( amendment ) rule 2022	banking ( capital ) ( amendment ) rule 2022	banking ( capital ) ( amendment ) rule 2022
+153	basel committee	basel committee	basel committee	basel committee	basel committee	basel committee
+154	central bank	central bank	central bank	central bank	central bank	central banking
+155	regional crisis simulation exercise	regional crisis simulation exercise	regional crisis simulation exercise	regional crisis simulation exercise	regional crisis simulation exercise	regional crisis simulation exercise
+156	deposit	deposit	deposit	deposit	deposit	deposit
+157	deposit insurance agency	deposit insurance agency	deposit insurance agency	deposit insurance agency	deposit insurance agency	▁105
+158	resolution authority	resolution authority	resolution authority	resolution authority	resolution authority	▁192
+159	▔	▁8	▔	▁7	▔	▁29
+160	terrorist financing	counter financing	terrorist financing	terrorist financing	terrorist financing	terrorist financing
+161	laundering	▁20	laundering	▁18	laundering	▁175
+162	residential property refinancing transaction	residential property refinancing transaction	residential property refinancing transaction	residential property refinancing transaction	residential property refinancing transaction	▁22
+163	payment arrangement	payment arrangement	payment arrangement	payment arrangement	payment arrangement	payment arrangement
+164	property transaction	property transaction	property transaction	property transaction	property transaction	property transaction
+165	property transaction payment arrangement	property transaction payment arrangement	property transaction payment arrangement	property transaction payment arrangement	property transaction payment arrangement	▁179
+166	property refinancing	property refinancing	property refinancing	property refinancing	property refinancing	property refinancing
+167	association banks	banks	association banks	hkba	association banks	▁282
+168	aml regtech laboratory	aml regtech lab	aml regtech laboratory	aml regtech lab	aml regtech laboratory	aml regtech lab
+169	cyberport	cyberport	cyberport	cyberport	cyberport	cyberport
+170	user technology	user technology	user technology	user technology	user technology	▁155
+171	aml	▁20	aml	▁18	aml	▁175
+172	industry navigation	industry navigation	industry navigation	industry navigation	industry navigation	▁285
+173	banking industry bridging course	banking industry bridging course	banking industry bridging course	banking industry bridging course	banking industry bridging course	▁288
+174	sme	sme	sme	sme	sme	sme
+175	▔	▁2	▔	▁1	▔	▁8
+176	banking sector sme lending coordination mechanism	banking sector sme lending coordination mechanism	banking sector sme lending coordination mechanism	banking sector sme lending coordination mechanism	banking sector sme lending coordination mechanism	▁283
+177	sme	sme	sme	sme	sme	sme
+178	▔	▁15	▔	▁13	▔	▁120
+179	interest repayment	interest repayment	interest repayment	interest repayment	interest repayment	▁266
+180	practitioner	staff	practitioner	practitioner	practitioner	practitioner
+181	financial technology practitioners training pilot scheme	financial technology practitioners training pilot scheme	financial technology practitioners training pilot scheme	financial technology practitioners training pilot scheme	financial technology practitioners training pilot scheme	▁277
+182	investment product	investment product	investment product	investment product	investment product	investment product
+183	$	dollar	$	$	$	hkd
+184	compliance	compliance	compliance	compliance	compliance	▁74
+185	professional qualification framework	professional qualification framework	professional qualification framework	professional qualification framework	professional qualification framework	▁116
+186	staff	staff	staff	practitioner	staff	practitioner
+187	value industry	value industry	value industry	value	value industry	▁43
+188	hkba	banks	hkba	hkba	hkba	▁282
+189	▔	▁35	▔	fraud	▔	▁302
+190	▔	▁36	▔	▁29	▔	▁303
+191	hong kong police force	hong kong police force	hong kong police force	hong kong police force	hong kong police force	hong kong police force
+192	value	value industry	value	value	value	▁43
+193	media	media	media	media	media	▁103
+194	fraud	▁35	fraud	fraud	fraud	▁302
+195	sme	sme	sme	sme	sme	sme
+196	sme lending	▁2	sme lending	▁1	sme lending	▁8
+197	partial principal repayment option	partial principal repayment option	partial principal repayment option	partial principal repayment option	partial principal repayment option	▁267
+198	sme lending coordination mechanism	banking sector sme lending coordination mechanism	sme lending coordination mechanism	banking sector sme lending coordination mechanism	sme lending coordination mechanism	▁283
+199	sme	sme	sme	sme	sme	sme
+200	interest repayment	interest repayment	interest repayment	interest repayment	interest repayment	▁266
+201	suitability assessment	suitability assessment	suitability assessment	suitability assessment	suitability assessment	suitability assessment
+202	loss product	loss product	loss product	loss product	loss product	loss product
+203	mule account network	mule account network	mule account network	mule account network	mule account network	mule account network
+204	aml regtech laboratory	aml regtech lab	aml regtech laboratory	aml regtech lab	aml regtech laboratory	aml regtech lab
+205	cyberport	cyberport	cyberport	cyberport	cyberport	cyberport
+206	aml	▁20	aml	▁18	aml	▁175
+207	network analysis	network analysis	network analysis	network analysis	network analysis	▁221
+208	credit datum	credit datum	credit datum	credit datum	credit datum	credit datum
+209	credit data platform	credit reference platform	credit data platform	credit data platform	credit data platform	credit reference platform
+210	personal credit datum	personal credit datum	personal credit datum	personal credit datum	personal credit datum	▁35
+211	personal credit datum	personal credit datum	personal credit datum	personal credit datum	personal credit datum	▁36
+212	personal credit datum agency	personal credit datum agency	personal credit datum agency	personal credit datum agency	personal credit datum agency	▁37
+213	financing terrorism	counter financing	financing terrorism	terrorist financing	financing terrorism	terrorist financing
+214	anti-money laundering	anti-money laundering	anti-money laundering	anti-money laundering	anti-money laundering	▁130
+215	anti laundering and financing terrorism ( amendment ) bill	anti laundering and financing terrorism ( amendment ) bill	anti laundering and financing terrorism ( amendment ) bill	anti laundering and financing terrorism ( amendment ) bill	anti laundering and financing terrorism ( amendment ) bill	▁131
+216	▔	▁20	▔	▁18	▔	▁175
+217	value facility industry	value industry	value facility industry	value	value facility industry	▁43
+218	aml regtech	aml regtech	aml regtech	aml regtech	aml regtech	▁70
+219	suspicious transaction report	suspicious transaction report	suspicious transaction report	suspicious transaction report	suspicious transaction report	suspicious transaction report
+220	terrorism	counter financing	terrorism	terrorist financing	terrorism	terrorist financing
+221	proliferation financing	proliferation financing	proliferation financing	proliferation financing	proliferation financing	▁129
+222	anti-money laundering	anti-money laundering	anti-money laundering	anti-money laundering	anti-money laundering	▁130
+223	proliferation financing	proliferation financing	proliferation financing	proliferation financing	proliferation financing	proliferation financing
+224	▔	▁20	▔	▁18	▔	▁175
+225	regtech	regtech	regtech	regtech	regtech	▁193
+226	mandatory provident fund	mandatory provident fund	mandatory provident fund	funds	mandatory provident fund	▁54
+227	qualifying deferred annuity policies	qualifying deferred annuity policies	qualifying deferred annuity policies	qualifying deferred annuity policies	qualifying deferred annuity policies	qualifying deferred annuity policies
+228	▔	annuity	▔	▁12	▔	annuity
+229	voluntary contribution mandatory provident	voluntary contribution mandatory provident	voluntary contribution mandatory provident	voluntary contribution mandatory provident	voluntary contribution mandatory provident	▁121
+230	mandatory provident fund schemes authority	mandatory provident fund schemes authority	mandatory provident fund schemes authority	mandatory provident fund schemes authority	mandatory provident fund schemes authority	mandatory provident fund schemes authority
+231	locally systemic important bank	domestic systemically important bank	locally systemic important bank	domestic systemically important bank	locally systemic important bank	domestic systemically important bank
+232	resolution readiness	resolution readiness	resolution readiness	resolution	resolution readiness	resolvability
+233	stablecoin	stablecoin	stablecoin	stablecoin	stablecoin	stablecoin
+234	consultation paper	consultation paper	consultation paper	consultation paper	consultation paper	discussion paper
+235	swiss secretariat for international finance	swiss secretariat for international finance	swiss secretariat for international finance	swiss secretariat for international finance	swiss secretariat for international finance	▁187
+236	hong kong financial dialogue	hong kong financial dialogue	hong kong financial dialogue	hong kong financial dialogue	hong kong financial dialogue	hong kong financial dialogue
+237	standard	standard	standard	standard	standard	▁167
+238	aml	▁20	aml	▁18	aml	▁175
+239	evaluation and compliance panel	evaluation and compliance panel	evaluation and compliance panel	evaluation and compliance panel	evaluation and compliance panel	▁182
+240	evaluation and compliance panel	evaluation and compliance panel	evaluation and compliance panel	evaluation and compliance panel	evaluation and compliance panel	▁235
+241	action	action	action	action	action	▁239
+242	loan cooperation framework	loan cooperation framework	loan cooperation framework	loan cooperation framework	loan cooperation framework	▁86
+243	memorandum of understanding	memorandum of understanding	memorandum of understanding	memorandum of understanding	memorandum of understanding	memorandum of understanding
+244	▔	▁28	▔	security	▔	security
+245	demographic changes and long asset market : opportunities and development in hong kong	demographic changes and long asset market : opportunities and development in hong kong	demographic changes and long asset market : opportunities and development in hong kong	demographic changes and long asset market : opportunities and development in hong kong	demographic changes and long asset market : opportunities and development in hong kong	▁18
+246	apply financial research report	apply financial research report	apply financial research report	apply financial research report	apply financial research report	▁124
+247	research center	research center	research center	centre	research center	▁195
+248	international monetary fund	imf	international monetary fund	imf	international monetary fund	international monetary fund
+249	imf	imf	imf	fund	imf	imf
+250	policy	policy	policy	policy	policy	▁110
+251	fourth review	fourth review	fourth review	fourth review	fourth review	▁202
+252	▔	▁31	▔	financial industry	▔	▁275
+253	hong kong sar	hong kong sar	hong kong sar	hong kong sar	hong kong sar	▁321
+254	fund	imf	fund	fund	fund	imf
+255	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance
+256	▔	green and sustainable finance	▔	green and sustainable finance	▔	green and sustainable finance
+257	▔	▁25	▔	▁22	▔	▁215
+258	latest macro developments	latest macro developments	latest macro developments	latest macro developments	latest macro developments	▁111
+259	▔	research center	▔	centre	▔	▁195
+260	federal tightening	federal tightening	federal tightening	federal monetary tightening	federal tightening	▁226
+261	offshore rmb	offshore rmb	offshore rmb	offshore renminbi	offshore rmb	offshore renminbi
+262	offshore rmb market	offshore rmb market	offshore rmb market	offshore rmb market	offshore rmb market	offshore renminbi market
+263	offshore rmb market development	offshore rmb market development	offshore rmb market development	offshore rmb market development	offshore rmb market development	offshore rmb market development
+264	digital	cyberport	digital	cyberport	digital	cyberport
+265	digital hkd	digital hkd	digital hkd	digital hkd	digital hkd	e-hkd
+266	hkd	dollar	hkd	$	hkd	hkd
+267	discussion paper	consultation paper	discussion paper	consultation paper	discussion paper	discussion paper
+268	retail	retail	retail	▁30	retail	▁308
+269	world bank group	world bank group	world bank group	world bank group	world bank group	world bank group
+270	green and sustainable capital market transformation roundtable	green and sustainable capital market transformation roundtable	green and sustainable capital market transformation roundtable	green and sustainable capital market transformation roundtable	green and sustainable capital market transformation roundtable	▁214
+271	green commercial banks alliance	green commercial banks alliance	green commercial banks alliance	green commercial banks alliance	green commercial banks alliance	▁216
+272	▔	▁37	▔	group	▔	group
+273	de-globalization	de-globalization	de-globalization	de-globalization	de-globalization	▁69
+274	europe	europe	europe	europe	europe	europe
+275	financial market	financial market	financial market	financial market	financial market	financial market
+276	macroeconomic environment	macroeconomic environment	macroeconomic environment	macroeconomic environment	macroeconomic environment	macroeconomic environment
+277	liquidity	liquidity	liquidity	liquidity	liquidity	▁176
+278	macroeconomic environment	economic environment	macroeconomic environment	macroeconomic environment	macroeconomic environment	economic environment
+279	monetary and financial stability	monetary and financial stability	monetary and financial stability	monetary and financial stability	monetary and financial stability	monetary and financial stability
+280	global economic outlook	global economic outlook	global economic outlook	global economic outlook	global economic outlook	▁189
+281	economic outlook	economic outlook	economic outlook	economic outlook	economic outlook	▁208
+282	advanced economy	advanced economy	advanced economy	advanced economy	advanced economy	advanced economy
+283	monetary and financial stability	monetary and financial stability	monetary and financial stability	monetary and financial stability	monetary and financial stability	monetary and financial stability
+284	financial market	financial market	financial market	financial market	financial market	financial market
+285	banking stability	banking stability	banking stability	banking stability	banking stability	banking stability
+286	interest rate hike	interest rate hike	interest rate hike	rate hike	interest rate hike	interest rate hike
+287	risk regulatory oversight	risk regulatory oversight	risk regulatory oversight	risk regulatory oversight	risk regulatory oversight	▁318
+288	liquidity	liquidity	liquidity	liquidity	liquidity	▁176
+289	supervisory system	supervisory system	supervisory system	supervisory system	supervisory system	▁191
+290	weak financial condition	weak financial condition	weak financial condition	weak financial condition	weak financial condition	▁237
+291	loan classification and provisioning practice	loan classification and provisioning practice	loan classification and provisioning practice	loan classification and provisioning practice	loan classification and provisioning practice	▁248
+292	asset quality	asset quality	asset quality	asset quality	asset quality	asset quality
+293	credit support	credit support	credit support	credit support	credit support	credit support
+294	macroeconomic environment	macroeconomic environment	macroeconomic environment	macroeconomic environment	macroeconomic environment	macroeconomic environment
+295	liquidity	liquidity	liquidity	liquidity	liquidity	▁176
+296	macroeconomic environment	economic environment	macroeconomic environment	macroeconomic environment	macroeconomic environment	economic environment
+297	business operation and technology risks	business operation and technology risks	business operation and technology risks	business operation and technology risks	business operation and technology risks	▁166
+298	tertiary datum backup	tertiary datum backup	tertiary datum backup	tertiary datum backup	tertiary datum backup	▁1
+299	operational resilience	operational resilience	operational resilience	operational resilience	operational resilience	operational resilience
+300	operational resilience	operational resilience	operational resilience	operational resilience	operational resilience	operational resilience
+301	operational resilience cyber	resilience and cyber resilience	operational resilience cyber	operational resilience and cyber defense capability	operational resilience cyber	▁265
+302	datum governance	datum governance	datum governance	datum governance	datum governance	datum governance
+303	third service provider	third service provider	third service provider	third provider	third service provider	third service provider
+304	third service provider risk management	third service provider risk management	third service provider risk management	third service provider risk management	third service provider risk management	▁201
+305	counter financing	counter financing	counter financing	terrorist financing	counter financing	terrorist financing
+306	combating money	anti-money laundering	combating money	anti-money laundering	combating money	▁130
+307	▔	▁20	▔	▁18	▔	▁175
+308	mule account network	mule account network	mule account network	mule account network	mule account network	mule account network
+309	public partnership	public partnership	public partnership	public partnership	public partnership	public partnership
+310	aml regtech lab	aml regtech lab	aml regtech lab	aml regtech lab	aml regtech lab	aml regtech lab
+311	aml technology	aml regtech	aml technology	aml regtech	aml technology	▁70
+312	macro capability	macro capability	macro capability	macro capability	macro capability	▁106
+313	terrorist financing	counter financing	terrorist financing	terrorist financing	terrorist financing	terrorist financing
+314	anti-money laundering	anti-money laundering	anti-money laundering	anti-money laundering	anti-money laundering	▁130
+315	▔	▁20	▔	▁18	▔	▁175
+316	regtech	regtech	regtech	regtech	regtech	▁193
+317	message platform bank	message platform bank	message platform bank	message platform bank	message platform bank	▁281
+318	risk approach	risk approach	risk approach	risk approach	risk approach	risk approach
+319	funds	mandatory provident fund	funds	funds	funds	▁54
+320	product	investment product	product	investment product	product	investment product
+321	digital distribution and advisory platform	digital distribution and advisory platform	digital distribution and advisory platform	digital distribution and advisory platform	digital distribution and advisory platform	digital distribution and advisory platform
+322	on examination	on examination	on examination	on examination	on examination	on examination
+323	security	▁28	security	security	security	security
+324	cross wealth management connect	cross wealth management connect	cross wealth management connect	cross wealth management connect	cross wealth management connect	cross wealth management connect
+325	long insurance product	long insurance product	long insurance product	long insurance product	long insurance product	▁293
+326	offsite supervision	offsite supervision	offsite supervision	offsite supervision	offsite supervision	▁315
+327	trust industry	trust business	trust industry	trust business	trust industry	trust business
+328	investment product	investment product	investment product	investment product	investment product	investment product
+329	operational code	▁22	operational code	operational code	operational code	▁178
+330	sfc	▁28	sfc	security	sfc	security
+331	senior investor	senior investor	senior investor	senior investor	senior investor	▁256
+332	cross wealth management connect	cross wealth management connect	cross wealth management connect	cross wealth management connect	cross wealth management connect	cross wealth management connect
+333	financial market	financial market	financial market	financial market	financial market	financial market
+334	payment ordinance	payment ordinance	payment ordinance	payment ordinance	payment ordinance	▁142
+335	▔	standard	▔	standard	▔	▁167
+336	financial infrastructure	financial infrastructure	financial infrastructure	financial infrastructure	financial infrastructure	▁273
+337	financial market	financial market	financial market	financial market	financial market	financial market
+338	basel standards	basel standards	basel standards	basel standards	basel standards	▁119
+339	credit valuation adjustment risk	credit valuation adjustment risk	credit valuation adjustment risk	credit valuation adjustment risk	credit valuation adjustment risk	credit valuation adjustment risk
+340	targeted revisions to the credit valuation adjustment risk framework	targeted revisions to the credit valuation adjustment risk framework	targeted revisions to the credit valuation adjustment risk framework	targeted revisions to the credit valuation adjustment risk framework	targeted revisions to the credit valuation adjustment risk framework	targeted revisions to the credit valuation adjustment risk framework
+341	output floor	output floor	output floor	output floor	output floor	▁57
+342	prudent treatment of cryptoasset exposures	prudent treatment of cryptoasset exposures	prudent treatment of cryptoasset exposures	prudent treatment of cryptoasset exposures	prudent treatment of cryptoasset exposures	▁63
+343	basel iii	basel iii	basel iii	basel iii	basel iii	basel iii
+344	final reform package of basel iii	final reform package of basel iii	final reform package of basel iii	final reform package of basel iii	final reform package of basel iii	▁118
+345	basel committee	basel committee	basel committee	basel committee	basel committee	basel committee
+346	basel committee on banking supervision	basel committee on banking supervision	basel committee on banking supervision	basel committee on banking supervision	basel committee on banking supervision	basel committee on banking supervision
+347	minimum capital requirement for market risk	minimum capital requirement for market risk	minimum capital requirement for market risk	minimum capital requirement for market risk	minimum capital requirement for market risk	minimum capital requirement for market risk
+348	▔	▁16	▔	▁14	▔	▁132
+349	operational risk	operational risk	operational risk	operational risk	operational risk	operational risk
+350	industry consultation	industry consultation	industry consultation	industry consultation	industry consultation	industry consultation
+351	leverage ratio framework	leverage ratio framework	leverage ratio framework	leverage ratio framework	leverage ratio framework	leverage ratio framework
+352	positive neutral countercyclical capital buffer	positive neutral countercyclical capital buffer	positive neutral countercyclical capital buffer	positive neutral countercyclical capital buffer	positive neutral countercyclical capital buffer	positive neutral countercyclical capital buffer
+353	legislative council	legislative council	legislative council	legislative council	legislative council	legislative council
+354	banking ( capital ) rule	banking ( capital ) rule	banking ( capital ) rule	banking ( capital ) rule	banking ( capital ) rule	▁289
+355	risk	▁16	risk	▁14	risk	▁132
+356	risk limit	risk limit	risk limit	risk limit	risk limit	▁317
+357	sovereign concentration risk	sovereign concentration risk	sovereign concentration risk	sovereign concentration risk	sovereign concentration risk	sovereign concentration risk
+358	basel iii	basel iii	basel iii	basel iii	basel iii	basel iii
+359	▔	▁16	▔	▁14	▔	▁132
+360	banking risk ratios rule	banking risk ratios rule	banking risk ratios rule	banking risk ratios rule	banking risk ratios rule	▁290
+361	risk ratios	risk limit	risk ratios	risk limit	risk ratios	▁317
+362	liquidity standards	liquidity	liquidity standards	liquidity	liquidity standards	▁176
+363	2023 banking ( liquidity ) ( amendment ) rule	2023 banking ( liquidity ) ( amendment ) rule	2023 banking ( liquidity ) ( amendment ) rule	2023 banking ( liquidity ) ( amendment ) rule	2023 banking ( liquidity ) ( amendment ) rule	▁0
+364	basel iii	basel iii	basel iii	basel iii	basel iii	basel iii
+365	liquidity	liquidity	liquidity	liquidity	liquidity	▁176
+366	banking ( liquidity ) rule	banking ( liquidity ) rule	banking ( liquidity ) rule	banking ( liquidity ) rule	banking ( liquidity ) rule	banking ( liquidity ) rule
+367	disclosure standards	disclosure standard	disclosure standards	disclosure standard	disclosure standards	disclosure standard
+368	revise market risk disclosure requirement	revise market risk disclosure requirement	revise market risk disclosure requirement	revise market risk disclosure requirement	revise market risk disclosure requirement	▁33
+369	revise leverage ratio disclosure requirement	revise leverage ratio disclosure requirement	revise leverage ratio disclosure requirement	revise leverage ratio disclosure requirement	revise leverage ratio disclosure requirement	▁34
+370	basel iii	basel iii	basel iii	basel iii	basel iii	basel iii
+371	basel committee	basel committee	basel committee	basel committee	basel committee	basel committee
+372	market risk disclosure requirement	market risk disclosure requirement	market risk disclosure requirement	market risk disclosure requirement	market risk disclosure requirement	market risk disclosure requirement
+373	leverage ratio disclosure requirement	leverage ratio disclosure requirement	leverage ratio disclosure requirement	leverage ratio disclosure requirement	leverage ratio disclosure requirement	leverage ratio disclosure requirement
+374	standard template	standard template	standard template	standard template	standard template	▁168
+375	legislative council	legislative council	legislative council	legislative council	legislative council	legislative council
+376	▔	▁24	▔	▁21	▔	▁205
+377	corporate governance	corporate governance	corporate governance	corporate governance	corporate governance	corporate governance
+378	central banking	central bank	central banking	central bank	central banking	central banking
+379	central banking authority	central banking authority	central banking authority	central banking authority	central banking authority	▁7
+380	corporate governance	corporate governance	corporate governance	corporate governance	corporate governance	corporate governance
+381	statutory duty	statutory duty	statutory duty	statutory duty	statutory duty	▁174
+382	corporate governance	corporate governance	corporate governance	corporate governance	corporate governance	corporate governance
+383	governance framework	governance framework	governance framework	governance framework	governance framework	▁170
+384	monitoring measure	monitoring measure	monitoring measure	monitoring measure	monitoring measure	control
+385	hong kong sar	hong kong sar	hong kong sar	hong kong sar	hong kong sar	▁321
+386	hong kong sar government	hong kong sar government	hong kong sar government	hksar government	hong kong sar government	▁322
+387	civil servant	civil servant	civil servant	civil servant	civil servant	▁55
+388	hksar government	hksar government	hksar government	hksar government	hksar government	▁184
+389	assign	assign	assign	delegated	assign	▁262
+390	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary	monetary authority
+391	hksar government	hong kong sar	hksar government	hong kong sar	hksar government	▁321
+392	hksar government	hong kong sar government	hksar government	hksar government	hksar government	▁322
+393	exchange rate	exchange rate	exchange rate	exchange rate	exchange rate	▁65
+394	execution method	execution method	execution method	execution method	execution method	▁85
+395	policy objective	policy objective	policy objective	policy objective	policy objective	policy objective
+396	hkd	dollar	hkd	$	hkd	hkd
+397	usd	usd	usd	usd	usd	us dollar
+398	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary
+399	monetary policy objective	monetary policy objective	monetary policy objective	monetary policy objective	monetary policy objective	monetary policy objective
+400	currency issuance system	currency issuance system	currency issuance system	currency issuance system	currency issuance system	currency board arrangement
+401	monetary stability	currency stability	monetary stability	monetary stability	monetary stability	monetary stability
+402	monetary system	monetary system	monetary system	currency system	monetary system	monetary system
+403	management specialist	financial secretary	management specialist	financial secretary	management specialist	monetary authority
+404	legal tender note and coin	legal tender note and coin	legal tender note and coin	legal tender note and coin	legal tender note and coin	legal tender note and coin
+405	market development measure	market development measure	market development measure	market development measure	market development measure	▁190
+406	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary
+407	financial service and the treasury	financial service and the treasury	financial service and the treasury	financial service and the treasury	financial service and the treasury	▁242
+408	secretary for financial service and the treasury	secretary for financial service and the treasury	secretary for financial service and the treasury	secretary for financial service and the treasury	secretary for financial service and the treasury	secretary for financial service and the treasury
+409	financial	financial infrastructure	financial	financial infrastructure	financial	▁273
+410	management specialist	financial secretary	management specialist	financial secretary	management specialist	monetary authority
+411	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary
+412	delegated	assign	delegated	delegated	delegated	▁262
+413	delegated power	delegated power	delegated power	delegated power	delegated power	▁263
+414	▔	financial secretary	▔	financial secretary	▔	monetary authority
+415	accountability and transparency	accountability and transparency	accountability and transparency	accountability and transparency	accountability and transparency	accountability and transparency
+416	policy objective	policy objective	policy objective	policy objective	policy objective	policy objective
+417	official reserve	official reserve	official reserve	official reserve	official reserve	official reserve
+418	financial infrastructure	financial infrastructure	financial infrastructure	financial infrastructure	financial infrastructure	▁273
+419	banking stability	banking stability	banking stability	banking stability	banking stability	banking stability
+420	media	media	media	media	media	▁103
+421	trade secret	trade secret	trade secret	trade secret	trade secret	▁79
+422	confidential information	confidential information	confidential information	confidential information	confidential information	confidential information
+423	statutory restriction	statutory restriction	statutory restriction	statutory restriction	statutory restriction	statutory restriction
+424	legislative council	legislative council	legislative council	legislative council	legislative council	legislative council
+425	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary
+426	management specialist	financial secretary	management specialist	financial secretary	management specialist	monetary authority
+427	media	media	media	media	media	▁103
+428	journal and special publication	journal and special publication	journal and special publication	journal and special publication	journal and special publication	▁161
+429	institutional functions	institutional functions	institutional functions	institutional functions	institutional functions	▁172
+430	consumer information	consumer information	consumer information	consumer information	consumer information	consumer information
+431	regulatory resource	regulatory resource	regulatory resource	regulatory resource	regulatory resource	regulatory resource
+432	social media platform	social media platform	social media platform	social media platform	social media platform	social media platform
+433	briefing material	briefing material	briefing material	briefing material	briefing material	▁204
+434	bilingual website	bilingual website	bilingual website	bilingual website	bilingual website	▁306
+435	central bank	central bank	central bank	central bank	central bank	central banking
+436	imf	imf	imf	imf	imf	international monetary fund
+437	fund	imf	fund	fund	fund	imf
+438	exchange fund and currency board account	exchange fund and currency board account	exchange fund and currency board account	exchange fund and currency board account	exchange fund and currency board account	▁94
+439	currency issuance committee under the exchange fund advisory committee	currency issuance committee under the exchange fund advisory committee	currency issuance committee under the exchange fund advisory committee	currency issuance committee under the exchange fund advisory committee	currency issuance committee under the exchange fund advisory committee	▁97
+440	data dissemination standard	data dissemination standard	data dissemination standard	data dissemination standard	data dissemination standard	special data dissemination standard
+441	currency issuance committee	currency issuance committee	currency issuance committee	currency board secretariat	currency issuance committee	currency board sub
+442	currency issuance system	currency issuance system	currency issuance system	currency issuance system	currency issuance system	currency board arrangement
+443	currency issuance system	currency issuance system	currency issuance system	currency board arrangement	currency issuance system	▁246
+444	currency board account	currency board account	currency board account	currency board account	currency board account	currency board account
+445	subcommittees	subcommittees	subcommittees	subcommittees	subcommittees	▁12
+446	legislative council	legislative council	legislative council	legislative council	legislative council	legislative council
+447	legislator	legislator	legislator	legislator	legislator	▁236
+448	finance committee	finance committee	finance committee	finance committee	finance committee	▁243
+449	monitoring measure	monitoring measure	monitoring measure	monitoring measure	monitoring measure	control
+450	internal and external audit function	internal and external audit function	internal and external audit function	internal and external audit function	internal and external audit function	internal and external audit function
+451	internal and external monitoring mechanism	internal and external monitoring mechanism	internal and external monitoring mechanism	internal and external monitoring mechanism	internal and external monitoring mechanism	▁49
+452	external audit	external audit	external audit	external audit	external audit	external audit
+453	code of conduct	code of conduct	code of conduct	code of conduct	code of conduct	code of conduct
+454	code of conduct	code of conduct	code of conduct	code of conduct	code of conduct	code of conduct
+455	ethical and legal responsibility	ethical and legal responsibility	ethical and legal responsibility	ethical and legal responsibility	ethical and legal responsibility	ethical and legal responsibility
+456	operational monitoring	operational monitoring	operational monitoring	operational monitoring	operational monitoring	▁264
+457	monitoring measure	monitoring measure	monitoring measure	monitoring measure	monitoring measure	control
+458	first line of defense	first line of defense	first line of defense	first line of defense	first line of defense	▁200
+459	corporate risk management	corporate risk management	corporate risk management	organizational risk management	corporate risk management	▁173
+460	organizational level	organizational level	organizational level	organization	organizational level	▁169
+461	organizational risk management	corporate risk management	organizational risk management	organizational risk management	organizational risk management	▁173
+462	risk committee	risk committee	risk committee	risk committee	risk committee	risk committee
+463	monitoring measure	monitoring measure	monitoring measure	monitoring measure	monitoring measure	control
+464	mitigation strategy	mitigation strategy	mitigation strategy	mitigation strategy	mitigation strategy	▁222
+465	risk committee	risk committee	risk committee	risk committee	risk committee	risk committee
+466	internal	internal	internal	internal	internal	internal audit
+467	monitoring measure	monitoring measure	monitoring measure	monitoring measure	monitoring measure	control
+468	hkma	hkma	hkma	hkma	hkma	▁270
+469	external audit	external audit	external audit	external audit	external audit	external audit
+470	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance
+471	financial statement exchange fund	financial statement exchange fund	financial statement exchange fund	exchange fund financial statement	financial statement exchange fund	▁98
+472	audit commission	audit commission	audit commission	▁11	audit commission	audit commission
+473	sar government	hksar government	sar government	hksar government	sar government	▁184
+474	kong sar government	kong sar government	kong sar government	kong sar government	kong sar government	▁323
+475	kong sar government commission	kong sar government commission	kong sar government commission	kong sar government commission	kong sar government commission	▁324
+476	and kong	and kong	and kong	and kong	and kong	▁47
+477	covid	covid	covid	covid	covid	covid
+478	real economy activity	real economy activity	real economy activity	real economy activity	real economy activity	▁112
+479	mainland and kong	and kong	mainland and kong	and kong	mainland and kong	▁47
+480	quarantine requirement	quarantine requirement	quarantine requirement	quarantine requirement	quarantine requirement	▁122
+481	government 's 's consumption voucher scheme	government 's 's consumption voucher scheme	government 's 's consumption voucher scheme	government 's 's consumption voucher scheme	government 's 's consumption voucher scheme	government 's 's consumption voucher scheme
+482	overall investment expenditure	overall investment expenditure	overall investment expenditure	overall investment expenditure	overall investment expenditure	overall investment expenditure
+483	covid	covid	covid	covid	covid	covid
+484	consumption voucher scheme	consumption voucher scheme	consumption voucher scheme	consumption voucher scheme	consumption voucher scheme	consumption voucher scheme
+485	inbound tourism activity	inbound tourism activity	inbound tourism activity	inbound tourism activity	inbound tourism activity	inbound tourism activity
+486	hong kong 's merchandise export	hong kong 's merchandise export	hong kong 's merchandise export	hong kong 's 's merchandise export	hong kong 's merchandise export	▁326
+487	census and statistics department	census and statistics department	census and statistics department	census and statistics department	census and statistics department	census and statistics department
+488	census and statistics department	census and statistics department	census and statistics department	census and statistics department	census and statistics department	census and statistics department
+489	gross fix capital formation	gross fix capital formation	gross fix capital formation	gross fix capital formation	gross fix capital formation	▁162
+490	nominal wage growth	nominal wage growth	nominal wage growth	nominal wage growth	nominal wage growth	nominal wage growth
+491	commercial building rent	commercial building rent	commercial building rent	commercial building rent	commercial building rent	▁78
+492	external energy and food price	external energy and food price	external energy and food price	external energy and food price	external energy and food price	external energy and food price
+493	overall inflation rate	overall inflation rate	overall inflation rate	overall inflation rate	overall inflation rate	▁150
+494	inflation pressure	inflationary pressure	inflation pressure	inflation pressure	inflation pressure	inflationary pressure
+495	labour force	labour force	labour force	labour force	labour force	labour force
+496	labour force participation rate	labour force participation rate	labour force participation rate	labour force participation rate	labour force participation rate	labour force participation rate
+497	private sector vacancy	private sector vacancy	private sector vacancy	private sector vacancy	private sector vacancy	private sector vacancy
+498	census and statistics department	census and statistics department	census and statistics department	census and statistics department	census and statistics department	census and statistics department
+499	census and statistics department	census and statistics department	census and statistics department	census and statistics department	census and statistics department	census and statistics department
+500	russia situation	russia situation	russia situation	russia situation	russia situation	russia situation
+501	rate hike	interest rate hike	rate hike	rate hike	rate hike	interest rate hike
+502	hang seng index	hang seng index	hang seng index	hang seng index	hang seng index	hang seng index
+503	covid	covid	covid	covid	covid	covid
+504	kong market	kong market	kong market	kong market	kong market	▁164
+505	▔	global economic outlook	▔	global economic outlook	▔	▁189
+506	▔	economic outlook	▔	economic outlook	▔	▁208
+507	us rate hike	us rate hike	us rate hike	us rate hike	us rate hike	us rate hike
+508	residential property market	residential property market	residential property market	residential property market	residential property market	residential property market
+509	homebuyer	homebuyer	homebuyer	homebuyer	homebuyer	▁26
+510	transaction volume	transaction volume	transaction volume	transaction volume	transaction volume	▁125
+511	mortgage payment	mortgage payment	mortgage payment	mortgage payment	mortgage payment	▁139
+512	mortgage interest rate	mortgage interest rate	mortgage interest rate	mortgage interest rate	mortgage interest rate	mortgage interest rate
+513	housing affordability	housing affordability	housing affordability	housing affordability	housing affordability	housing affordability
+514	non-residential property market	non-residential property market	non-residential property market	non-residential property market	non-residential property market	non-residential property market
+515	rating and valuation department	rating and valuation department	rating and valuation department	rating and valuation department	rating and valuation department	rating and valuation department
+516	hong kong exchanges and clearing limited	hong kong exchanges and clearing limited	hong kong exchanges and clearing limited	hong kong exchanges and clearing limited	hong kong exchanges and clearing limited	hong kong exchanges and clearing limited
+517	economic outlook	economic outlook	economic outlook	economic outlook	economic outlook	▁208
+518	economic environment	economic environment	economic environment	macroeconomic environment	economic environment	economic environment
+519	advanced economy	advanced economy	advanced economy	advanced economy	advanced economy	advanced economy
+520	inbound tourism	inbound tourism	inbound tourism	inbound tourism	inbound tourism	inbound tourism
+521	kong	and kong	kong	and kong	kong	▁47
+522	policy rate trajectory	policy rate trajectory	policy rate trajectory	policy rate trajectory	policy rate trajectory	▁148
+523	us federal reserve	us federal reserve	us federal reserve	us federal reserve	us federal reserve	us federal reserve
+524	federal reserve	federal reserve	federal reserve	federal reserve	federal reserve	federal reserve
+525	capital expenditure	capital expenditure	capital expenditure	capital expenditure	capital expenditure	▁255
+526	hong kong 's 's merchandise export	hong kong 's merchandise export	hong kong 's 's merchandise export	hong kong 's 's merchandise export	hong kong 's 's merchandise export	▁326
+527	banking sector performance	banking sector performance	banking sector performance	banking sector performance	banking sector performance	▁292
+528	▔	interest rate hike	▔	rate hike	▔	interest rate hike
+529	credit	credit	credit	allowance	credit	▁77
+530	macroeconomic environment	macroeconomic environment	macroeconomic environment	macroeconomic environment	macroeconomic environment	macroeconomic environment
+531	covid	covid	covid	covid	covid	covid
+532	liquidity	liquidity	liquidity	liquidity	liquidity	▁176
+533	liquidity	liquidity position	liquidity	liquidity position	liquidity	liquidity condition
+534	net interest income	net interest income	net interest income	net interest income	net interest income	net interest income
+535	macroeconomic environment	economic environment	macroeconomic environment	macroeconomic environment	macroeconomic environment	economic environment
+536	and commission	and commission	and commission	and commission	and commission	fee and commission
+537	asset quality	asset quality	asset quality	asset quality	asset quality	asset quality
+538	asset quality	asset quality	asset quality	asset quality	asset quality	asset quality
+539	mainland china	mainland china	mainland china	mainland china	mainland china	mainland china
+540	mainland china	mainland china	mainland china	mainland china	mainland china	▁3
+541	residential mortgage	residential mortgage	residential mortgage	residential mortgage	residential mortgage	residential mortgage
+542	credit card loan	credit card loan	credit card loan	credit card	credit card loan	▁31
+543	provision coverage ratio	provision coverage ratio	provision coverage ratio	provision coverage ratio	provision coverage ratio	provision coverage ratio
+544	mainland	mainland	mainland	mainland loan	mainland	▁46
+545	developer	developer	developer	developer	developer	property developer
+546	market value of collateral	market value of collateral	market value of collateral	market value of collateral	market value of collateral	market value of collateral
+547	delinquency rate	delinquency rate	delinquency rate	delinquency rate	delinquency rate	delinquency ratios
+548	classify loan ratio	classify loan ratio	classify loan ratio	classify loan ratio	classify loan ratio	classify loan ratio
+549	overdue and reschedule loan ratio	overdue and reschedule loan ratio	overdue and reschedule loan ratio	overdue and reschedule loan ratio	overdue and reschedule loan ratio	overdue and reschedule loan ratio
+550	overseas branch	overseas branch	overseas branch	overseas branch	overseas branch	overseas branch
+551	asset quality	asset quality	asset quality	asset quality	asset quality	asset quality
+552	residential mortgage	residential mortgage	residential mortgage	residential mortgage	residential mortgage	residential mortgage
+553	credit card	credit card loan	credit card	credit card	credit card	▁31
+554	delinquency ratios	delinquency rate	delinquency ratios	delinquency rate	delinquency ratios	delinquency ratios
+555	rise interest rate	interest rate hike	rise interest rate	rate hike	rise interest rate	interest rate hike
+556	allowance	credit	allowance	allowance	allowance	▁77
+557	forex and derivative	forex and derivative	forex and derivative	forex and derivative	forex and derivative	▁99
+558	cost ratio	cost ratio	cost ratio	cost ratio	cost ratio	cost ratio
+559	pre-tax operate profit	pre-tax operate profit	pre-tax operate profit	pre-tax operate profit	pre-tax operate profit	▁151
+560	net interest income	net interest income	net interest income	net interest income	net interest income	net interest income
+561	net interest margin	net interest margin	net interest margin	net interest margin	net interest margin	net interest margin
+562	derivative	derivative	derivative	derivative	derivative	▁230
+563	fee and commission	and commission	fee and commission	and commission	fee and commission	fee and commission
+564	▔	financial market	▔	financial market	▔	financial market
+565	cost ratio of retail bank	cost ratio of retail bank	cost ratio of retail bank	cost ratio of retail bank	cost ratio of retail bank	▁310
+566	retail banks ' performance	retail banks ' performance	retail banks ' performance	retail banks ' performance	retail banks ' performance	▁312
+567	net interest margin	net interest margin	net interest margin	net interest margin	net interest margin	net interest margin
+568	retail banks 's net interest margin	retail banks 's net interest margin	retail banks 's net interest margin	retail banks 's net interest margin	retail banks 's net interest margin	▁311
+569	cost ratio	cost ratio	cost ratio	cost ratio	cost ratio	cost ratio
+570	retail banks 's cost ratio	cost ratio of retail bank	retail banks 's cost ratio	cost ratio of retail bank	retail banks 's cost ratio	▁310
+571	balance sheet	balance sheet	balance sheet	balance sheet	balance sheet	balance sheet
+572	mainland china	mainland china	mainland china	mainland china	mainland china	mainland china
+573	mainland china	mainland china	mainland china	mainland china	mainland china	▁3
+574	mainland china	mainland	mainland china	mainland loan	mainland china	▁46
+575	loan use within hong kong	loan use within hong kong	loan use within hong kong	loan use within hong kong	loan use within hong kong	▁83
+576	loan use outside hong kong	loan use outside hong kong	loan use outside hong kong	loan use outside hong kong	loan use outside hong kong	▁84
+577	market value	market value	market value	market value	market value	▁138
+578	derivative	derivative	derivative	derivative	derivative	▁230
+579	trade financing	trade finance	trade financing	trade finance	trade financing	trade finance
+580	▔	balance sheet	▔	balance sheet	▔	balance sheet
+581	expand	expand	expand	expand	expand	▁258
+582	deposit	deposit	deposit	deposit	deposit	deposit
+583	loan ratio	loan ratio	loan ratio	loan ratio	loan ratio	loan ratio
+584	▔	balance sheet	▔	balance sheet	▔	balance sheet
+585	capital adequacy	capital adequacy	capital adequacy	capital adequacy	capital adequacy	capital adequacy
+586	capital adequacy levels	capital adequacy levels	capital adequacy levels	capital adequacy levels	capital adequacy levels	▁253
+587	tier 1 capital ratio	tier 1 capital ratio	tier 1 capital ratio	tier 1 capital ratio	tier 1 capital ratio	tier 1 capital ratio
+588	basel iii	basel iii	basel iii	basel iii	basel iii	basel iii
+589	locally register authorize institution	locally register authorize institution	locally register authorize institution	locally registered authorized institution	locally register authorize institution	▁163
+590	overall total capital ratio	overall total capital ratio	overall total capital ratio	overall total capital ratio	overall total capital ratio	▁212
+591	position	position	position	capital level	position	▁254
+592	deposits	deposit	deposits	deposit	deposits	deposit
+593	locally registered authorized institution	locally register authorize institution	locally registered authorized institution	locally registered authorized institution	locally registered authorized institution	▁163
+594	capital adequacy ratio	capital adequacy ratio	capital adequacy ratio	capital adequacy ratio	capital adequacy ratio	▁213
+595	locally registered authorized institution	locally register authorize institution	locally registered authorized institution	locally registered authorized institution	locally registered authorized institution	▁163
+596	ratio	ratio	ratio	ratio	ratio	▁211
+597	liquidity condition	liquidity	liquidity condition	liquidity	liquidity condition	▁176
+598	liquidity condition	liquidity position	liquidity condition	liquidity position	liquidity condition	liquidity condition
+599	deposit	deposit	deposit	deposit	deposit	deposit
+600	▔	macroeconomic environment	▔	macroeconomic environment	▔	macroeconomic environment
+601	customer deposit	customer deposit	customer deposit	customer deposit	customer deposit	customer deposit
+602	statutory minimum requirement	statutory minimum	statutory minimum requirement	statutory minimum	statutory minimum requirement	statutory minimum requirement
+603	liquidity	liquidity	liquidity	liquidity	liquidity	▁176
+604	liquidity position	liquidity position	liquidity position	liquidity position	liquidity position	liquidity condition
+605	▔	economic environment	▔	macroeconomic environment	▔	economic environment
+606	funding ratio	funding ratio	funding ratio	funding ratio	funding ratio	funding ratios
+607	designated ais	designated ais	designated ais	designated ais	designated ais	▁136
+608	liquidity ratios	liquidity	liquidity ratios	liquidity	liquidity ratios	▁176
+609	liquidity ratios	liquidity ratios	liquidity ratios	liquidity ratios	liquidity ratios	liquidity ratios
+610	designated ais	designated ais	designated ais	designated ais	designated ais	▁136
+611	funding ratios	funding ratio	funding ratios	funding ratio	funding ratios	funding ratios
+612	monetary stability	currency stability	monetary stability	monetary stability	monetary stability	monetary stability
+613	rate hike	interest rate hike	rate hike	rate hike	rate hike	interest rate hike
+614	exchange rate	exchange rate	exchange rate	exchange rate	exchange rate	▁65
+615	exchange and monetary market	and monetary market	exchange and monetary market	and monetary market	exchange and monetary market	▁93
+616	▔	kong market	▔	kong market	▔	▁164
+617	▔	dollar	▔	$	▔	hkd
+618	us dollar	usd	us dollar	usd	us dollar	us dollar
+619	monetary and financial stability	monetary and financial stability	monetary and financial stability	monetary and financial stability	monetary and financial stability	monetary and financial stability
+620	exchange rate	exchange rate	exchange rate	exchange rate	exchange rate	▁64
+621	exchange rate	exchange rate	exchange rate	exchange rate	exchange rate	▁65
+622	▔	dollar	▔	$	▔	hkd
+623	us dollar	usd	us dollar	usd	us dollar	us dollar
+624	us dollar reserve	us dollar reserve	us dollar reserve	us dollar reserve	us dollar reserve	us dollar reserve
+625	monetary base	monetary base	monetary base	monetary base	monetary base	monetary base
+626	currency board arrangement	currency issuance system	currency board arrangement	currency issuance system	currency board arrangement	currency board arrangement
+627	monetary stability	currency stability	monetary stability	monetary stability	monetary stability	monetary stability
+628	currency system	monetary system	currency system	currency system	currency system	monetary system
+629	exchange fund note	exchange fund note	exchange fund note	exchange fund note	exchange fund note	▁95
+630	banknote and coin issue government	banknote and coin issue government	banknote and coin issue government	banknote and coin issue government	banknote and coin issue government	▁145
+631	settlement account balance	settlement account balance	settlement account balance	settlement account balance	settlement account balance	▁207
+632	total balance	total balance	total balance	total balance	total balance	▁223
+633	certificates of indebtedness	certificates of indebtedness	certificates of indebtedness	certificates of indebtedness	certificates of indebtedness	certificates of indebtedness
+634	monetary base	monetary base	monetary base	monetary base	monetary base	monetary base
+635	range	range	range	range	range	▁45
+636	exchange rate	exchange rate	exchange rate	exchange rate	exchange rate	▁65
+637	hkd	dollar	hkd	$	hkd	hkd
+638	total balance	total balance	total balance	total balance	total balance	▁223
+639	usd	usd	usd	usd	usd	us dollar
+640	rate	exchange rate	rate	exchange rate	rate	▁65
+641	exchange rate stability	exchange rate stability	exchange rate stability	exchange rate stability	exchange rate stability	exchange rate stability
+642	london interbank rate	london interbank rate	london interbank rate	london interbank rate	london interbank rate	▁38
+643	rate hike	interest rate hike	rate hike	rate hike	rate hike	interest rate hike
+644	carry trade	carry trade	carry trade	carry trade	carry trade	carry trade
+645	local stock market	kong market	local stock market	kong market	local stock market	▁164
+646	dollar	dollar	dollar	$	dollar	hkd
+647	exchange rate	exchange rate	exchange rate	exchange rate	exchange rate	▁65
+648	exchange fund note	exchange fund note	exchange fund note	exchange fund note	exchange fund note	▁95
+649	hk	dollar	hk	$	hk	hkd
+650	total balance	total balance	total balance	total balance	total balance	▁223
+651	system	system	system	exchange system	system	lers
+652	monetary base	monetary base	monetary base	monetary base	monetary base	monetary base
+653	exchange rate	exchange rate	exchange rate	exchange rate	exchange rate	▁65
+654	exchange fund note	exchange fund note	exchange fund note	exchange fund note	exchange fund note	▁95
+655	total balance	total balance	total balance	total balance	total balance	▁223
+656	discount window	discount window	discount window	discount window	discount window	discount window
+657	discount window activity	discount window activity	discount window activity	discount window activity	discount window activity	▁250
+658	hike rate	interest rate hike	hike rate	rate hike	hike rate	interest rate hike
+659	us dollar	usd	us dollar	usd	us dollar	us dollar
+660	exchange system	system	exchange system	exchange system	exchange system	lers
+661	basic rate	basic rate	basic rate	basic rate	basic rate	▁87
+662	mortgage rate	mortgage interest rate	mortgage rate	mortgage interest rate	mortgage rate	mortgage interest rate
+663	good lending rate	good lending rate	good lending rate	good lending rate	good lending rate	▁157
+664	hk	dollar	hk	$	hk	hkd
+665	us federal funds rate	us federal funds rate	us federal funds rate	us federal funds rate	us federal funds rate	▁225
+666	discount window	discount window	discount window	discount window	discount window	discount window
+667	▔	retail	▔	▁30	▔	▁308
+668	▔	exchange rate	▔	exchange rate	▔	▁65
+669	imf	imf	imf	imf	imf	international monetary fund
+670	▔	imf	▔	fund	▔	imf
+671	exchange monetary market	and monetary market	exchange monetary market	and monetary market	exchange monetary market	▁93
+672	prudent financial framework	prudent financial framework	prudent financial framework	prudent financial framework	prudent financial framework	▁113
+673	external sector report	sector report	external sector report	external sector report	external sector report	external sector report
+674	▔	dollar	▔	$	▔	hkd
+675	▔	system	▔	exchange system	▔	lers
+676	exchange reserve	exchange reserve	exchange reserve	exchange reserve	exchange reserve	▁240
+677	stress test	stress test	stress test	stress test	stress test	▁89
+678	stress test result	stress test result	stress test result	stress test result	stress test result	▁90
+679	liquidity	liquidity	liquidity	liquidity	liquidity	▁176
+680	exchange system	system	exchange system	exchange system	exchange system	lers
+681	capital level	position	capital level	capital level	capital level	▁254
+682	upper or low bound	upper or low bound	upper or low bound	upper or low bound	upper or low bound	▁2
+683	rate	exchange rate	rate	exchange rate	rate	▁65
+684	foreign exchange reserve	foreign exchange reserve	foreign exchange reserve	exchange fund asset	foreign exchange reserve	exchange fund asset
+685	back	back	back	back	back	▁123
+686	back ratio	back ratio	back ratio	back ratio	back ratio	▁143
+687	support asset	support asset	support asset	support asset	support asset	▁144
+688	hkd	dollar	hkd	$	hkd	hkd
+689	exchange	system	exchange	exchange system	exchange	lers
+690	monetary and financial stability	monetary and financial stability	monetary and financial stability	monetary and financial stability	monetary and financial stability	monetary and financial stability
+691	monetary base	monetary base	monetary base	monetary base	monetary base	monetary base
+692	▔	currency board account	▔	currency board account	▔	currency board account
+693	support ratio	back ratio	support ratio	back ratio	support ratio	▁143
+694	currency board secretariat	currency issuance committee	currency board secretariat	currency board secretariat	currency board secretariat	currency board sub
+695	mainland china	mainland china	mainland china	mainland china	mainland china	mainland china
+696	residential mortgage	residential mortgage	residential mortgage	residential mortgage	residential mortgage	residential mortgage
+697	residential mortgage market	residential mortgage market	residential mortgage market	residential mortgage market	residential mortgage market	residential mortgage market
+698	liquidity	liquidity	liquidity	liquidity	liquidity	▁176
+699	dollar	dollar	dollar	$	dollar	hkd
+700	property market	property market	property market	property market	property market	▁180
+701	monitoring framework	monitoring framework	monitoring framework	monitoring framework	monitoring framework	monitoring framework
+702	monetary and financial stability	monetary and financial stability	monetary and financial stability	monetary and financial stability	monetary and financial stability	monetary and financial stability
+703	currency board sub	currency issuance committee	currency board sub	currency board secretariat	currency board sub	currency board sub
+704	currency board arrangement	currency issuance system	currency board arrangement	currency issuance system	currency board arrangement	currency board arrangement
+705	currency board arrangement	currency issuance system	currency board arrangement	currency board arrangement	currency board arrangement	▁246
+706	non-bank institution	non-bank institution	non-bank institution	non-bank institution	non-bank institution	non-bank institution
+707	coin collection programme	coin collection programme	coin collection programme	coin collection programme	coin collection programme	coin collection programme
+708	sustainability report 2022	2022 sustainability report	sustainability report 2022	2022 sustainability report	sustainability report 2022	sustainability report 2022
+709	sustainability report	sustainability report	sustainability report	sustainability report	sustainability report	sustainability report
+710	sustainability	sustainability	sustainability	sustainability	sustainability	▁72
+711	coin collection programme	coin collection programme	coin collection programme	coin collection programme	coin collection programme	coin collection programme
+712	exchange fund note	exchange fund note	exchange fund note	exchange fund note	exchange fund note	▁95
+713	nominal value	nominal value	nominal value	nominal value	nominal value	▁76
+714	exchange fund note	exchange fund note	exchange fund note	exchange fund note	exchange fund note	▁95
+715	note and bond	note and bond	note and bond	note and bond	note and bond	▁96
+716	$	dollar	$	$	$	hkd
+717	total balance	total balance	total balance	total balance	total balance	▁223
+718	exchange fund note	exchange fund note	exchange fund note	exchange fund note	exchange fund note	▁95
+719	policy report	policy report	policy report	policy report	policy report	▁149
+720	centre	research center	centre	centre	centre	▁195
+721	research paper	research paper	research paper	research paper	research paper	▁196
+722	open electronic	open electronic	open electronic	open electronic	open electronic	▁295
+723	centre	research center	centre	centre	centre	▁195
+724	recent development macroeconomics	latest macro developments	recent development macroeconomics	latest macro developments	recent development macroeconomics	▁111
+725	online viewer time	online viewer time	online viewer time	online viewer time	online viewer time	▁219
+726	federal monetary tightening	federal tightening	federal monetary tightening	federal monetary tightening	federal monetary tightening	▁226
+727	offshore rmb	offshore rmb	offshore rmb	offshore renminbi	offshore rmb	offshore renminbi
+728	offshore rmb market	offshore rmb market	offshore rmb market	offshore rmb market	offshore rmb market	offshore renminbi market
+729	offshore rmb market development	offshore rmb market development	offshore rmb market development	offshore rmb market development	offshore rmb market development	offshore rmb market development
+730	mainland china	mainland china	mainland china	mainland china	mainland china	mainland china
+731	▔	▁0	▔	▁0	▔	▁4
+732	▔	▁4	▔	▁3	▔	▁10
+733	asia economics research	asia economics research	asia economics research	asia economics research	asia economics research	▁15
+734	policy research centre of the ministry of housing and urban development	policy research centre of the ministry of housing and urban development	policy research centre of the ministry of housing and urban development	policy research centre of the ministry of housing and urban development	policy research centre of the ministry of housing and urban development	▁23
+735	ubs	ubs	ubs	ubs	ubs	ubs
+736	research centre	research center	research centre	centre	research centre	▁195
+737	online time	online viewer time	online time	online viewer time	online time	▁219
+738	chief china economist	chief china economist	chief china economist	chief china economist	chief china economist	chief china economist
+739	central bank	central bank	central bank	central bank	central bank	central banking
+740	asian development bank	asian development bank	asian development bank	asian development bank	asian development bank	asian development bank
+741	monetary policy spillover effect	monetary policy spillover effect	monetary policy spillover effect	monetary policy spillover effect	monetary policy spillover effect	▁245
+742	international monetary watch	international monetary watch	international monetary watch	international monetary watch	international monetary watch	▁82
+743	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit
+744	inflation post-covid	inflation post-covid	inflation post-covid	inflation post-covid	inflation post-covid	▁153
+745	invesco	invesco	invesco	invesco	invesco	invesco
+746	economist	economist	economist	economist	economist	▁210
+747	china center for international economic exchanges	china center for international economic exchanges	china center for international economic exchanges	china center for international economic exchanges	china center for international economic exchanges	china center for international economic exchanges
+748	phase development	phase development	phase development	phase development	phase development	▁5
+749	supply chain reshuffles	supply chain reshuffles	supply chain reshuffles	supply chain reshuffles	supply chain reshuffles	▁25
+750	academic committee	academic committee	academic committee	academic committee	academic committee	academic committee
+751	annual international conference on the chinese economy	annual international conference on the chinese economy	annual international conference on the chinese economy	annual international conference on the chinese economy	annual international conference on the chinese economy	annual international conference on the chinese economy
+752	online viewer time	online viewer time	online viewer time	online viewer time	online viewer time	▁219
+753	long growth prospect	long growth prospect	long growth prospect	long growth prospect	long growth prospect	long growth prospect
+754	pandemic response	pandemic response	pandemic response	pandemic response	pandemic response	▁300
+755	banking system stability	banking stability	banking system stability	banking stability	banking system stability	banking stability
+756	▔	▁12	▔	▁10	▔	▁107
+757	cyber threat	cyber threat	cyber threat	cyber threat	cyber threat	cyber threat
+758	operational resilience	operational resilience	operational resilience	operational resilience	operational resilience	operational resilience
+759	operational resilience	operational resilience	operational resilience	operational resilience	operational resilience	operational resilience
+760	operational resilience and cyber defense capability	resilience and cyber resilience	operational resilience and cyber defense capability	operational resilience and cyber defense capability	operational resilience and cyber defense capability	▁265
+761	financial market	financial market	financial market	financial market	financial market	financial market
+762	trust business	trust business	trust business	trust business	trust business	trust business
+763	credit datum	credit datum	credit datum	credit datum	credit datum	credit datum
+764	credit data platform	credit reference platform	credit data platform	credit data platform	credit data platform	credit reference platform
+765	personal credit information	personal credit datum	personal credit information	personal credit datum	personal credit information	▁35
+766	investment product	investment product	investment product	investment product	investment product	investment product
+767	payment arrangement	payment arrangement	payment arrangement	payment arrangement	payment arrangement	payment arrangement
+768	roll bad apples	roll bad apples	roll bad apples	roll bad apples	roll bad apples	roll bad apples
+769	property refinance	property refinancing	property refinance	property refinancing	property refinance	property refinancing
+770	regulatory framework	regulatory regime	regulatory framework	regulatory framework	regulatory framework	regulatory regime
+771	public partnership	public partnership	public partnership	public partnership	public partnership	public partnership
+772	aml regtech lab	aml regtech lab	aml regtech lab	aml regtech lab	aml regtech lab	aml regtech lab
+773	fraud and money laundering intelligence taskforce	fraud and money laundering intelligence taskforce	fraud and money laundering intelligence taskforce	fraud and money laundering intelligence taskforce	fraud and money laundering intelligence taskforce	fraud and money laundering intelligence taskforce
+774	geopolitical environment	geopolitical environment	geopolitical environment	geopolitical environment	geopolitical environment	geopolitical environment
+775	terrorist financing	counter financing	terrorist financing	terrorist financing	terrorist financing	terrorist financing
+776	money laundering	anti-money laundering	money laundering	anti-money laundering	money laundering	▁130
+777	money	▁20	money	▁18	money	▁175
+778	regulatory technology	regtech	regulatory technology	regtech	regulatory technology	▁193
+779	strategic partner	strategic partner	strategic partner	strategic partner	strategic partner	strategic partner
+780	fatf	action	fatf	action	fatf	▁239
+781	international regulatory standard	international regulatory standard	international regulatory standard	international regulatory standard	international regulatory standard	▁81
+782	practitioner	staff	practitioner	practitioner	practitioner	practitioner
+783	disclosure standard	disclosure standard	disclosure standard	disclosure standard	disclosure standard	disclosure standard
+784	capital adequacy	capital adequacy	capital adequacy	capital adequacy	capital adequacy	capital adequacy
+785	capital adequacy	adequacy standard	capital adequacy	adequacy standard	capital adequacy	capital adequacy
+786	soft skill	soft skill	soft skill	soft skill	soft skill	▁261
+787	domestically systemically important bank	domestic systemically important bank	domestically systemically important bank	domestic systemically important bank	domestically systemically important bank	domestic systemically important bank
+788	loss capacity resource	loss capacity resource	loss capacity resource	loss capacity resource	loss capacity resource	loss capacity resource
+789	regional crisis simulation exercise	regional crisis simulation exercise	regional crisis simulation exercise	regional crisis simulation exercise	regional crisis simulation exercise	regional crisis simulation exercise
+790	resolvability	resolution readiness	resolvability	resolution	resolvability	resolvability
+791	resolution standard	resolution standard	resolution standard	resolution standard	resolution standard	resolution standard
+792	resolution mechanism	resolution mechanism	resolution mechanism	resolution mechanism	resolution mechanism	resolution regime
+793	deposit	deposit	deposit	deposit	deposit	deposit
+794	▔	▁14	▔	prudential supervision	▔	prudential supervision
+795	restrict license bank	restrict license bank	restrict license bank	restrict license bank	restrict license bank	▁160
+796	monetary authority	financial secretary	monetary authority	financial secretary	monetary authority	monetary authority
+797	prudential supervision	▁14	prudential supervision	prudential supervision	prudential supervision	prudential supervision
+798	prudential supervision system	prudential supervision system	prudential supervision system	prudential supervision system	prudential supervision system	▁114
+799	supervision system	regulatory regime	supervision system	regulatory framework	supervision system	regulatory regime
+800	resolution	resolution readiness	resolution	resolution	resolution	resolvability
+801	resolution regime	resolution mechanism	resolution regime	resolution mechanism	resolution regime	resolution regime
+802	resolution authority	resolution authority	resolution authority	resolution authority	resolution authority	resolution authority
+803	resolution procedure	resolution procedure	resolution procedure	resolution procedure	resolution procedure	▁228
+804	resolution plan	resolution plan	resolution plan	resolution plan	resolution plan	resolution plan
+805	hkma	financial secretary	hkma	financial secretary	hkma	monetary authority
+806	financial market	financial market	financial market	financial market	financial market	financial market
+807	▔	financial secretary	▔	financial secretary	▔	monetary authority
+808	restrict license bank	restrict license bank	restrict license bank	restrict license bank	restrict license bank	▁160
+809	local representative office	local representative office	local representative office	local representative office	local representative office	local representative office
+810	corporate governance	corporate governance	corporate governance	corporate governance	corporate governance	corporate governance
+811	external auditor	external auditor	external auditor	external auditor	external auditor	external auditor
+812	▔	annuity	▔	▁12	▔	annuity
+813	off review	on examination	off review	on examination	off review	on examination
+814	off review	off review	off review	off review	off review	off review
+815	credit risk management	credit risk management	credit risk management	credit risk management	credit risk management	▁32
+816	mpf	mandatory provident fund	mpf	funds	mpf	▁54
+817	prudential supervision	▁14	prudential supervision	prudential supervision	prudential supervision	prudential supervision
+818	investment product	investment product	investment product	investment product	investment product	investment product
+819	operational	operational risk	operational	operational risk	operational	operational risk
+820	on examination	on examination	on examination	on examination	on examination	on examination
+821	green and sustainable banking	green and sustainable banking	green and sustainable banking	green and sustainable banking	green and sustainable banking	green and sustainable banking
+822	security	▁28	security	security	security	security
+823	off review	off review	off review	off review	off review	off review
+824	asset quality	asset quality	asset quality	asset quality	asset quality	asset quality
+825	mainland loan	mainland	mainland loan	mainland loan	mainland loan	▁46
+826	$	dollar	$	$	$	hkd
+827	interest rate hike	interest rate hike	interest rate hike	rate hike	interest rate hike	interest rate hike
+828	property developer	developer	property developer	developer	property developer	property developer
+829	mainland loan	mainland	mainland loan	mainland loan	mainland loan	▁46
+830	classify loan ratio	classify loan ratio	classify loan ratio	classify loan ratio	classify loan ratio	classify loan ratio
+831	asset quality	asset quality	asset quality	asset quality	asset quality	asset quality
+832	stress testing	stress testing	stress testing	stress testing	stress testing	▁41
+833	testing	stress test	testing	stress test	testing	▁89
+834	testing result	stress test result	testing result	stress test result	testing result	▁90
+835	credit risk management	credit risk management	credit risk management	credit risk management	credit risk management	▁32
+836	exposure	▁16	exposure	▁14	exposure	▁132
+837	asset quality	asset quality	asset quality	asset quality	asset quality	asset quality
+838	macroeconomic environment	macroeconomic environment	macroeconomic environment	macroeconomic environment	macroeconomic environment	macroeconomic environment
+839	macroeconomic environment	economic environment	macroeconomic environment	macroeconomic environment	macroeconomic environment	economic environment
+840	hong kong approach to corporate difficulties	hong kong approach to corporate difficulties	hong kong approach to corporate difficulties	hong kong approach to corporate difficulties	hong kong approach to corporate difficulties	hong kong approach to corporate difficulties
+841	mainland loan	mainland	mainland loan	mainland loan	mainland loan	▁46
+842	small	sme	small	sme	small	sme
+843	▔	▁2	▔	▁1	▔	▁8
+844	covid	covid	covid	covid	covid	covid
+845	partial principal repayment option	partial principal repayment option	partial principal repayment option	partial principal repayment option	partial principal repayment option	▁267
+846	banking sector small and medium enterprise lending coordination mechanism	banking sector sme lending coordination mechanism	banking sector small and medium enterprise lending coordination mechanism	banking sector sme lending coordination mechanism	banking sector small and medium enterprise lending coordination mechanism	▁283
+847	residential mortgage	residential mortgage	residential mortgage	residential mortgage	residential mortgage	residential mortgage
+848	$	dollar	$	$	$	hkd
+849	loan extension	loan extension	loan extension	loan extension	loan extension	▁249
+850	residential mortgage lending	residential mortgage lending	residential mortgage lending	mortgage lending	residential mortgage lending	▁181
+851	residential mortgage	residential mortgage	residential mortgage	residential mortgage	residential mortgage	residential mortgage
+852	macroprudential measure	▁14	macroprudential measure	prudential supervision	macroprudential measure	prudential supervision
+853	loan ( ltv ) ratio	loan ( ltv ) ratio	loan ( ltv ) ratio	loan ( ltv ) ratio	loan ( ltv ) ratio	loan ( ltv ) ratio
+854	countercyclical macroprudential measure	countercyclical macroprudential measure	countercyclical macroprudential measure	countercyclical macroprudential measure	countercyclical macroprudential measure	countercyclical macroprudential measure
+855	stress testing	stress test	stress testing	stress test	stress testing	▁89
+856	mortgage interest rate	mortgage interest rate	mortgage interest rate	mortgage interest rate	mortgage interest rate	mortgage interest rate
+857	mortgage lending	residential mortgage lending	mortgage lending	mortgage lending	mortgage lending	▁181
+858	residential mortgage	residential mortgage	residential mortgage	residential mortgage	residential mortgage	residential mortgage
+859	ltv	loan ( ltv ) ratio	ltv	loan ( ltv ) ratio	ltv	loan ( ltv ) ratio
+860	business operation and technology risks	business operation and technology risks	business operation and technology risks	business operation and technology risks	business operation and technology risks	▁166
+861	▔	annuity	▔	▁12	▔	annuity
+862	industry dialogues	industry dialogues	industry dialogues	industry dialogue	industry dialogues	industry dialogues
+863	operational resilience	operational resilience	operational resilience	operational resilience	operational resilience	operational resilience
+864	operational resilience	operational resilience	operational resilience	operational resilience	operational resilience	operational resilience
+865	defens against distribute denial ( ddos ) attack	defens against distribute denial ( ddos ) attack	defens against distribute denial ( ddos ) attack	defens against distribute denial ( ddos ) attack	defens against distribute denial ( ddos ) attack	▁59
+866	customer datum protection	customer datum protection	customer datum protection	customer datum protection	customer datum protection	customer datum protection
+867	payment system operation	payment system operation	payment system operation	payment system operation	payment system operation	payment system operation
+868	supervisory guidance	supervisory guideline	supervisory guidance	supervisory guidance	supervisory guidance	supervisory guidance
+869	triple datum backup	tertiary datum backup	triple datum backup	tertiary datum backup	triple datum backup	▁1
+870	cyber threat	cyber threat	cyber threat	cyber threat	cyber threat	cyber threat
+871	hkba	banks	hkba	hkba	hkba	▁282
+872	hong kong police force	hong kong police force	hong kong police force	hong kong police force	hong kong police force	hong kong police force
+873	industry dialogue	industry dialogues	industry dialogue	industry dialogue	industry dialogue	industry dialogues
+874	operational resilience	operational resilience	operational resilience	operational resilience	operational resilience	operational resilience
+875	liquidity	liquidity	liquidity	liquidity	liquidity	▁176
+876	▔	▁16	▔	▁14	▔	▁132
+877	liquidity	liquidity	liquidity	liquidity	liquidity	▁176
+878	treasury operation	treasury operation	treasury operation	treasury operation	treasury operation	▁244
+879	▔	▁37	▔	group	▔	group
+880	internal liquidity risk management	internal liquidity risk management	internal liquidity risk management	internal liquidity risk management	internal liquidity risk management	▁305
+881	global financial leader investment summit	global financial leader 's investment summit	global financial leader investment summit	global financial leader 's investment summit	global financial leader investment summit	global financial leader 's investment summit
+882	china	pboc	china	china	china	person 's 's bank of china
+883	central	platform	central	central	central	▁6
+884	swapconnect	swap connect	swapconnect	swapconnect	swapconnect	swap connect
+885	connect scheme	connect scheme	connect scheme	connect mechanism	connect scheme	▁14
+886	renminbi liquidity arrangement	rmb liquidity arrangement	renminbi liquidity arrangement	renminbi liquidity arrangement	renminbi liquidity arrangement	▁20
+887	renminbi product	renminbi product	renminbi product	renminbi product	renminbi product	renminbi product
+888	▔	pboc	▔	bank	▔	pboc
+889	kong	and kong	kong	and kong	kong	▁47
+890	connect between kong	connect between kong	connect between kong	connect between kong	connect between kong	▁48
+891	renminbi liquidity	liquidity	renminbi liquidity	liquidity	renminbi liquidity	▁176
+892	security	▁28	security	security	security	security
+893	financial market	financial market	financial market	financial market	financial market	financial market
+894	offshore renminbi	offshore rmb	offshore renminbi	offshore renminbi	offshore renminbi	offshore renminbi
+895	offshore renminbi hub	offshore rmb business	offshore renminbi hub	offshore renminbi business	offshore renminbi hub	offshore renminbi business
+896	offshore renminbi hub	offshore rmb business hub	offshore renminbi hub	offshore renminbi business hub	offshore renminbi hub	offshore renminbi business hub
+897	hong kong exchanges and clearing limited	hong kong exchanges and clearing limited	hong kong exchanges and clearing limited	hong kong exchanges and clearing limited	hong kong exchanges and clearing limited	hong kong exchanges and clearing limited
+898	corporate treasury centre	corporate treasury centre	corporate treasury centre	corporate treasury centre	corporate treasury centre	corporate treasury centre
+899	bond issuance	bond issuance	bond issuance	bond issuance	bond issuance	bond issuance
+900	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance
+901	asset and wealth management	asset and wealth management	asset and wealth management	asset and wealth management	asset and wealth management	asset and wealth management
+902	financial industry	▁31	financial industry	financial industry	financial industry	▁275
+903	fintech hub	fintech hub	fintech hub	fintech hub	fintech hub	fintech hub
+904	central bank and supervisory organization	central bank and supervisory organization	central bank and supervisory organization	central bank and supervisory organization	central bank and supervisory organization	▁102
+905	global financial leader investment summit	global financial leader 's investment summit	global financial leader investment summit	global financial leader 's investment summit	global financial leader investment summit	global financial leader 's investment summit
+906	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary
+907	financial industry	▁31	financial industry	financial industry	financial industry	▁275
+908	▔	pboc	▔	china	▔	person 's 's bank of china
+909	▔	▁1	▔	china interbank bond market	▔	china interbank bond market
+910	▔	swap connect	▔	swapconnect	▔	swap connect
+911	connect mechanism	connect scheme	connect mechanism	connect mechanism	connect mechanism	▁14
+912	hub	hub	hub	hub	hub	▁19
+913	bank	pboc	bank	bank	bank	pboc
+914	bond connect	bond connect	bond connect	bond connect	bond connect	bond connect
+915	▔	▁27	▔	▁24	▔	▁229
+916	▔	▁28	▔	security	▔	security
+917	▔	cross wealth management connect	▔	cross wealth management connect	▔	cross wealth management connect
+918	▔	financial market	▔	financial market	▔	financial market
+919	renminbi	offshore rmb	renminbi	offshore renminbi	renminbi	offshore renminbi
+920	offshore renminbi business	offshore rmb business	offshore renminbi business	offshore renminbi business	offshore renminbi business	offshore renminbi business
+921	offshore renminbi business hub	offshore rmb business hub	offshore renminbi business hub	offshore renminbi business hub	offshore renminbi business hub	offshore renminbi business hub
+922	▔	▁40	▔	risk management centre	▔	risk management centre
+923	▔	▁21	▔	▁19	▔	▁177
+924	hkex	hong kong exchanges and clearing limited	hkex	hong kong exchanges and clearing limited	hkex	hong kong exchanges and clearing limited
+925	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance	▁66
+926	▔	▁23	▔	▁20	▔	▁199
+927	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance
+928	green and sustainable finance	green and sustainable finance hub	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance hub
+929	▔	▁31	▔	financial industry	▔	▁275
+930	▔	cyberport	▔	cyberport	▔	cyberport
+931	▔	digital hkd	▔	digital hkd	▔	e-hkd
+932	▔	dollar	▔	$	▔	hkd
+933	fintech	fintech	fintech	fintech	fintech	▁276
+934	financial	▁32	financial	financial	financial	▁278
+935	fintech hub	fintech hub	fintech hub	fintech hub	fintech hub	fintech hub
+936	▔	retail	▔	▁30	▔	▁308
+937	▔	▁6	▔	▁5	▔	▁17
+938	bond connect	bond connect	bond connect	bond connect	bond connect	bond connect
+939	▔	▁10	▔	▁9	▔	▁68
+940	▔	exchange fund note	▔	exchange fund note	▔	▁95
+941	▔	dollar	▔	$	▔	hkd
+942	▔	financial infrastructure	▔	financial infrastructure	▔	▁273
+943	▔	▁9	▔	▁8	▔	▁44
+944	▔	▁17	▔	▁15	▔	▁137
+945	▔	payment ordinance	▔	payment ordinance	▔	▁142
+946	▔	▁18	▔	▁16	▔	▁147
+947	▔	consumption voucher scheme	▔	consumption voucher scheme	▔	consumption voucher scheme
+948	▔	▁38	▔	▁31	▔	▁309
+949	▔	stablecoin	▔	stablecoin	▔	stablecoin
+950	▔	consultation paper	▔	consultation paper	▔	discussion paper
+951	central bank	central bank	central bank	central bank	central bank	central banking
+952	▔	basel committee	▔	basel committee	▔	basel committee
+953	▔	basel committee on banking supervision	▔	basel committee on banking supervision	▔	basel committee on banking supervision
+954	▔	▁29	▔	▁25	▔	▁272
+955	▔	▁30	▔	▁26	▔	▁274
+956	▔	financial market	▔	financial market	▔	financial market
+957	▔	▁39	▔	▁32	▔	▁316
+958	▔	global financial leader 's investment summit	▔	global financial leader 's investment summit	▔	global financial leader 's investment summit
+959	global financial leader investment summit	global financial leader 's investment summit	global financial leader investment summit	global financial leader 's investment summit	global financial leader investment summit	global financial leader 's investment summit
+960	global financial leader investment summit	global financial leader 's investment summit	global financial leader investment summit	global financial leader 's investment summit	global financial leader investment summit	global financial leader 's investment summit
+961	private equity	private equity	private equity	private equity	private equity	▁198
+962	security	▁28	security	security	security	security
+963	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary
+964	financial industry	▁31	financial industry	financial industry	financial industry	▁275
+965	▔	▁37	▔	group	▔	group
+966	offshore renminbi	offshore rmb	offshore renminbi	offshore renminbi	offshore renminbi	offshore renminbi
+967	offshore renminbi business	offshore rmb business	offshore renminbi business	offshore renminbi business	offshore renminbi business	offshore renminbi business
+968	offshore renminbi business hub	offshore rmb business hub	offshore renminbi business hub	offshore renminbi business hub	offshore renminbi business hub	offshore renminbi business hub
+969	connect mechanism	connect scheme	connect mechanism	connect mechanism	connect mechanism	▁14
+970	bond issuance	bond issuance	bond issuance	bond issuance	bond issuance	bond issuance
+971	renminbi fx centre	renminbi fx centre	renminbi fx centre	renminbi fx centre	renminbi fx centre	▁91
+972	deposit	deposit	deposit	deposit	deposit	deposit
+973	liquidity	liquidity	liquidity	liquidity	liquidity	▁176
+974	derivative	derivative	derivative	derivative	derivative	▁230
+975	derivative market	derivative market	derivative market	derivative market	derivative market	derivative market
+976	financial market	financial market	financial market	financial market	financial market	financial market
+977	renminbi	offshore rmb	renminbi	offshore renminbi	renminbi	offshore renminbi
+978	offshore renminbi business	offshore rmb business	offshore renminbi business	offshore renminbi business	offshore renminbi business	offshore renminbi business
+979	offshore renminbi business hub	offshore rmb business hub	offshore renminbi business hub	offshore renminbi business hub	offshore renminbi business hub	offshore renminbi business hub
+980	china interbank bond market	▁1	china interbank bond market	china interbank bond market	china interbank bond market	china interbank bond market
+981	bond connect	bond connect	bond connect	bond connect	bond connect	bond connect
+982	bond connect	bond connect	bond connect	bond connect	bond connect	bond connect
+983	swapconnect	swap connect	swapconnect	swapconnect	swapconnect	swap connect
+984	bond connect	bond connect	bond connect	bond connect	bond connect	bond connect
+985	interest rate swap market	interest rate swap market	interest rate swap market	interest rate swap market	interest rate swap market	interest rate swap market
+986	northbound trading	northbound trading	northbound trading	northbound trading	northbound trading	northbound trading
+987	risk management centre	▁40	risk management centre	risk management centre	risk management centre	risk management centre
+988	bond connect	bond connect	bond connect	bond connect	bond connect	bond connect
+989	offshore renminbi	offshore rmb	offshore renminbi	offshore renminbi	offshore renminbi	offshore renminbi
+990	offshore renminbi market	offshore rmb market	offshore renminbi market	offshore rmb market	offshore renminbi market	offshore renminbi market
+991	offshore renminbi market	offshore rmb market development	offshore renminbi market	offshore rmb market development	offshore renminbi market	offshore rmb market development
+992	reserve management	reserve management	reserve management	reserve management	reserve management	reserve management
+993	▔	▁11	▔	return	▔	return
+994	exchange fund	exchange fund	exchange fund	performance of the exchange fund	exchange fund	performance of the exchange fund
+995	late external environment	late external environment	late external environment	late external environment	late external environment	▁100
+996	diversified long asset allocation	diversified long asset allocation	diversified long asset allocation	diversified long asset allocation	diversified long asset allocation	diversified long asset allocation
+997	fund	diversified asset fund	fund	diversified asset fund	fund	▁101
+998	market storm	market storm	market storm	market storm	market storm	market storm
+999	strategic adjustment	strategic adjustment	strategic adjustment	strategic adjustment	strategic adjustment	strategic adjustment
+1000	▔	investment return	▔	investment return	▔	investment return
+1001	usd	usd	usd	usd	usd	us dollar
+1002	asset allocation	asset allocation	asset allocation	asset allocation	asset allocation	asset allocation
+1003	asset class	asset class	asset class	asset class	asset class	asset class
+1004	defensive deployment	defensive deployment	defensive deployment	defensive deployment	defensive deployment	▁301
+1005	exchange rate	exchange rate	exchange rate	exchange rate	exchange rate	▁64
+1006	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance
+1007	dollar	dollar	dollar	$	dollar	hkd
+1008	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary
+1009	delegated	assign	delegated	delegated	delegated	▁262
+1010	delegated power	delegated power	delegated power	delegated power	delegated power	▁263
+1011	portfolio structure	portfolio structure	portfolio structure	portfolio structure	portfolio structure	portfolio structure
+1012	return	▁11	return	return	return	return
+1013	usd	usd	usd	usd	usd	us dollar
+1014	usd asset	usd asset	usd asset	usd asset	usd asset	▁224
+1015	monetary and financial stability	monetary and financial stability	monetary and financial stability	monetary and financial stability	monetary and financial stability	monetary and financial stability
+1016	monetary base	monetary base	monetary base	monetary base	monetary base	monetary base
+1017	target asset allocation	target asset allocation	target asset allocation	target asset allocation	target asset allocation	▁194
+1018	portfolio structure	portfolio structure	portfolio structure	portfolio structure	portfolio structure	portfolio structure
+1019	asset allocation	asset allocation	asset allocation	asset allocation	asset allocation	asset allocation
+1020	investment portfolio category	investment portfolio category	investment portfolio category	investment portfolio category	investment portfolio category	▁135
+1021	member economy	member economy	member economy	member economy	member economy	member economy
+1022	organisation economic co-operation development	organisation economic co-operation development	organisation economic co-operation development	organisation economic co-operation development	organisation economic co-operation development	▁209
+1023	usd	usd	usd	usd	usd	us dollar
+1024	usd asset	usd asset	usd asset	usd asset	usd asset	▁224
+1025	monetary base	monetary base	monetary base	monetary base	monetary base	monetary base
+1026	currency issuance system	currency issuance system	currency issuance system	currency issuance system	currency issuance system	currency board arrangement
+1027	mainland bond and equity	mainland bond and equity	mainland bond and equity	mainland bond and equity	mainland bond and equity	mainland bond and equity
+1028	return	▁11	return	return	return	return
+1029	and mainland bond and	and mainland bond and	and mainland bond and	and mainland bond and	and mainland bond and	▁154
+1030	target asset allocation	target asset allocation	target asset allocation	target asset allocation	target asset allocation	▁194
+1031	private equity	private equity	private equity	private equity	private equity	▁198
+1032	asset diversification strategy	asset diversification strategy	asset diversification strategy	asset diversification strategy	asset diversification strategy	▁257
+1033	asset allocation	asset allocation	asset allocation	asset allocation	asset allocation	asset allocation
+1034	asset class	asset class	asset class	asset class	asset class	asset class
+1035	risk management principle	risk management principle	risk management principle	risk management principle	risk management principle	risk management principle
+1036	strategic asset portfolio	strategic asset portfolio	strategic asset portfolio	strategic asset	strategic asset portfolio	▁203
+1037	hong kong exchanges and clearing limited	hong kong exchanges and clearing limited	hong kong exchanges and clearing limited	hong kong exchanges and clearing limited	hong kong exchanges and clearing limited	hong kong exchanges and clearing limited
+1038	deposits	deposit	deposits	deposit	deposits	deposit
+1039	return	▁11	return	return	return	return
+1040	deposit	deposit	deposit	deposit	deposit	deposit
+1041	government fund	government fund	government fund	government fund	government fund	government fund
+1042	future fund	future fund	future fund	future fund	future fund	future fund
+1043	statutory body	statutory body	statutory body	statutory body	statutory body	statutory body
+1044	asset mix	asset mix	asset mix	asset mix	asset mix	▁206
+1045	fiscal reserve	fiscal reserve	fiscal reserve	fiscal reserve	fiscal reserve	fiscal reserve
+1046	investment procedures	investment procedures	investment procedures	investment procedure	investment procedures	▁134
+1047	position	position	position	position	position	position
+1048	▔	▁11	▔	return	▔	return
+1049	tracking error	tracking error	tracking error	tracking error	tracking error	tracking error
+1050	strategic deviation	strategic deviation	strategic deviation	strategic deviation	strategic deviation	▁126
+1051	strategic asset allocation	strategic asset allocation	strategic asset allocation	strategic asset allocation	strategic asset allocation	▁127
+1052	investment benchmark	investment benchmark	investment benchmark	investment benchmark	investment benchmark	investment benchmark
+1053	investment procedure	investment procedures	investment procedure	investment procedure	investment procedure	▁134
+1054	portfolio manager	portfolio manager	portfolio manager	portfolio manager	portfolio manager	portfolio manager
+1055	strategic asset allocation	strategic asset allocation	strategic asset allocation	strategic asset allocation	strategic asset allocation	strategic asset allocation
+1056	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary
+1057	asset allocation	asset allocation	asset allocation	asset allocation	asset allocation	asset allocation
+1058	exchange fund investment office	exchange fund investment office	exchange fund investment office	exchange fund investment office	exchange fund investment office	exchange fund investment office
+1059	macro risk management strategy	macro risk management strategy	macro risk management strategy	macro risk management strategy	macro risk management strategy	macro risk management strategy
+1060	global income market	global income market	global income market	global income market	global income market	▁188
+1061	derivative	derivative	derivative	derivative	derivative	▁230
+1062	risk management function	risk management function	risk management function	risk management function	risk management function	risk management function
+1063	list equity portfolios	list equity portfolios	list equity portfolios	list equity portfolios	list equity portfolios	list equity portfolios
+1064	return	▁11	return	return	return	return
+1065	special asset class	special asset class	special asset class	special asset class	special asset class	▁183
+1066	asset class	asset class	asset class	asset class	asset class	asset class
+1067	trading cost	trading cost	trading cost	trading cost	trading cost	▁16
+1068	custody fee	custody fee	custody fee	custody fee	custody fee	▁233
+1069	withholding tax	withholding tax	withholding tax	withholding tax	withholding tax	withholding tax
+1070	compliance system	compliance system	compliance system	compliance system	compliance system	compliance system
+1071	operational risk	operational risk	operational risk	operational risk	operational risk	operational risk
+1072	liquidity	liquidity	liquidity	liquidity	liquidity	▁176
+1073	responsible investment	responsible investor	responsible investment	responsible investment	responsible investment	responsible investment
+1074	2022 sustainability report	2022 sustainability report	2022 sustainability report	2022 sustainability report	2022 sustainability report	sustainability report 2022
+1075	public market	public market	public market	public market	public market	▁56
+1076	sustainability report	sustainability report	sustainability report	sustainability report	sustainability report	sustainability report
+1077	sustainable long performance	sustainable long performance	sustainable long performance	sustainable long performance	sustainable long performance	▁73
+1078	private market	private market	private market	private market	private market	▁197
+1079	responsible investment	responsible investor	responsible investment	responsible investment	responsible investment	responsible investment
+1080	performance of the exchange fund	exchange fund	performance of the exchange fund	performance of the exchange fund	performance of the exchange fund	performance of the exchange fund
+1081	financial market	financial market	financial market	financial market	financial market	financial market
+1082	financial market	financial market	financial market	financial market	financial market	financial market
+1083	hang seng index	hang seng index	hang seng index	hang seng index	hang seng index	hang seng index
+1084	raise interest rate	interest rate hike	raise interest rate	rate hike	raise interest rate	interest rate hike
+1085	government bond yield	government bond yield	government bond yield	government bond yield	government bond yield	government bond yield
+1086	yield curve	yield curve	yield curve	yield curve	yield curve	yield curve
+1087	us treasury yield	us treasury yield	us treasury yield	us treasury yield	us treasury yield	us treasury yield
+1088	rate hike	interest rate hike	rate hike	rate hike	rate hike	interest rate hike
+1089	▔	exchange rate	▔	exchange rate	▔	▁65
+1090	yen	yen	yen	yen	yen	yen
+1091	euro	euro	euro	euro	euro	euro
+1092	us dollar	usd	us dollar	usd	us dollar	us dollar
+1093	federal reserve	us federal reserve	federal reserve	us federal reserve	federal reserve	us federal reserve
+1094	federal reserve	federal reserve	federal reserve	federal reserve	federal reserve	federal reserve
+1095	pound sterling	pound sterling	pound sterling	pound sterling	pound sterling	pound sterling
+1096	▔	▁11	▔	return	▔	return
+1097	performance of the exchange fund	exchange fund	performance of the exchange fund	performance of the exchange fund	performance of the exchange fund	performance of the exchange fund
+1098	▔	▁7	▔	▁6	▔	▁21
+1099	foreign exchange valuation	foreign exchange valuation	foreign exchange valuation	foreign exchange valuation	foreign exchange valuation	▁92
+1100	hk	dollar	hk	$	hk	hkd
+1101	strategic asset	strategic asset portfolio	strategic asset	strategic asset	strategic asset	▁203
+1102	make but not draw the	make but not draw the	make but not draw the	make but not draw the	make but not draw the	▁117
+1103	▔	▁16	▔	▁14	▔	▁132
+1104	hk	dollar	hk	$	hk	hkd
+1105	private equity	private equity	private equity	private equity	private equity	▁198
+1106	internal rate of return	internal annualized return rate	internal rate of return	internal annualized return rate	internal rate of return	internal rate of return
+1107	internal rate of return	internal annualized return rate	internal rate of return	internal annualized return rate	internal rate of return	▁50
+1108	return	▁11	return	return	return	return
+1109	investment return	investment return	investment return	investment return	investment return	investment return
+1110	strategic asset	strategic asset portfolio	strategic asset	strategic asset	strategic asset	▁203
+1111	▔	▁34	▔	▁28	▔	▁294
+1112	return	▁11	return	return	return	return
+1113	exchange fund asset	foreign exchange reserve	exchange fund asset	exchange fund asset	exchange fund asset	exchange fund asset
+1114	investment return	investment return	investment return	investment return	investment return	investment return
+1115	▔	▁11	▔	return	▔	return
+1116	investment return	investment return	investment return	investment return	investment return	investment return
+1117	institutional functions	institutional functions	institutional functions	institutional functions	institutional functions	▁172
+1118	media	media	media	media	media	▁103
+1119	professionalism	professionalism	professionalism	professionalism	professionalism	professionalism
+1120	institutional functions	institutional functions	institutional functions	institutional functions	institutional functions	▁172
+1121	workforce	workforce	workforce	workforce	workforce	workforce
+1122	fiscal discipline	fiscal discipline	fiscal discipline	fiscal discipline	fiscal discipline	▁241
+1123	information technology	information technology	information technology	information technology	information technology	information technology
+1124	media relation	media relation	media relation	media relation	media relation	media relation
+1125	media media	media	media media	media	media media	▁103
+1126	on interview	on interview	on interview	on interview	on interview	▁67
+1127	media	media	media	media	media	▁103
+1128	media	media	media	media	media	▁103
+1129	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance
+1130	currency board operation	currency board operation	currency board operation	currency board operation	currency board operation	currency board operation
+1131	▔	▁3	▔	▁2	▔	▁9
+1132	▔	global financial leader 's investment summit	▔	global financial leader 's investment summit	▔	global financial leader 's investment summit
+1133	media	media	media	media	media	▁103
+1134	▔	exchange rate	▔	exchange rate	▔	▁65
+1135	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit
+1136	social media	media	social media	media	social media	▁103
+1137	green bond scheme	green bond scheme	green bond scheme	green bond scheme	green bond scheme	▁146
+1138	green bond	green bond	green bond	green bond	green bond	green bond
+1139	system	system	system	exchange system	system	lers
+1140	scam prevention	▁35	scam prevention	fraud	scam prevention	▁302
+1141	eddie yue	eddie yue	eddie yue	eddie yue	eddie yue	eddie yue
+1142	eddie yue	eddie yue	eddie yue	eddie yue	eddie yue	▁24
+1143	on interview	on interview	on interview	on interview	on interview	▁67
+1144	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit	global financial leader 's investment summit
+1145	media	media	media	media	media	▁103
+1146	eddie yue	eddie yue	eddie yue	eddie yue	eddie yue	eddie yue
+1147	eddie yue	eddie yue	eddie yue	eddie yue	eddie yue	▁24
+1148	hong kong fintech week	hong kong fintech week	hong kong fintech week	hong kong fintech week	hong kong fintech week	hong kong fintech week
+1149	hong kong fintech week 2022	hong kong fintech week 2022	hong kong fintech week 2022	hong kong fintech week 2022	hong kong fintech week 2022	hong kong fintech week 2022
+1150	accenture	accenture	accenture	accenture	accenture	accenture
+1151	▔	cyberport	▔	cyberport	▔	cyberport
+1152	hkma vice president	hkma vice president	hkma vice president	hkma vice president	hkma vice president	▁271
+1153	arthur yuen	arthur yuen	arthur yuen	arthur yuen	arthur yuen	▁297
+1154	e-hkd	cyberport	e-hkd	cyberport	e-hkd	cyberport
+1155	e-hkd	digital hkd	e-hkd	digital hkd	e-hkd	e-hkd
+1156	howard lee	howard lee	howard lee	howard lee	howard lee	▁165
+1157	hkd	dollar	hkd	$	hkd	hkd
+1158	hkma vice president howard lee	hkma vice president	hkma vice president howard lee	hkma vice president	hkma vice president howard lee	▁271
+1159	hkma vice president	hkma vice president	hkma vice president	hkma vice president	hkma vice president	▁271
+1160	hong kong financial street forum	hong kong financial street forum	hong kong financial street forum	hong kong financial street forum	hong kong financial street forum	▁280
+1161	c. chan	c. chan	c. chan	c. chan	c. chan	▁304
+1162	bond market development	bond market development	bond market development	bond market development	bond market development	▁40
+1163	bond issuance	bond issuance	bond issuance	bond issuance	bond issuance	bond issuance
+1164	public inquiry service	public inquiry service	public inquiry service	public inquiry service	public inquiry service	▁53
+1165	coin collection program	coin collection programme	coin collection program	coin collection programme	coin collection program	coin collection programme
+1166	financial infrastructure	financial infrastructure	financial infrastructure	financial infrastructure	financial infrastructure	▁273
+1167	banking policy and regulation	banking policy and regulation	banking policy and regulation	banking policy and regulation	banking policy and regulation	banking policy and regulation
+1168	▔	▁33	▔	▁27	▔	▁287
+1169	banking product and service	banking product and service	banking product and service	banking product and service	banking product and service	banking product and service
+1170	retail bond issuance scheme	retail bond issuance scheme	retail bond issuance scheme	retail bond issuance scheme	retail bond issuance scheme	▁307
+1171	outstanding award	outstanding award	outstanding award	outstanding award	outstanding award	▁42
+1172	good annual report award	good annual report award	good annual report award	good annual report award	good annual report award	good annual report award
+1173	silver award	silver award	silver award	silver award	silver award	silver award
+1174	non-profit and charitable organizations	non-profit and charitable organizations	non-profit and charitable organizations	non-profit and charitable organizations	non-profit and charitable organizations	▁314
+1175	hkicpa	hkicpa	hkicpa	hkicpa	hkicpa	▁325
+1176	institutional website	institutional website	institutional website	hkma website	institutional website	▁171
+1177	local representative office	local representative office	local representative office	local representative office	local representative office	local representative office
+1178	hkma website	institutional website	hkma website	hkma website	hkma website	▁171
+1179	register staff authorize institution	register staff authorize institution	register staff authorize institution	register of security staff	register staff authorize institution	register of security staff
+1180	security	▁28	security	security	security	security
+1181	application programming interface	application programming interface	application programming interface	application programming interface	application programming interface	▁296
+1182	central banking	central bank	central banking	central bank	central banking	central banking
+1183	local representative office	local representative office	local representative office	local representative office	local representative office	local representative office
+1184	register of security staff	register staff authorize institution	register of security staff	register of security staff	register of security staff	register of security staff
+1185	security	▁28	security	security	security	security
+1186	protect personal digital key	protect personal digital key	protect personal digital key	protect personal digital key	protect personal digital key	▁28
+1187	public education seminar	public education seminar	public education seminar	public education seminar	public education seminar	▁52
+1188	deposit	deposit	deposit	deposit	deposit	deposit
+1189	deposit insurance	deposit insurance	deposit insurance	deposit insurance	deposit insurance	▁104
+1190	online	online	online	online	online	▁220
+1191	exchange system	system	exchange system	exchange system	exchange system	lers
+1192	scam type card	scam type card	scam type card	scam type card	scam type card	▁30
+1193	personal loan	personal loan	personal loan	personal loan	personal loan	personal loan
+1194	fake hyperlink	fake hyperlink	fake hyperlink	fake hyperlink	fake hyperlink	▁39
+1195	cross-media	media	cross-media	media	cross-media	▁103
+1196	deposit	deposit	deposit	deposit	deposit	deposit
+1197	text message	text message	text message	text message	text message	▁128
+1198	hyperlink	hyperlink	hyperlink	hyperlink	hyperlink	▁259
+1199	cross-media campaign	cross-media campaign	cross-media campaign	cross-media campaign	cross-media campaign	▁260
+1200	social media	media	social media	media	social media	▁103
+1201	third provider	third service provider	third provider	third provider	third provider	third service provider
+1202	digital red envelope	digital red envelope	digital red envelope	digital red envelope	digital red envelope	▁313
+1203	▔	▁19	▔	▁17	▔	▁152
+1204	internship program	internship program	internship program	internship	internship program	▁231
+1205	internship program	internship program	internship program	graduate internship program	internship program	▁232
+1206	financial industry	▁31	financial industry	financial industry	financial industry	▁275
+1207	internship	internship program	internship	internship	internship	▁231
+1208	graduate internship program	internship program	graduate internship program	graduate internship program	graduate internship program	▁232
+1209	hong kong financial literacy championship	hong kong financial literacy championship	hong kong financial literacy championship	hong kong financial literacy championship	hong kong financial literacy championship	hong kong financial literacy championship
+1210	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance	green and sustainable finance
+1211	online quiz	online quiz	online quiz	online quiz	online quiz	▁217
+1212	online quiz competition	online quiz competition	online quiz competition	online quiz competition	online quiz competition	▁218
+1213	design think contest	design think contest	design think contest	design think contest	design think contest	▁234
+1214	design think contest	design think contest	design think contest	design think contest	design think contest	▁234
+1215	financial disclosure	financial disclosure	financial disclosure	financial disclosure	financial disclosure	financial disclosure
+1216	central bank	central bank	central bank	central bank	central bank	central banking
+1217	imf	imf	imf	imf	imf	international monetary fund
+1218	▔	imf	▔	fund	▔	imf
+1219	exchange fund financial statement	financial statement exchange fund	exchange fund financial statement	exchange fund financial statement	exchange fund financial statement	▁98
+1220	disclosure standard	disclosure standard	disclosure standard	disclosure standard	disclosure standard	disclosure standard
+1221	special data dissemination standard	data dissemination standard	special data dissemination standard	data dissemination standard	special data dissemination standard	special data dissemination standard
+1222	professional accountant	professional accountant	professional accountant	professional accountant	professional accountant	▁158
+1223	external auditor	external auditor	external auditor	external auditor	external auditor	external auditor
+1224	financial disclosure	financial disclosure	financial disclosure	financial disclosure	financial disclosure	financial disclosure
+1225	finance department	finance department	finance department	finance department	finance department	▁238
+1226	accountability and monitoring	accountability and monitoring	accountability and monitoring	accountability and monitoring	accountability and monitoring	▁80
+1227	▔	▁13	▔	macroprudential surveillance	▔	▁108
+1228	macroprudential surveillance committee	macroprudential surveillance committee	macroprudential surveillance committee	macroprudential surveillance committee	macroprudential surveillance committee	▁109
+1229	risk committee	risk committee	risk committee	risk committee	risk committee	risk committee
+1230	risk management framework	risk management framework	risk management framework	risk management framework	risk management framework	risk management framework
+1231	macroprudential surveillance	▁13	macroprudential surveillance	macroprudential surveillance	macroprudential surveillance	▁108
+1232	macroprudential surveillance committee	macroprudential surveillance committee	macroprudential surveillance committee	macroprudential surveillance committee	macroprudential surveillance committee	▁109
+1233	risk committee	risk committee	risk committee	risk committee	risk committee	risk committee
+1234	organization	organizational level	organization	organization	organization	▁169
+1235	organizational risk management	corporate risk management	organizational risk management	organizational risk management	organizational risk management	▁173
+1236	monitoring measure	monitoring measure	monitoring measure	monitoring measure	monitoring measure	control
+1237	mitigation strategy	mitigation strategy	mitigation strategy	mitigation strategy	mitigation strategy	▁222
+1238	departmental risk	departmental risk	departmental risk	departmental risk	departmental risk	▁268
+1239	risk committee	risk committee	risk committee	risk committee	risk committee	risk committee
+1240	risk management framework	risk management framework	risk management framework	risk management framework	risk management framework	risk management framework
+1241	internal audit	internal	internal audit	internal	internal audit	internal audit
+1242	reserve management	reserve management	reserve management	reserve management	reserve management	reserve management
+1243	internal	internal	internal	internal	internal	internal audit
+1244	audit committee	audit committee	audit committee	audit committee	audit committee	▁115
+1245	organizational function	institutional functions	organizational function	institutional functions	organizational function	▁172
+1246	control	monitoring measure	control	monitoring measure	control	control
+1247	monetary and financial development	monetary and financial development	monetary and financial development	monetary and financial development	monetary and financial development	monetary and financial development
+1248	it	information technology	it	information technology	it	information technology
+1249	information system audit	information system audit	information system audit	information system audit	information system audit	information system audit
+1250	banking supervision	banking supervision	banking supervision	banking supervision	banking supervision	▁291
+1251	risk approach	risk approach	risk approach	risk approach	risk approach	risk approach
+1252	financial statements exchange fund	financial statement exchange fund	financial statements exchange fund	exchange fund financial statement	financial statements exchange fund	▁98
+1253	audit	audit commission	audit	▁11	audit	audit commission
+1254	director audit	director audit	director audit	auditor	director audit	director of audit
+1255	audit	audit commission	audit	▁11	audit	audit commission
+1256	director of audit	director audit	director of audit	auditor	director of audit	director of audit
+1257	independent auditor 's report	independent auditor 's report	independent auditor 's report	auditor 's 's report	independent auditor 's report	auditor 's 's report
+1258	independent	external auditor	independent	external auditor	independent	external auditor
+1259	independent auditor 's report	independent auditor 's report	independent auditor 's report	independent auditor 's report	independent auditor 's report	▁185
+1260	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary
+1261	significant accounting policy	significant accounting policy	significant accounting policy	significant accounting policy	significant accounting policy	significant accounting policy
+1262	comprehensive income	comprehensive income	comprehensive income	comprehensive income	comprehensive income	comprehensive income
+1263	statement of comprehensive income	statement of comprehensive income	statement of comprehensive income	statement of comprehensive income	statement of comprehensive income	statement of comprehensive income
+1264	income and expenditure account	income and expenditure account	income and expenditure account	income and expenditure account	income and expenditure account	income and expenditure account
+1265	accounting policy	accounting policy	accounting policy	accounting policy	accounting policy	accounting policy
+1266	statement of change in equity	statement of change in equity	statement of change in equity	statement of change in equity	statement of change in equity	statement of change in equity
+1267	cash flow statement	cash flow statement	cash flow statement	cash flow statement	cash flow statement	▁186
+1268	balance sheet	balance sheet	balance sheet	balance sheet	balance sheet	balance sheet
+1269	group	▁37	group	group	group	group
+1270	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance
+1271	accountants	accountants	accountants	accountants	accountants	▁159
+1272	chief executive	chief executive	chief executive	chief executive	chief executive	chief executive
+1273	group	▁37	group	group	group	group
+1274	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance
+1275	▔	audit commission	▔	▁11	▔	audit commission
+1276	▔	▁16	▔	▁14	▔	▁132
+1277	chief executive	chief executive	chief executive	chief executive	chief executive	chief executive
+1278	group	▁37	group	group	group	group
+1279	financial liabilities	financial liabilities	financial liabilities	financial liability	financial liabilities	financial liability
+1280	financial asset	financial asset	financial asset	financial asset	financial asset	financial asset
+1281	hk	dollar	hk	$	hk	hkd
+1282	financial liability	financial liabilities	financial liability	financial liability	financial liability	financial liability
+1283	financial asset	financial asset	financial asset	financial asset	financial asset	financial asset
+1284	group	▁37	group	group	group	group
+1285	valuation method	valuation method	valuation method	valuation method	valuation method	valuation technique
+1286	price	price	price	market quotation	price	▁88
+1287	active market	active market	active market	active market	active market	active market
+1288	financial liability	financial liabilities	financial liability	financial liability	financial liability	financial liability
+1289	financial asset	financial asset	financial asset	financial asset	financial asset	financial asset
+1290	valuation method	valuation method	valuation method	valuation method	valuation method	valuation technique
+1291	investment fund	investment fund	investment fund	investment fund	investment fund	investment fund
+1292	$	dollar	$	$	$	hkd
+1293	financial asset	financial asset	financial asset	financial asset	financial asset	financial asset
+1294	unlisted investment fund	unlisted investment fund	unlisted investment fund	unlisted investment fund	unlisted investment fund	unlisted investment fund
+1295	financial liability	financial liabilities	financial liability	financial liability	financial liability	financial liability
+1296	financial asset	financial asset	financial asset	financial asset	financial asset	financial asset
+1297	valuation technique	valuation method	valuation technique	valuation method	valuation technique	valuation technique
+1298	valuation report	valuation report	valuation report	valuation report	valuation report	▁58
+1299	market quotation	price	market quotation	market quotation	market quotation	▁88
+1300	application control	application control	application control	application control	application control	application control
+1301	monitoring control	monitoring measure	monitoring control	monitoring measure	monitoring control	control
+1302	financial liability	financial liabilities	financial liability	financial liability	financial liability	financial liability
+1303	financial asset	financial asset	financial asset	financial asset	financial asset	financial asset
+1304	investment properties	investment properties	investment properties	investment property	investment properties	investment property
+1305	▔	▁5	▔	▁4	▔	▁11
+1306	valuation method	valuation method	valuation method	valuation method	valuation method	valuation technique
+1307	investment property	investment properties	investment property	investment property	investment property	investment property
+1308	$	dollar	$	$	$	hkd
+1309	independent professional valuer	independent professional valuer	independent professional valuer	independent professional valuer	independent professional valuer	independent professional valuer
+1310	group	▁37	group	group	group	group
+1311	valuation report	valuation report	valuation report	valuation report	valuation report	valuation report
+1312	valuation technique	valuation method	valuation technique	valuation method	valuation technique	valuation technique
+1313	investment property	investment properties	investment property	investment property	investment property	investment property
+1314	group	▁37	group	group	group	group
+1315	auditor 's 's report	independent auditor 's report	auditor 's 's report	auditor 's 's report	auditor 's 's report	auditor 's 's report
+1316	▔	financial secretary	▔	financial secretary	▔	monetary authority
+1317	bureau	bureau	bureau	bureau	bureau	▁279
+1318	audit committee	audit committee	audit committee	audit committee	audit committee	▁115
+1319	▔	▁16	▔	▁14	▔	▁132
+1320	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary	monetary authority
+1321	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance	exchange fund ordinance
+1322	institute accountants	accountants	institute accountants	accountants	institute accountants	▁159
+1323	chief executive	chief executive	chief executive	chief executive	chief executive	chief executive
+1324	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary	monetary authority
+1325	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary	monetary authority
+1326	group	▁37	group	group	group	group
+1327	audit committee	audit committee	audit committee	audit committee	audit committee	▁115
+1328	group	▁37	group	group	group	group
+1329	▔	▁16	▔	▁14	▔	▁132
+1330	auditor 's 's report	independent auditor 's report	auditor 's 's report	auditor 's 's report	auditor 's 's report	auditor 's 's report
+1331	▔	audit commission	▔	▁11	▔	audit commission
+1332	▔	independent auditor 's report	▔	auditor 's 's report	▔	auditor 's 's report
+1333	▔	audit commission	▔	▁11	▔	audit commission
+1334	▔	▁16	▔	▁14	▔	▁132
+1335	accounting policy	accounting policy	accounting policy	accounting policy	accounting policy	accounting policy
+1336	financial secretary	financial secretary	financial secretary	financial secretary	financial secretary	monetary authority
+1337	group	▁37	group	group	group	group
+1338	audit committee	audit committee	audit committee	audit committee	audit committee	▁115
+1339	audit committee	audit committee	audit committee	audit committee	audit committee	▁115
+1340	audit committee	audit committee	audit committee	audit committee	audit committee	▁115
+1341	auditor 's 's report	independent auditor 's report	auditor 's 's report	auditor 's 's report	auditor 's 's report	auditor 's 's report
+1342	auditor	audit commission	auditor	▁11	auditor	audit commission
+1343	auditor	director audit	auditor	auditor	auditor	director of audit
+1344	office	audit commission	office	▁11	office	audit commission

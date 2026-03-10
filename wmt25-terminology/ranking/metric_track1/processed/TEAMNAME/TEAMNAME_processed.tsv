@@ -1,0 +1,15 @@
+	terms	src_raw	mt_raw	src_terms	alg_terms	norm_tgt_terms
+9	{'data provider': 'Datenprovider'}	Choose your data provider profile you want to work in.	"""Target: ""Wählen Sie das Proficloud. The translation into German would 
+Target-chevronuser
+The sentence ""Choose your data provider profile you want to use the specified term for ""Choose your data provider profile""
+
+Target (German):Translation: Wählen Sie das gewünschte Datenlieferantwesen:
+
+Wählenuser
+Wählen Sie das gewünschte Datenlieferantenprofil.
+
+Note that ""Datenlieferantenprofil"" is a compound term that combines the terms from the given terminology. If you strictly follow the provided term ""Datenprovider"" for ""data provider,"" the translation would be:
+
+Wählen Sie das gewünschte Datenproviderprofil.
+
+Both translations are correct based on the given terminology, but the second one adheres more closely to the provided term ""Datenprovider."""	['data provider']	{'data provider': 'data data data data data data data provider data data data provider data provider data provider data provider data provider data provider data provider data provider'}	['data data data data data data data providern data data data providern data providern data providern data providern data providern data providern data providern data providern']

@@ -1,0 +1,539 @@
+	tgt	pseudoref_first	tgt	pseudoref_frequent	tgt	pseudoref_predefined
+0	contenedor	contenedor	contenedor	contenedor	contenedor	▁32
+1	procesamiento paralelo	procesamiento paralelo	procesamiento paralelo	procesamiento paralelo	procesamiento paralelo	procesamiento paralelo
+2	trabajo	trabajo	trabajo	trabajo	trabajo	trabajo
+3	informe	informe	informe	informe	informe	informe
+4	medio	medio	medio	diario	medio	medio
+5	punto	punto	punto	punto	punto	▁64
+6	explosión	explosión	explosión	explosión	explosión	▁50
+7	add	add	add	añadir	add	añadir
+8	rango	rango	rango	rango	rango	intervalo
+9	fuente	fuente	fuente	source	fuente	fuente
+10	templo	templo	templo	templo	templo	▁115
+11	fuente	fuente	fuente	source	fuente	fuente
+12	edit	edit	edit	edit	edit	editar
+13	reseña	reseña	reseña	descansar	reseña	▁90
+14	añadir	add	añadir	añadir	añadir	añadir
+15	incidente	incidente	incidente	incidente	incidente	▁61
+16	templado	templo	templado	templo	templado	▁115
+17	ahorrar	ahorrar	ahorrar	salvar	ahorrar	▁98
+18	▔	▁21	▔	write off	▔	▁128
+19	tab	tab	tab	tab	tab	▁113
+20	empresarial	empresarial	empresarial	▁10	empresarial	socio
+21	norma	norma	norma	norma	norma	▁95
+22	descansar	reseña	descansar	descansar	descansar	▁90
+23	categoría	categoría	categoría	categoría	categoría	▁23
+24	calendario	calendario	calendario	calendario	calendario	programación
+25	editar	edit	editar	edit	editar	editar
+26	completar	completar	completar	completado	completar	▁30
+27	replicación	replicación	replicación	pause	replicación	▁72
+28	uso	uso	uso	uso	uso	uso
+29	horario	calendario	horario	calendario	horario	programación
+30	eliminar	eliminar	eliminar	delete	eliminar	borrar
+31	▔	calendario	▔	calendario	▔	programación
+32	▔	▁20	▔	centro de trabajo	▔	centro de trabajo
+33	cliente	cliente	cliente	cliente	cliente	▁35
+34	intervalo	rango	intervalo	rango	intervalo	intervalo
+35	entrega	entrega	entrega	entrega	entrega	entrega
+36	procesamiento	procesamiento	procesamiento	procesamiento	procesamiento	procesamiento
+37	upgrado	upgrado	upgrado	upgrado	upgrado	▁125
+38	tab	tab	tab	tab	tab	▁113
+39	▔	▁14	▔	patrón recurrente	▔	▁86
+40	público	público	público	público	público	público
+41	programado	calendario	programado	calendario	programado	programación
+42	▔	ahorrar	▔	salvar	▔	▁98
+43	defectuoso	defectuoso	defectuoso	defecto	defectuoso	▁40
+44	reset	reseña	reset	descansar	reset	▁90
+45	reposición	reposición	reposición	reposición	reposición	▁88
+46	tab	tab	tab	tab	tab	▁113
+47	templo	templo	templo	templo	templo	▁115
+48	procesar	procesar	procesar	procesar	procesar	procesar
+49	puesto	trabajo	puesto	trabajo	puesto	trabajo
+50	patrón recurrente	▁14	patrón recurrente	patrón recurrente	patrón recurrente	▁86
+51	tabla	tab	tabla	tab	tabla	▁113
+52	completado	completar	completado	completado	completado	▁30
+53	información	información	información	información	información	▁89
+54	save as	save as	save as	save as	save as	▁99
+55	resultado de búsqueda	resultado de búsqueda	resultado de búsqueda	resultado de búsqueda	resultado de búsqueda	▁101
+56	programación	calendario	programación	calendario	programación	programación
+57	puesto	trabajo	puesto	trabajo	puesto	trabajo
+58	suministro	cliente	suministro	cliente	suministro	▁35
+59	patrón recurrente	▁14	patrón recurrente	patrón recurrente	patrón recurrente	▁86
+60	sustituto	sustituto	sustituto	sustituto	sustituto	▁111
+61	▔	▁15	▔	▁13	▔	▁92
+62	función	función	función	feature	función	▁51
+63	cliente	cliente	cliente	cliente	cliente	▁35
+64	llamar	llamar	llamar	llamar	llamar	llamar
+65	tabla	tab	tabla	tab	tabla	▁113
+66	replicación	replicación	replicación	replicación	replicación	replicación
+67	lanzamiento	lanzamiento	lanzamiento	fijado	lanzamiento	▁104
+68	cambio	cambio	cambio	cambio	cambio	▁25
+69	clave	eliminar	clave	delete	clave	borrar
+70	añadir	add	añadir	añadir	añadir	añadir
+71	asignación cuenta	asignación cuenta	asignación cuenta	asignación cuenta	asignación cuenta	▁5
+72	socio	empresarial	socio	▁10	socio	socio
+73	defectuoso	defectuoso	defectuoso	defecto	defectuoso	▁40
+74	write off	▁21	write off	write off	write off	▁128
+75	medida	medida	medida	medida	medida	medida
+76	transacción	transacción	transacción	transacción	transacción	▁120
+77	cliente	cliente	cliente	cliente	cliente	▁35
+78	▔	▁13	▔	▁12	▔	▁85
+79	▔	▁8	▔	▁8	▔	▁59
+80	rendimiento	rendimiento	rendimiento	rendimiento	rendimiento	rendimiento
+81	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo
+82	procedimiento	procedimiento	procedimiento	tipo	procedimiento	tipo
+83	tab	tab	tab	tab	tab	▁113
+84	calendario	calendario	calendario	calendario	calendario	programación
+85	tarjeta de trabajo	lista de trabajo	tarjeta de trabajo	lista de trabajo	tarjeta de trabajo	lista de trabajo
+86	▔	add	▔	añadir	▔	añadir
+87	asignación	asignación	asignación	asignación	asignación	▁9
+88	página de perfil	página de perfil	página de perfil	página de perfil	página de perfil	página de perfil
+89	asignación	asignación	asignación	asignación	asignación	▁9
+90	▔	empresarial	▔	▁10	▔	socio
+91	incidente	incidente	incidente	incidente	incidente	▁61
+92	consumo	consumo	consumo	consumo	consumo	▁31
+93	asignación	asignación	asignación	asignación	asignación	▁9
+94	asamblea	asamblea	asamblea	asamblea	asamblea	▁12
+95	icono	icono	icono	icono	icono	icono
+96	eliminar	eliminar	eliminar	delete	eliminar	borrar
+97	▔	▁17	▔	▁15	▔	▁108
+98	trabajo	trabajo	trabajo	trabajo	trabajo	trabajo
+99	▔	▁3	▔	▁3	▔	▁26
+100	informe	informe	informe	informe	informe	informe
+101	trabajo	trabajo	trabajo	trabajo	trabajo	trabajo
+102	desencadenar	desencadenar	desencadenar	desencadenar	desencadenar	▁122
+103	industria	procedimiento	industria	tipo	industria	tipo
+104	socio	empresarial	socio	▁10	socio	socio
+105	defecto	defectuoso	defecto	defecto	defecto	▁40
+106	utilizar	uso	utilizar	uso	utilizar	uso
+107	honorario	honorario	honorario	honorario	honorario	▁52
+108	confirmación de servicio	confirmación de servicio	confirmación de servicio	confirmación de servicio	confirmación de servicio	▁102
+109	asignación	asignación	asignación	asignación	asignación	▁9
+110	cliente	cliente	cliente	cliente	cliente	▁35
+111	punto	punto	punto	punto	punto	▁64
+112	incidente	incidente	incidente	incidente	incidente	▁61
+113	socio	empresarial	socio	▁10	socio	socio
+114	grupo de producto	grupo de producto	grupo de producto	grupo de producto	grupo de producto	▁78
+115	mesa	tab	mesa	tab	mesa	▁113
+116	tipo de transacción	tipo de transacción	tipo de transacción	tipo de transacción	tipo de transacción	tipo de transacción
+117	billed	billed	billed	billed	billed	▁15
+118	cuestión	cuestión	cuestión	cuestión	cuestión	▁63
+119	salida	salida	salida	salida	salida	▁71
+120	salvar	ahorrar	salvar	salvar	salvar	▁98
+121	uso	uso	uso	uso	uso	uso
+122	tab	tab	tab	tab	tab	▁113
+123	verificación	verificación	verificación	detalle	verificación	verificación
+124	contrato central	contrato central	contrato central	contrato central	contrato central	▁24
+125	centro de trabajo	▁20	centro de trabajo	centro de trabajo	centro de trabajo	centro de trabajo
+126	inunida	inunida	inunida	inunida	inunida	▁60
+127	ámbito	ámbito	ámbito	escocés	ámbito	▁100
+128	utilizar	uso	utilizar	uso	utilizar	uso
+129	tabla	tab	tabla	tab	tabla	▁113
+130	asignación	procedimiento	asignación	tipo	asignación	tipo
+131	▔	▁16	▔	▁14	▔	▁105
+132	requisito	requisito	requisito	reembolso	requisito	requisito
+133	templo	templo	templo	templo	templo	▁115
+134	botón	botón	botón	botón	botón	botón
+135	▔	▁19	▔	▁17	▔	▁119
+136	calendario	calendario	calendario	calendario	calendario	programación
+137	source	fuente	source	source	source	fuente
+138	disponibilidad	disponibilidad	disponibilidad	uso	disponibilidad	uso
+139	measures	medida	measures	medida	measures	medida
+140	centro de trabajo	▁20	centro de trabajo	centro de trabajo	centro de trabajo	centro de trabajo
+141	tipo	procedimiento	tipo	tipo	tipo	tipo
+142	medida	medida	medida	medida	medida	medida
+143	templo	templo	templo	templo	templo	▁115
+144	campo	campo	campo	botón	campo	▁29
+145	salvar	ahorrar	salvar	salvar	salvar	▁98
+146	nombre	nombre	nombre	nombre	nombre	▁19
+147	prepago	prepago	prepago	prepago	prepago	▁76
+148	paso de proceso	paso de proceso	paso de proceso	paso de proceso	paso de proceso	paso de proceso
+149	horario	calendario	horario	calendario	horario	programación
+150	requirement	requisito	requirement	reembolso	requirement	requisito
+151	medida	medida	medida	medida	medida	medida
+152	detalle	verificación	detalle	detalle	detalle	verificación
+153	supplement	supplement	supplement	supplement	supplement	▁112
+154	procesamiento paralelo	procesamiento paralelo	procesamiento paralelo	procesamiento paralelo	procesamiento paralelo	procesamiento paralelo
+155	socio	empresarial	socio	▁10	socio	socio
+156	rendimiento	rendimiento	rendimiento	rendimiento	rendimiento	rendimiento
+157	utiliza	utiliza	utiliza	corresponder	utiliza	▁96
+158	▔	add	▔	añadir	▔	añadir
+159	botón	botón	botón	botón	botón	botón
+160	verificar	verificación	verificar	detalle	verificar	verificación
+161	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo
+162	▔	empresarial	▔	▁10	▔	socio
+163	sitio	sitio	sitio	sitio	sitio	sitio
+164	impulsar	impulsar	impulsar	impulsar	impulsar	▁41
+165	paso de proceso	paso de proceso	paso de proceso	paso de proceso	paso de proceso	paso de proceso
+166	empresa afiliado sap	empresa afiliado sap	empresa afiliado sap	empresa afiliado sap	empresa afiliado sap	▁3
+167	columnas	columnas	columnas	columnas	columnas	▁75
+168	socio	empresarial	socio	▁10	socio	socio
+169	añadir	add	añadir	añadir	añadir	añadir
+170	eliminar	eliminar	eliminar	delete	eliminar	borrar
+171	socio	empresarial	socio	▁10	socio	socio
+172	bloquear	bloquear	bloquear	bloquear	bloquear	bloquear
+173	template	templo	template	templo	template	▁115
+174	▔	asignación	▔	asignación	▔	▁9
+175	asignación	asignación	asignación	asignación	asignación	▁9
+176	terminación	terminación	terminación	terminación	terminación	▁117
+177	uso	uso	uso	uso	uso	▁126
+178	eliminar	eliminar	eliminar	delete	eliminar	borrar
+179	source	fuente	source	source	source	fuente
+180	rango	rango	rango	rango	rango	intervalo
+181	proceso de ejecución	paso de proceso	proceso de ejecución	paso de proceso	proceso de ejecución	paso de proceso
+182	defecto	defectuoso	defecto	defecto	defecto	▁40
+183	punto fijo	punto fijo	punto fijo	artículo	punto fijo	▁65
+184	explosión	explosión	explosión	explosión	explosión	▁50
+185	tabla	tab	tabla	tab	tabla	▁113
+186	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo
+187	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo
+188	controlador de dato	controlador de dato	controlador de dato	controlador de dato	controlador de dato	▁36
+189	aplicación cliente	aplicación cliente	aplicación cliente	aplicación cliente	aplicación cliente	aplicación cliente
+190	tipo de vista	tipo de vista	tipo de vista	tipo de vista	tipo de vista	▁127
+191	salvar	ahorrar	salvar	salvar	salvar	▁98
+192	trabajo	trabajo	trabajo	trabajo	trabajo	trabajo
+193	medida	medida	medida	medida	medida	medida
+194	templado	templo	templado	templo	templado	▁115
+195	asignación	asignación	asignación	asignación	asignación	▁9
+196	estación	estación	estación	estación	estación	▁109
+197	asignación	asignación	asignación	asignación	asignación	▁9
+198	▔	▁20	▔	centro de trabajo	▔	centro de trabajo
+199	eliminar	eliminar	eliminar	eliminar	eliminar	▁87
+200	otro	add	otro	añadir	otro	añadir
+201	actividad empresarial	actividad empresarial	actividad empresarial	actividad empresarial	actividad empresarial	actividad empresarial
+202	▔	add	▔	añadir	▔	añadir
+203	socio	empresarial	socio	▁10	socio	socio
+204	adquisición	adquisición	adquisición	adquisición	adquisición	▁6
+205	templo	templo	templo	templo	templo	▁115
+206	punto	punto	punto	punto	punto	▁64
+207	clase	clase	clase	clase	clase	clase
+208	inventor	inventor	inventor	inventor	inventor	▁62
+209	tab	tab	tab	tab	tab	▁113
+210	▔	▁19	▔	▁17	▔	▁119
+211	tipo	tipo	tipo	tipo	tipo	▁38
+212	lanzamiento	lanzamiento	lanzamiento	lanzamiento	lanzamiento	▁66
+213	actualización	actualización	actualización	actualización	actualización	▁124
+214	punto	punto	punto	punto	punto	▁64
+215	centro de trabajo	▁20	centro de trabajo	centro de trabajo	centro de trabajo	centro de trabajo
+216	defecto	defectuoso	defecto	defecto	defecto	▁40
+217	▔	ahorrar	▔	salvar	▔	▁98
+218	tipo	procedimiento	tipo	tipo	tipo	tipo
+219	▔	▁16	▔	▁14	▔	▁105
+220	templo	templo	templo	templo	templo	▁115
+221	tal	save as	tal	save as	tal	▁99
+222	tab	tab	tab	tab	tab	▁113
+223	fijado	lanzamiento	fijado	fijado	fijado	▁104
+224	template	template	template	template	template	▁94
+225	templado	templo	templado	templo	templado	▁115
+226	punto	punto	punto	punto	punto	▁64
+227	añadir	add	añadir	añadir	añadir	añadir
+228	uso	disponibilidad	uso	uso	uso	uso
+229	extremo	extremo	extremo	extremo	extremo	▁48
+230	delete	eliminar	delete	delete	delete	borrar
+231	recuper	recuper	recuper	recuper	recuper	▁91
+232	organización de servicio	organización de servicio	organización de servicio	organización de servicio	organización de servicio	▁103
+233	colección	colección	colección	colección	colección	▁27
+234	artículo	punto fijo	artículo	artículo	artículo	▁65
+235	▔	▁6	▔	▁6	▔	▁54
+236	calendario	calendario	calendario	calendario	calendario	programación
+237	defecto	defectuoso	defecto	defecto	defecto	▁40
+238	templo	templo	templo	templo	templo	▁115
+239	unificado	unificado	unificado	unificado	unificado	▁123
+240	tipo correr	tipo correr	tipo correr	tipo correr	tipo correr	▁97
+241	patrón recurrente	▁14	patrón recurrente	patrón recurrente	patrón recurrente	▁86
+242	statement-nivel	statement-nivel	statement-nivel	declaración	statement-nivel	▁110
+243	feature	función	feature	feature	feature	▁51
+244	ajuste	ajuste	ajuste	ajuste	ajuste	▁7
+245	repositorio local	repositorio local	repositorio local	repositorio local	repositorio local	repositorio local
+246	salvar	ahorrar	salvar	salvar	salvar	▁98
+247	usar	uso	usar	uso	usar	uso
+248	declaración	statement-nivel	declaración	declaración	declaración	▁110
+249	consumo	consumo	consumo	consumo	consumo	▁31
+250	asignación	asignación	asignación	asignación	asignación	▁9
+251	▔	replicación	▔	replicación	▔	replicación
+252	aprobación	aprobación	aprobación	aprobación	aprobación	▁10
+253	aprobación	aprobación	aprobación	aprobación	aprobación	▁0
+254	transfer	transfer	transfer	transfer	transfer	▁121
+255	tab	tab	tab	tab	tab	▁113
+256	versión de producción	versión de producción	versión de producción	versión de producción	versión de producción	versión de producción
+257	replicación	replicación	replicación	replicación	replicación	replicación
+258	▔	lanzamiento	▔	fijado	▔	▁104
+259	informativo	información	informativo	información	informativo	▁89
+260	utilizar	uso	utilizar	uso	utilizar	uso
+261	modelo	ahorrar	modelo	salvar	modelo	▁98
+262	paso	paso	paso	paso	paso	paso
+263	▔	▁11	▔	negocio	▔	▁80
+264	quantity contract	quantity contract	quantity contract	quantity contract	quantity contract	▁82
+265	botón	campo	botón	botón	botón	▁29
+266	▔	templo	▔	templo	▔	▁115
+267	aprobación	aprobación	aprobación	aprobación	aprobación	▁10
+268	aprobación	aprobación	aprobación	aprobación	aprobación	▁0
+269	issues	cuestión	issues	cuestión	issues	▁63
+270	informe	informe	informe	informe	informe	informe
+271	tabla	tab	tabla	tab	tabla	▁113
+272	tab	tab	tab	tab	tab	▁113
+273	▔	empresarial	▔	▁10	▔	socio
+274	▔	▁9	▔	▁9	▔	▁70
+275	partner	empresarial	partner	▁10	partner	socio
+276	edit	edit	edit	edit	edit	editar
+277	templado	templo	templado	templo	templado	▁115
+278	delete	eliminar	delete	delete	delete	borrar
+279	sobre	sobre	sobre	about	sobre	▁4
+280	▔	empresarial	▔	▁10	▔	socio
+281	rol	rol	rol	papel	rol	▁93
+282	templado	templo	templado	templo	templado	▁115
+283	performance management	performance management	performance management	performance management	performance management	▁73
+284	▔	▁5	▔	▁5	▔	▁34
+285	▔	ahorrar	▔	salvar	▔	▁98
+286	código	procedimiento	código	tipo	código	tipo
+287	editar	edit	editar	edit	editar	editar
+288	templo	templo	templo	templo	templo	▁115
+289	tipo fiscal	tipo fiscal	tipo fiscal	tipo fiscal	tipo fiscal	▁114
+290	usage	disponibilidad	usage	uso	usage	uso
+291	aprobación	aprobación	aprobación	aprobación	aprobación	▁10
+292	aprobación	aprobación	aprobación	aprobación	aprobación	▁0
+293	content hub	content hub	content hub	content hub	content hub	▁16
+294	procesamiento masa	procesamiento masa	procesamiento masa	procesamiento de masa	procesamiento masa	▁68
+295	calendario	calendario	calendario	calendario	calendario	programación
+296	trabajo	trabajo	trabajo	trabajo	trabajo	trabajo
+297	objetivo	objetivo	objetivo	objetivo	objetivo	objetivo
+298	templo	template	templo	template	templo	▁94
+299	implementación	calendario	implementación	calendario	implementación	programación
+300	orden purpera	orden purpera	orden purpera	historia	orden purpera	▁2
+301	orden	sobre	orden	about	orden	▁4
+302	▔	empresarial	▔	▁10	▔	socio
+303	punto orden	punto fijo	punto orden	artículo	punto orden	▁65
+304	tab	tab	tab	tab	tab	▁113
+305	despliegue	despliegue	despliegue	despliegue	despliegue	despliegue
+306	▔	replicación	▔	pause	▔	▁72
+307	cumplimiento	cumplimiento	cumplimiento	cumplimiento	cumplimiento	evaluación
+308	iflows	iflows	iflows	fluvial	iflows	▁56
+309	agregar	agregar	agregar	agregar	agregar	agregar
+310	añadir	add	añadir	añadir	añadir	añadir
+311	tipo de transacción	tipo de transacción	tipo de transacción	tipo de transacción	tipo de transacción	tipo de transacción
+312	▔	ahorrar	▔	salvar	▔	▁98
+313	diseño	diseño	diseño	diseño	diseño	▁67
+314	salvar	ahorrar	salvar	salvar	salvar	▁98
+315	cargo	cargo	cargo	cargo	cargo	▁106
+316	role	rol	role	papel	role	▁93
+317	tipo	procedimiento	tipo	tipo	tipo	tipo
+318	item	punto	item	punto	item	▁64
+319	tema	templo	tema	templo	tema	▁115
+320	estructura	templo	estructura	templo	estructura	▁115
+321	punto final	extremo	punto final	extremo	punto final	▁48
+322	schedule	calendario	schedule	calendario	schedule	programación
+323	grides	grides	grides	grides	grides	▁58
+324	papel	add	papel	añadir	papel	añadir
+325	tiempo de procesamiento de bien	tiempo de procesamiento de bien	tiempo de procesamiento de bien	tiempo de procesamiento de bien	tiempo de procesamiento de bien	▁57
+326	▔	paso	▔	paso	▔	paso
+327	tipo	cargo	tipo	cargo	tipo	▁106
+328	tipo	procedimiento	tipo	tipo	tipo	tipo
+329	type	procedimiento	type	tipo	type	tipo
+330	edición	calendario	edición	calendario	edición	programación
+331	tabla	tab	tabla	tab	tabla	▁113
+332	▔	empresarial	▔	▁10	▔	socio
+333	▔	▁12	▔	rating	▔	▁84
+334	ventura	empresarial	ventura	▁10	ventura	socio
+335	dibujo	dibujo	dibujo	dibujo	dibujo	▁45
+336	usuario	eliminar	usuario	delete	usuario	borrar
+337	▔	empresarial	▔	▁10	▔	socio
+338	▔	billed	▔	billed	▔	▁15
+339	▔	▁20	▔	centro de trabajo	▔	centro de trabajo
+340	tab	tab	tab	tab	tab	▁113
+341	▔	informe	▔	informe	▔	informe
+342	tab	tab	tab	tab	tab	▁113
+343	efecto	edit	efecto	edit	efecto	editar
+344	nombre	empresarial	nombre	▁10	nombre	socio
+345	▔	empresarial	▔	▁10	▔	socio
+346	▔	empresarial	▔	▁10	▔	socio
+347	display	display	display	display	display	▁43
+348	▔	empresarial	▔	▁10	▔	socio
+349	▔	tiempo de procesamiento de bien	▔	tiempo de procesamiento de bien	▔	▁57
+350	tab	tab	tab	tab	tab	▁113
+351	fluvial	iflows	fluvial	fluvial	fluvial	▁56
+352	deselegir	deselegir	deselegir	deselegir	deselegir	▁42
+353	eliminar	eliminar	eliminar	delete	eliminar	borrar
+354	tab	tab	tab	tab	tab	▁113
+355	reembolso	requisito	reembolso	reembolso	reembolso	requisito
+356	cuota	cuota	cuota	cuota	cuota	cuota
+357	agregar	add	agregar	añadir	agregar	añadir
+358	medida	medida	medida	medida	medida	medida
+359	tab	tab	tab	tab	tab	▁113
+360	delete	eliminar	delete	delete	delete	borrar
+361	▔	empresarial	▔	▁10	▔	socio
+362	▔	edit	▔	edit	▔	editar
+363	▔	add	▔	añadir	▔	añadir
+364	▔	procedimiento	▔	tipo	▔	tipo
+365	botón	botón	botón	botón	botón	botón
+366	▔	empresarial	▔	▁10	▔	socio
+367	actividades	información	actividades	información	actividades	▁89
+368	informe	informe	informe	informe	informe	informe
+369	extensión	extensión	extensión	extensión	extensión	extensión
+370	operaciones	display	operaciones	display	operaciones	▁43
+371	delete	eliminar	delete	delete	delete	borrar
+372	▔	procesamiento masa	▔	procesamiento de masa	▔	▁68
+373	unidad empresas	unidad empresas	unidad empresas	unidad empresas	unidad empresas	▁22
+374	medida	medida	medida	medida	medida	medida
+375	tab	tab	tab	tab	tab	▁113
+376	▔	reseña	▔	descansar	▔	▁90
+377	completo	completar	completo	completado	completo	▁30
+378	expiración	expiración	expiración	expiración	expiración	▁49
+379	▔	▁4	▔	▁4	▔	▁33
+380	uso	disponibilidad	uso	uso	uso	uso
+381	otro	otro	otro	otro	otro	▁69
+382	suministrar	suministrar	suministrar	suministrar	suministrar	suministrar
+383	step	paso	step	paso	step	paso
+384	aprobación	aprobación	aprobación	aprobación	aprobación	▁10
+385	▔	aprobación	▔	aprobación	▔	▁0
+386	▔	uso	▔	uso	▔	uso
+387	delete	eliminar	delete	delete	delete	borrar
+388	localización	localización	localización	localización	localización	▁18
+389	about	sobre	about	about	about	▁4
+390	tab	tab	tab	tab	tab	▁113
+391	▔	informe	▔	informe	▔	informe
+392	bóveda	defectuoso	bóveda	defecto	bóveda	▁40
+393	job	trabajo	job	trabajo	job	trabajo
+394	escocés	ámbito	escocés	escocés	escocés	▁100
+395	save	ahorrar	save	salvar	save	▁98
+396	informe	informe	informe	informe	informe	informe
+397	salvar	ahorrar	salvar	salvar	salvar	▁98
+398	▔	add	▔	añadir	▔	añadir
+399	trabajo	trabajo	trabajo	trabajo	trabajo	trabajo
+400	configuración	configuración	configuración	configuración	configuración	▁107
+401	▔	uso	▔	uso	▔	uso
+402	salvar	ahorrar	salvar	salvar	salvar	▁98
+403	ahorrar	ahorrar	ahorrar	salvar	ahorrar	▁98
+404	línea	punto	línea	punto	línea	▁64
+405	despliegue	despliegue	despliegue	despliegue	despliegue	despliegue
+406	medida	medida	medida	medida	medida	medida
+407	administración	administración	administración	administración	administración	administración
+408	▔	empresarial	▔	▁10	▔	socio
+409	▔	empresarial	▔	▁10	▔	socio
+410	▔	empresarial	▔	▁10	▔	socio
+411	diario	medio	diario	diario	diario	medio
+412	▔	empresarial	▔	▁10	▔	socio
+413	medida	medida	medida	medida	medida	medida
+414	data warehouse	data warehouse	data warehouse	data warehouse	data warehouse	▁37
+415	▔	colección	▔	colección	▔	▁27
+416	item	punto	item	punto	item	▁64
+417	▔	eliminar	▔	eliminar	▔	▁87
+418	rating	▁12	rating	rating	rating	▁84
+419	▔	▁18	▔	▁16	▔	▁118
+420	default	defectuoso	default	defecto	default	▁40
+421	calificación	calificación	calificación	calificación	calificación	▁81
+422	delete	eliminar	delete	delete	delete	borrar
+423	avanzado	tab	avanzado	tab	avanzado	▁113
+424	papel	rol	papel	papel	papel	▁93
+425	▔	empresarial	▔	▁10	▔	socio
+426	compra	edit	compra	edit	compra	editar
+427	sección	tab	sección	tab	sección	▁113
+428	enlace	enlace	enlace	enlace	enlace	enlace
+429	source	fuente	source	source	source	fuente
+430	tipo	procedimiento	tipo	tipo	tipo	tipo
+431	eliminación	eliminación	eliminación	eliminación	eliminación	▁47
+432	enlace	enlace	enlace	enlace	enlace	enlace
+433	dashboard	dashboard	dashboard	dashboard	dashboard	dashboard
+434	tab	tab	tab	tab	tab	▁113
+435	▔	empresarial	▔	▁10	▔	socio
+436	parámetro	lanzamiento	parámetro	fijado	parámetro	▁104
+437	informe	informe	informe	informe	informe	informe
+438	beneficio	beneficio	beneficio	beneficio	beneficio	▁14
+439	▔	▁2	▔	▁2	▔	▁21
+440	socio	empresarial	socio	▁10	socio	socio
+441	tab	tab	tab	tab	tab	▁113
+442	add	add	add	añadir	add	añadir
+443	partida	empresarial	partida	▁10	partida	socio
+444	issue	cuestión	issue	cuestión	issue	▁63
+445	socio	empresarial	socio	▁10	socio	socio
+446	socio	procedimiento	socio	tipo	socio	tipo
+447	tabla	tab	tabla	tab	tabla	▁113
+448	empresa	empresarial	empresa	▁10	empresa	socio
+449	empresas	empresarial	empresas	▁10	empresas	socio
+450	explosión	explosión	explosión	explosión	explosión	▁50
+451	negocio	completar	negocio	completado	negocio	▁30
+452	negocio	▁11	negocio	negocio	negocio	▁80
+453	papel empresa	papel empresa	papel empresa	papel empresa	papel empresa	▁28
+454	partners	empresarial	partners	▁10	partners	socio
+455	comunicación	disponibilidad	comunicación	uso	comunicación	uso
+456	templo	templo	templo	templo	templo	▁115
+457	mejora	mejora	mejora	mejora	mejora	mejora
+458	objetivo	objetivo	objetivo	objetivo	objetivo	objetivo
+459	▔	rango	▔	rango	▔	intervalo
+460	tallo	iflows	tallo	fluvial	tallo	▁56
+461	templo	templo	templo	templo	templo	▁77
+462	▔	beneficio	▔	beneficio	▔	▁14
+463	tipo	tipo	tipo	tipo	tipo	▁83
+464	calendario	calendario	calendario	calendario	calendario	programación
+465	▔	eliminar	▔	delete	▔	borrar
+466	empresa negocio	empresa negocio	empresa negocio	empresa negocio	empresa negocio	▁17
+467	sitio	sitio	sitio	sitio	sitio	sitio
+468	historia	orden purpera	historia	historia	historia	▁2
+469	estatuto	estatuto	estatuto	estatuto	estatuto	▁11
+470	aprobación	aprobación	aprobación	aprobación	aprobación	▁0
+471	trabajo	trabajo	trabajo	trabajo	trabajo	trabajo
+472	▔	uso	▔	uso	▔	▁126
+473	programación	calendario	programación	calendario	programación	programación
+474	término	término	término	término	término	término
+475	socio	empresarial	socio	▁10	socio	socio
+476	templado	templo	templado	templo	templado	▁115
+477	salvar	ahorrar	salvar	salvar	salvar	▁98
+478	pause	replicación	pause	pause	pause	▁72
+479	date type	date type	date type	date type	date type	▁39
+480	información	información	información	información	información	▁89
+481	asociación	empresarial	asociación	▁10	asociación	socio
+482	trabajo	trabajo	trabajo	trabajo	trabajo	trabajo
+483	▔	empresarial	▔	▁10	▔	socio
+484	evaluación	cumplimiento	evaluación	cumplimiento	evaluación	evaluación
+485	tipo	procedimiento	tipo	tipo	tipo	tipo
+486	dunning	dunning	dunning	dunning	dunning	▁46
+487	dunning	dunning	dunning	dunning	dunning	▁1
+488	duración	▁19	duración	▁17	duración	▁119
+489	template	templo	template	templo	template	▁115
+490	▔	templo	▔	templo	▔	▁115
+491	miembro	miembro	miembro	miembro	miembro	miembro
+492	tipo templado	tipo templado	tipo templado	tipo templado	tipo templado	▁116
+493	cambio	cambio	cambio	cambio	cambio	▁25
+494	añadir	add	añadir	añadir	añadir	añadir
+495	defecto	defectuoso	defecto	defecto	defecto	▁40
+496	feedback	feedback	feedback	feedback	feedback	▁53
+497	procesamiento de masa	procesamiento masa	procesamiento de masa	procesamiento de masa	procesamiento de masa	▁68
+498	templo	templo	templo	templo	templo	▁115
+499	▔	▁10	▔	▁11	▔	▁79
+500	items	punto	items	punto	items	▁64
+501	locking	bloquear	locking	bloquear	locking	bloquear
+502	▔	utiliza	▔	corresponder	▔	▁96
+503	localización	localización	localización	localización	localización	▁18
+504	run	utiliza	run	corresponder	run	▁96
+505	programar	calendario	programar	calendario	programar	programación
+506	tabla	tab	tabla	tab	tabla	▁113
+507	▔	ahorrar	▔	salvar	▔	▁98
+508	eliminar	eliminar	eliminar	delete	eliminar	borrar
+509	▔	add	▔	añadir	▔	añadir
+510	▔	▁7	▔	▁7	▔	▁55
+511	picklist	picklist	picklist	picklist	picklist	▁74
+512	▔	▁1	▔	▁1	▔	▁13
+513	▔	▁1	▔	▁1	▔	▁13
+514	uso	uso	uso	uso	uso	uso
+515	código de mostrar	código de mostrar	código de mostrar	código de mostrar	código de mostrar	código de mostrar
+516	templo	templo	templo	templo	templo	▁115
+517	mesa	tab	mesa	tab	mesa	▁113
+518	calendario	calendario	calendario	calendario	calendario	programación
+519	tabla	tab	tabla	tab	tabla	▁113
+520	gestión	tab	gestión	tab	gestión	▁113
+521	socio	empresarial	socio	▁10	socio	socio
+522	▔	▁0	▔	▁0	▔	▁8
+523	documento	documento	documento	documento	documento	▁44
+524	contracto	procedimiento	contracto	tipo	contracto	tipo
+525	papel de el negocio	papel de el negocio	papel de el negocio	papel de el negocio	papel de el negocio	▁20
+526	grupo de autorización	grupo de autorización	grupo de autorización	grupo de autorización	grupo de autorización	grupo de autorización
+527	corresponder	utiliza	corresponder	corresponder	corresponder	▁96
+528	delete	eliminar	delete	delete	delete	borrar
+529	▔	empresarial	▔	▁10	▔	socio
+530	aprobación	aprobación	aprobación	aprobación	aprobación	▁10
+531	aprobación	aprobación	aprobación	aprobación	aprobación	▁0
+532	borrar	eliminar	borrar	delete	borrar	borrar
+533	servicio de confirmación	confirmación de servicio	servicio de confirmación	confirmación de servicio	servicio de confirmación	▁102
+534	tema	templo	tema	templo	tema	▁115
+535	salvar	ahorrar	salvar	salvar	salvar	▁98
+536	▔	empresarial	▔	▁10	▔	socio
+537	diseño	diseño	diseño	diseño	diseño	▁67

@@ -1,0 +1,539 @@
+	tgt	pseudoref_first	tgt	pseudoref_frequent	tgt	pseudoref_predefined
+0	contenedor	contenedor	contenedor	contenedor	contenedor	▁23
+1	procesamiento paralelo	procesamiento paralelo	procesamiento paralelo	procesamiento paralelo	procesamiento paralelo	procesamiento paralelo
+2	trabajo	trabajo	trabajo	job	trabajo	job
+3	informe	informe	informe	informe	informe	informe
+4	medio	medio	medio	medio	medio	medio
+5	posición	posición	posición	elemento	posición	artículo
+6	explosión	explosión	explosión	explosión	explosión	▁41
+7	agregar	agregar	agregar	añadir	agregar	agregar
+8	rango	rango	rango	rango	rango	▁61
+9	fuente	fuente	fuente	fuente	fuente	fuente
+10	modelo	modelo	modelo	modelo	modelo	modelo
+11	fuente	fuente	fuente	fuente	fuente	fuente
+12	▔	▁2	▔	editar	▔	editar
+13	filtro	filtro	filtro	reiniciar	filtro	▁65
+14	añadir	agregar	añadir	añadir	añadir	agregar
+15	incidente	incidente	incidente	incidente	incidente	▁48
+16	modelo	modelo	modelo	modelo	modelo	modelo
+17	guardar	guardar	guardar	guardar	guardar	guardar
+18	anular	anular	anular	anular	anular	▁88
+19	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+20	socio	socio	socio	socio	socio	socio
+21	regla	regla	regla	regla	regla	regla
+22	reinicia	filtro	reinicia	reiniciar	reinicia	▁65
+23	categoría	categoría	categoría	categoría	categoría	▁16
+24	programación	programación	programación	programación	programación	programación
+25	encabezado	▁2	encabezado	editar	encabezado	editar
+26	completar	completar	completar	concluido	completar	concluir
+27	detenga	detenga	detenga	detener	detenga	detener
+28	▔	▁4	▔	usar	▔	usar
+29	programación	programación	programación	programación	programación	programación
+30	eliminar	eliminar	eliminar	eliminar	eliminar	eliminar
+31	programación	programación	programación	programación	programación	programación
+32	puesto de trabajo	puesto de trabajo	puesto de trabajo	centro de trabajo	puesto de trabajo	centro de trabajo
+33	cliente	cliente	cliente	cliente	cliente	▁26
+34	rango	rango	rango	rango	rango	▁61
+35	envío	envío	envío	envío	envío	▁32
+36	procesamiento	procesamiento	procesamiento	procesamiento	procesamiento	procesamiento
+37	actualización	actualización	actualización	actualización	actualización	▁85
+38	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+39	patrón de recurrencia	patrón de recurrencia	patrón de recurrencia	patrón de repetición	patrón de recurrencia	patrón de repetición
+40	público	público	público	público	público	público
+41	agendado	programación	agendado	programación	agendado	programación
+42	▔	guardar	▔	guardar	▔	guardar
+43	▔	▁1	▔	predeterminado	▔	predefinir
+44	reiniciar	filtro	reiniciar	reiniciar	reiniciar	▁65
+45	reabastecimiento	reabastecimiento	reabastecimiento	reabastecimiento	reabastecimiento	▁64
+46	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+47	modelo	modelo	modelo	modelo	modelo	modelo
+48	procesar	procesar	procesar	procesar	procesar	procesar
+49	tarea	trabajo	tarea	job	tarea	job
+50	patrón de repetición	patrón de recurrencia	patrón de repetición	patrón de repetición	patrón de repetición	patrón de repetición
+51	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+52	concluido	completar	concluido	concluido	concluido	concluir
+53	segmento	segmento	segmento	informe	segmento	informe
+54	guardar como	guardar como	guardar como	guardar como	guardar como	guardar como
+55	resultado	resultado	resultado	resultado	resultado	▁68
+56	programación	programación	programación	programación	programación	programación
+57	tarea	trabajo	tarea	job	tarea	job
+58	▔	cliente	▔	cliente	▔	▁26
+59	patrón de repetición	patrón de recurrencia	patrón de repetición	patrón de repetición	patrón de repetición	patrón de repetición
+60	sustituto	sustituto	sustituto	sustituto	sustituto	▁75
+61	revisión	revisión	revisión	revisión	revisión	revisión
+62	característica	característica	característica	característica	característica	característica
+63	cliente	cliente	cliente	cliente	cliente	▁26
+64	llamada	llamada	llamada	llamada	llamada	▁15
+65	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+66	replicación	replicación	replicación	replicación	replicación	replicación
+67	bloqueado	bloqueado	bloqueado	bloqueado	bloqueado	▁70
+68	cambio	cambio	cambio	cambio	cambio	▁18
+69	▔	eliminar	▔	eliminar	▔	eliminar
+70	añadir	agregar	añadir	añadir	añadir	agregar
+71	asignación cuenta	asignación cuenta	asignación cuenta	asignación cuenta	asignación cuenta	▁4
+72	socio	socio	socio	socio	socio	socio
+73	predefinir	▁1	predefinir	predeterminado	predefinir	predefinir
+74	anular	anular	anular	anular	anular	▁88
+75	medida	medida	medida	indicador	medida	indicador
+76	transacción	transacción	transacción	transacción	transacción	▁80
+77	cliente	cliente	cliente	cliente	cliente	▁26
+78	record	record	record	record	record	▁63
+79	cabecera	cabecera	cabecera	cabecera	cabecera	cabecera
+80	desempeño	desempeño	desempeño	desempeño	desempeño	▁53
+81	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo
+82	procedimiento	procedimiento	procedimiento	tipo	procedimiento	tipo
+83	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+84	programación	programación	programación	programación	programación	programación
+85	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo
+86	añadir	agregar	añadir	añadir	añadir	agregar
+87	▔	▁0	▔	imputación	▔	imputación
+88	página de perfil	página de perfil	página de perfil	página de perfil	página de perfil	página de perfil
+89	imputación	▁0	imputación	imputación	imputación	imputación
+90	socio	socio	socio	socio	socio	socio
+91	incidente	incidente	incidente	incidente	incidente	▁48
+92	imputación	imputación	imputación	consumo	imputación	▁22
+93	imputación	▁0	imputación	imputación	imputación	imputación
+94	conjunto	conjunto	conjunto	conjunto	conjunto	conjunto
+95	información	información	información	información	información	▁46
+96	eliminar	eliminar	eliminar	eliminar	eliminar	eliminar
+97	clasificación	clasificación	clasificación	clasificación	clasificación	▁72
+98	job	trabajo	job	job	job	job
+99	cliente	cliente	cliente	cliente	cliente	cliente
+100	informe	informe	informe	informe	informe	informe
+101	job	trabajo	job	job	job	job
+102	activar	activar	activar	activar	activar	▁82
+103	industria	procedimiento	industria	tipo	industria	tipo
+104	socio	socio	socio	socio	socio	socio
+105	predeterminado	▁1	predeterminado	predeterminado	predeterminado	predefinir
+106	usar	▁4	usar	usar	usar	usar
+107	cuota	cuota	cuota	cuota	cuota	▁42
+108	confirmación de servicio	confirmación de servicio	confirmación de servicio	confirmación de servicio	confirmación de servicio	confirmación de servicio
+109	imputación	▁0	imputación	imputación	imputación	imputación
+110	deudor/acreedor	cliente	deudor/acreedor	cliente	deudor/acreedor	▁26
+111	elemento	posición	elemento	elemento	elemento	artículo
+112	incidente	incidente	incidente	incidente	incidente	▁48
+113	socio	socio	socio	socio	socio	socio
+114	grupo de tipo de producto	grupo de tipo de producto	grupo de tipo de producto	grupo de tipo de producto	grupo de tipo de producto	▁56
+115	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+116	tipo de transacción	tipo de transacción	tipo de transacción	operación	tipo de transacción	▁81
+117	facturar	facturar	facturar	facturado	facturar	facturar
+118	problema	problema	problema	emisión	problema	problema
+119	salida	salida	salida	salida	salida	▁52
+120	guardar	guardar	guardar	guardar	guardar	guardar
+121	uso	▁4	uso	usar	uso	usar
+122	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+123	revisión	revisión	revisión	comprobar	revisión	▁19
+124	contrato central	contrato central	contrato central	contrato central	contrato central	▁17
+125	centro de trabajo	puesto de trabajo	centro de trabajo	centro de trabajo	centro de trabajo	centro de trabajo
+126	entrante	entrante	entrante	entrante	entrante	▁47
+127	alcance	alcance	alcance	alcance	alcance	alcance
+128	usar	▁4	usar	usar	usar	usar
+129	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+130	imputación	procedimiento	imputación	tipo	imputación	tipo
+131	compartición	compartición	compartición	compartición	compartición	compartición
+132	requerimiento	requerimiento	requerimiento	requisito	requerimiento	requisito
+133	modelo	modelo	modelo	modelo	modelo	modelo
+134	botón	botón	botón	botón	botón	▁14
+135	tiempo	tiempo	tiempo	tiempo	tiempo	tiempo
+136	programación	programación	programación	programación	programación	programación
+137	fuente	fuente	fuente	fuente	fuente	fuente
+138	uso	uso	uso	uso	uso	uso
+139	medida	medida	medida	indicador	medida	indicador
+140	puesto de trabajo	puesto de trabajo	puesto de trabajo	centro de trabajo	puesto de trabajo	centro de trabajo
+141	tipo	procedimiento	tipo	tipo	tipo	tipo
+142	medida	medida	medida	indicador	medida	indicador
+143	modelo	modelo	modelo	modelo	modelo	modelo
+144	incompleto	incompleto	incompleto	completar	incompleto	▁21
+145	guardar	guardar	guardar	guardar	guardar	guardar
+146	nombre empresarial	nombre empresarial	nombre empresarial	nombre empresarial	nombre empresarial	nombre empresarial
+147	pago anticipado	pago anticipado	pago anticipado	pago anticipado	pago anticipado	▁55
+148	paso de proceso	paso de proceso	paso de proceso	paso de proceso	paso de proceso	paso de proceso
+149	programación	programación	programación	programación	programación	programación
+150	requisito	requerimiento	requisito	requisito	requisito	requisito
+151	indicador	medida	indicador	indicador	indicador	indicador
+152	verificación	revisión	verificación	comprobar	verificación	▁19
+153	complementario	complementario	complementario	complementario	complementario	▁76
+154	procesamiento paralelo	procesamiento paralelo	procesamiento paralelo	procesamiento paralelo	procesamiento paralelo	procesamiento paralelo
+155	socio	socio	socio	socio	socio	socio
+156	desempeño	desempeño	desempeño	desempeño	desempeño	▁53
+157	ejecutar	ejecutar	ejecutar	ejecutar	ejecutar	ejecutar
+158	añadir	agregar	añadir	añadir	añadir	agregar
+159	botón	botón	botón	botón	botón	▁14
+160	comprobar	revisión	comprobar	comprobar	comprobar	▁19
+161	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo
+162	socio	socio	socio	socio	socio	socio
+163	sitio	sitio	sitio	sitio	sitio	sitio
+164	dirigido	dirigido	dirigido	dirigido	dirigido	▁33
+165	paso de proceso	paso de proceso	paso de proceso	paso de proceso	paso de proceso	paso de proceso
+166	afiliado de sap	afiliado de sap	afiliado de sap	afiliado de sap	afiliado de sap	▁2
+167	popup	popup	popup	popup	popup	popup
+168	socio	socio	socio	socio	socio	socio
+169	añadir	agregar	añadir	añadir	añadir	agregar
+170	eliminar	eliminar	eliminar	eliminar	eliminar	eliminar
+171	socio	socio	socio	socio	socio	socio
+172	bloquear	bloquear	bloquear	bloquear	bloquear	bloquear
+173	plantilla	modelo	plantilla	modelo	plantilla	modelo
+174	imputación	▁0	imputación	imputación	imputación	imputación
+175	imputación	▁0	imputación	imputación	imputación	imputación
+176	rescisión	rescisión	rescisión	rescisión	rescisión	rescisión
+177	caso de uso	caso de uso	caso de uso	caso de uso	caso de uso	▁86
+178	eliminar	eliminar	eliminar	eliminar	eliminar	eliminar
+179	fuente	fuente	fuente	fuente	fuente	fuente
+180	rango	rango	rango	rango	rango	▁61
+181	paso de proceso	paso de proceso	paso de proceso	paso de proceso	paso de proceso	paso de proceso
+182	defecto	▁1	defecto	predeterminado	defecto	predefinir
+183	conjunto de elemento	conjunto de elemento	conjunto de elemento	conjunto de artículo	conjunto de elemento	conjunto de posición
+184	explosión	explosión	explosión	explosión	explosión	▁41
+185	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+186	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo
+187	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo	lista de trabajo
+188	controlador de dato	controlador de dato	controlador de dato	controlador de dato	controlador de dato	▁28
+189	aplicación cliente	aplicación cliente	aplicación cliente	aplicación cliente	aplicación cliente	aplicación cliente
+190	tipo de vista	tipo de vista	tipo de vista	tipo de vista	tipo de vista	▁87
+191	guardar	guardar	guardar	guardar	guardar	guardar
+192	job	trabajo	job	job	job	job
+193	indicador	medida	indicador	indicador	indicador	indicador
+194	modelo	modelo	modelo	modelo	modelo	modelo
+195	imputación	▁0	imputación	imputación	imputación	imputación
+196	etapa	etapa	etapa	etapa	etapa	▁73
+197	imputación	▁0	imputación	imputación	imputación	imputación
+198	centro de trabajo	puesto de trabajo	centro de trabajo	centro de trabajo	centro de trabajo	centro de trabajo
+199	quitar	quitar	quitar	eliminar	quitar	quitar
+200	añada	agregar	añada	añadir	añada	agregar
+201	actividad comercial	actividad comercial	actividad comercial	actividad comercial	actividad comercial	▁10
+202	agregar	agregar	agregar	añadir	agregar	agregar
+203	socio	socio	socio	socio	socio	socio
+204	adquisición	adquisición	adquisición	adquisición	adquisición	▁5
+205	plantilla	modelo	plantilla	modelo	plantilla	modelo
+206	artículo	posición	artículo	elemento	artículo	artículo
+207	clase	clase	clase	clase	clase	clase
+208	inventario	inventario	inventario	inventario	inventario	▁49
+209	etiqueta	pestaña	etiqueta	pestaña	etiqueta	etiqueta
+210	tiempo	tiempo	tiempo	tiempo	tiempo	tiempo
+211	tiempo	tiempo	tiempo	tiempo	tiempo	▁30
+212	plataforma de lanzamiento	plataforma de lanzamiento	plataforma de lanzamiento	plataforma de lanzamiento	plataforma de lanzamiento	plataforma de lanzamiento
+213	actualización	actualización	actualización	actualización	actualización	▁84
+214	elemento	posición	elemento	elemento	elemento	artículo
+215	centro de trabajo	puesto de trabajo	centro de trabajo	centro de trabajo	centro de trabajo	centro de trabajo
+216	predeterminado	▁1	predeterminado	predeterminado	predeterminado	predefinir
+217	guardar	guardar	guardar	guardar	guardar	guardar
+218	ejecución	procedimiento	ejecución	tipo	ejecución	tipo
+219	compartición	compartición	compartición	compartición	compartición	compartición
+220	modelo	modelo	modelo	modelo	modelo	modelo
+221	mosaico	guardar como	mosaico	guardar como	mosaico	guardar como
+222	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+223	bloqueado	bloqueado	bloqueado	bloqueado	bloqueado	▁70
+224	plantilla de rol	plantilla de rol	plantilla de rol	plantilla de rol	plantilla de rol	plantilla de rol
+225	modelo	modelo	modelo	modelo	modelo	modelo
+226	artículo	posición	artículo	elemento	artículo	artículo
+227	agregar	agregar	agregar	añadir	agregar	agregar
+228	uso	uso	uso	uso	uso	uso
+229	punto	punto	punto	punto	punto	▁40
+230	borrar	eliminar	borrar	eliminar	borrar	eliminar
+231	recuperación	recuperación	recuperación	recuperación	recuperación	▁66
+232	organización de servicio	organización de servicio	organización de servicio	organización de servicio	organización de servicio	▁69
+233	colección	colección	colección	colección	colección	recopilación
+234	conjunto de artículo	conjunto de elemento	conjunto de artículo	conjunto de artículo	conjunto de artículo	conjunto de posición
+235	filtro	filtro	filtro	filtro	filtro	▁43
+236	programación	programación	programación	programación	programación	programación
+237	predeterminado	▁1	predeterminado	predeterminado	predeterminado	predefinir
+238	plantilla	modelo	plantilla	modelo	plantilla	modelo
+239	combinación	combinación	combinación	combinación	combinación	▁83
+240	clase de ejecución	clase de ejecución	clase de ejecución	clase de ejecución	clase de ejecución	clase de ejecución
+241	patrón de repetición	patrón de recurrencia	patrón de repetición	patrón de repetición	patrón de repetición	patrón de repetición
+242	nivel	nivel	nivel	declaración	nivel	▁74
+243	característica	característica	característica	característica	característica	característica
+244	ajuste	ajuste	ajuste	ajuste	ajuste	▁6
+245	repositorio local	repositorio local	repositorio local	repositorio local	repositorio local	repositorio local
+246	guardar	guardar	guardar	guardar	guardar	guardar
+247	usar	▁4	usar	usar	usar	usar
+248	declaración	nivel	declaración	declaración	declaración	▁74
+249	consumo	imputación	consumo	consumo	consumo	▁22
+250	asignación	▁0	asignación	imputación	asignación	imputación
+251	reproducción	replicación	reproducción	replicación	reproducción	replicación
+252	autorización	autorización	autorización	autorización	autorización	autorización
+253	autorización	autorización	autorización	autorización	autorización	autorización
+254	transferencia	transferencia	transferencia	transferencia	transferencia	transferencia
+255	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+256	versión de fabricación	versión de fabricación	versión de fabricación	versión de fabricación	versión de fabricación	▁57
+257	replicación	replicación	replicación	replicación	replicación	replicación
+258	estado	bloqueado	estado	bloqueado	estado	▁70
+259	informe	segmento	informe	informe	informe	informe
+260	usar	▁4	usar	usar	usar	usar
+261	guardar	guardar	guardar	guardar	guardar	guardar
+262	▔	▁3	▔	paso	▔	paso
+263	propósito	propósito	propósito	finalidad	propósito	▁58
+264	cantidad de contrato	cantidad de contrato	cantidad de contrato	cantidad de contrato	cantidad de contrato	▁60
+265	completar	incompleto	completar	completar	completar	▁21
+266	plantilla	modelo	plantilla	modelo	plantilla	modelo
+267	autorización	autorización	autorización	autorización	autorización	autorización
+268	autorización	autorización	autorización	autorización	autorización	autorización
+269	emisión	problema	emisión	emisión	emisión	problema
+270	informe	informe	informe	informe	informe	informe
+271	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+272	retención	pestaña	retención	pestaña	retención	etiqueta
+273	socio	socio	socio	socio	socio	socio
+274	red	red	red	red	red	red
+275	socio	socio	socio	socio	socio	socio
+276	editar	▁2	editar	editar	editar	editar
+277	modelo	modelo	modelo	modelo	modelo	modelo
+278	eliminar	eliminar	eliminar	eliminar	eliminar	eliminar
+279	información	información	información	información	información	▁3
+280	socio	socio	socio	socio	socio	socio
+281	socio	socio	socio	rol	socio	rol
+282	modelo	modelo	modelo	modelo	modelo	modelo
+283	gestión de rendimiento	gestión de rendimiento	gestión de rendimiento	gestión de rendimiento	gestión de rendimiento	gestión de rendimiento
+284	cuenta contrato	cuenta contrato	cuenta contrato	cuenta contrato	cuenta contrato	▁25
+285	guardar	guardar	guardar	guardar	guardar	guardar
+286	tipo	procedimiento	tipo	tipo	tipo	tipo
+287	editar	▁2	editar	editar	editar	editar
+288	plantilla	modelo	plantilla	modelo	plantilla	modelo
+289	tipo de impuesto	tipo de impuesto	tipo de impuesto	tipo de impuesto	tipo de impuesto	tipo de impuesto
+290	uso	uso	uso	uso	uso	uso
+291	autorización	autorización	autorización	autorización	autorización	autorización
+292	autorización	autorización	autorización	autorización	autorización	autorización
+293	contenido empresarial	contenido empresarial	contenido empresarial	contenido empresarial	contenido empresarial	contenido empresarial
+294	procesamiento masivo	procesamiento masivo	procesamiento masivo	procesamiento masivo	procesamiento masivo	procesamiento en masa
+295	programación	programación	programación	programación	programación	programación
+296	trabajo	trabajo	trabajo	job	trabajo	job
+297	objetivo	objetivo	objetivo	objetivo	objetivo	objetivo
+298	plantilla de rol	plantilla de rol	plantilla de rol	plantilla de rol	plantilla de rol	plantilla de rol
+299	programar	programación	programar	programación	programar	programación
+300	orden compra	orden compra	orden compra	orden compra	orden compra	▁1
+301	información	información	información	información	información	▁3
+302	socio	socio	socio	socio	socio	socio
+303	conjunto de posición	conjunto de elemento	conjunto de posición	conjunto de artículo	conjunto de posición	conjunto de posición
+304	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+305	despliegue	despliegue	despliegue	despliegue	despliegue	despliegue
+306	detener	detenga	detener	detener	detener	detener
+307	evaluación	evaluación	evaluación	evaluación	evaluación	evaluación
+308	iflujo	iflujo	iflujo	flujo	iflujo	flujo
+309	agregar	agregar	agregar	agregar	agregar	agregar
+310	agregar	agregar	agregar	añadir	agregar	agregar
+311	operación	tipo de transacción	operación	operación	operación	▁81
+312	guardar	guardar	guardar	guardar	guardar	guardar
+313	diseño	diseño	diseño	diseño	diseño	▁50
+314	guardar	guardar	guardar	guardar	guardar	guardar
+315	envío	envío	envío	envío	envío	envío
+316	rol	socio	rol	rol	rol	rol
+317	clase	procedimiento	clase	tipo	clase	tipo
+318	elemento	posición	elemento	elemento	elemento	artículo
+319	plantilla	modelo	plantilla	modelo	plantilla	modelo
+320	plantilla	modelo	plantilla	modelo	plantilla	modelo
+321	punto de conexión	punto	punto de conexión	punto	punto de conexión	▁40
+322	programación	programación	programación	programación	programación	programación
+323	cuadrícula	cuadrícula	cuadrícula	cuadrícula	cuadrícula	cuadrícula
+324	adición	agregar	adición	añadir	adición	agregar
+325	recepción de mercancía	recepción de mercancía	recepción de mercancía	recepción de mercancía	recepción de mercancía	▁45
+326	paso	▁3	paso	paso	paso	paso
+327	envío	envío	envío	envío	envío	envío
+328	tipo	procedimiento	tipo	tipo	tipo	tipo
+329	tipo	procedimiento	tipo	tipo	tipo	tipo
+330	programación	programación	programación	programación	programación	programación
+331	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+332	socio	socio	socio	socio	socio	socio
+333	calificación	calificación	calificación	calificación	calificación	calificación
+334	socio	socio	socio	socio	socio	socio
+335	dibujo	dibujo	dibujo	dibujo	dibujo	▁37
+336	eliminar	eliminar	eliminar	eliminar	eliminar	eliminar
+337	socio	socio	socio	socio	socio	socio
+338	facturado	facturar	facturado	facturado	facturado	facturar
+339	centro de trabajo	puesto de trabajo	centro de trabajo	centro de trabajo	centro de trabajo	centro de trabajo
+340	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+341	persona	informe	persona	informe	persona	informe
+342	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+343	editar	▁2	editar	editar	editar	editar
+344	socio	socio	socio	socio	socio	socio
+345	socio	socio	socio	socio	socio	socio
+346	socio	socio	socio	socio	socio	socio
+347	visualizar	visualizar	visualizar	visualizar	visualizar	▁35
+348	socio	socio	socio	socio	socio	socio
+349	recepción de mercancía	recepción de mercancía	recepción de mercancía	recepción de mercancía	recepción de mercancía	▁45
+350	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+351	flujo	iflujo	flujo	flujo	flujo	flujo
+352	deseleccionar	deseleccionar	deseleccionar	deseleccionar	deseleccionar	▁34
+353	eliminar	eliminar	eliminar	eliminar	eliminar	eliminar
+354	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+355	requisito	requerimiento	requisito	requisito	requisito	requisito
+356	cuota	cuota	cuota	cuota	cuota	cuota
+357	añadir	agregar	añadir	añadir	añadir	agregar
+358	indicador	medida	indicador	indicador	indicador	indicador
+359	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+360	eliminar	eliminar	eliminar	eliminar	eliminar	eliminar
+361	socio	socio	socio	socio	socio	socio
+362	tarjeta	▁2	tarjeta	editar	tarjeta	editar
+363	añadir	agregar	añadir	añadir	añadir	agregar
+364	piscina	procedimiento	piscina	tipo	piscina	tipo
+365	añadir	botón	añadir	botón	añadir	▁14
+366	socio	socio	socio	socio	socio	socio
+367	informes	segmento	informes	informe	informes	informe
+368	informe	informe	informe	informe	informe	informe
+369	extensión	extensión	extensión	extensión	extensión	extensión
+370	visualizar	visualizar	visualizar	visualizar	visualizar	▁35
+371	ámbito	eliminar	ámbito	eliminar	ámbito	eliminar
+372	procesamiento en masa	procesamiento masivo	procesamiento en masa	procesamiento masivo	procesamiento en masa	procesamiento en masa
+373	unidad empresarial	unidad empresarial	unidad empresarial	unidad empresarial	unidad empresarial	unidad empresarial
+374	indicador	medida	indicador	indicador	indicador	indicador
+375	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+376	reiniciar	filtro	reiniciar	reiniciar	reiniciar	▁65
+377	concluir	completar	concluir	concluido	concluir	concluir
+378	vencimiento	vencimiento	vencimiento	vencimiento	vencimiento	vencimiento
+379	contrato	contrato	contrato	contrato	contrato	▁24
+380	uso	uso	uso	uso	uso	uso
+381	mueva	mueva	mueva	mueva	mueva	▁51
+382	suministrar	suministrar	suministrar	suministrar	suministrar	suministrar
+383	paso	▁3	paso	paso	paso	paso
+384	aprobación	autorización	aprobación	autorización	aprobación	autorización
+385	aprobación	autorización	aprobación	autorización	aprobación	autorización
+386	uso	▁4	uso	usar	uso	usar
+387	eliminar	eliminar	eliminar	eliminar	eliminar	eliminar
+388	localización comercial	localización comercial	localización comercial	empresarial	localización comercial	▁11
+389	acerca	información	acerca	información	acerca	▁3
+390	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+391	informe	informe	informe	informe	informe	informe
+392	predeterminado	▁1	predeterminado	predeterminado	predeterminado	predefinir
+393	tarea	trabajo	tarea	job	tarea	job
+394	alcance	alcance	alcance	alcance	alcance	alcance
+395	guardar	guardar	guardar	guardar	guardar	guardar
+396	informe	informe	informe	informe	informe	informe
+397	guardar	guardar	guardar	guardar	guardar	guardar
+398	añadir	agregar	añadir	añadir	añadir	agregar
+399	trabajo	trabajo	trabajo	job	trabajo	job
+400	muestrar	muestrar	muestrar	muestrar	muestrar	▁71
+401	modelo	▁4	modelo	usar	modelo	usar
+402	guardar	guardar	guardar	guardar	guardar	guardar
+403	guardar	guardar	guardar	guardar	guardar	guardar
+404	artículo	posición	artículo	elemento	artículo	artículo
+405	despliegue	despliegue	despliegue	despliegue	despliegue	despliegue
+406	medida	medida	medida	indicador	medida	indicador
+407	administración	administración	administración	administración	administración	administración
+408	socio	socio	socio	socio	socio	socio
+409	socio	socio	socio	socio	socio	socio
+410	socio	socio	socio	socio	socio	socio
+411	medio	medio	medio	medio	medio	medio
+412	socio	socio	socio	socio	socio	socio
+413	indicador	medida	indicador	indicador	indicador	indicador
+414	data warehouse	data warehouse	data warehouse	data warehouse	data warehouse	▁29
+415	recopilación	colección	recopilación	colección	recopilación	recopilación
+416	elemento	posición	elemento	elemento	elemento	artículo
+417	eliminar	quitar	eliminar	eliminar	eliminar	quitar
+418	calificación	calificación	calificación	calificación	calificación	calificación
+419	ficha	ficha	ficha	ficha	ficha	▁79
+420	predeterminado	▁1	predeterminado	predeterminado	predeterminado	predefinir
+421	calificador	calificador	calificador	calificador	calificador	▁59
+422	eliminar	eliminar	eliminar	eliminar	eliminar	eliminar
+423	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+424	rol	socio	rol	rol	rol	rol
+425	socios	socio	socios	socio	socios	socio
+426	editar	▁2	editar	editar	editar	editar
+427	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+428	vínculo	vínculo	vínculo	vínculo	vínculo	vínculo
+429	origen	fuente	origen	fuente	origen	fuente
+430	clase	procedimiento	clase	tipo	clase	tipo
+431	eliminación	eliminación	eliminación	eliminación	eliminación	▁39
+432	vínculo	vínculo	vínculo	vínculo	vínculo	vínculo
+433	control	control	control	control	control	▁27
+434	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+435	socio	socio	socio	socio	socio	socio
+436	establecer	bloqueado	establecer	bloqueado	establecer	▁70
+437	informe	informe	informe	informe	informe	informe
+438	beneficio	beneficio	beneficio	beneficio	beneficio	▁9
+439	regla	regla	regla	regla	regla	▁13
+440	socio	socio	socio	socio	socio	socio
+441	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+442	añadir	agregar	añadir	añadir	añadir	agregar
+443	socio	socio	socio	socio	socio	socio
+444	entrega	problema	entrega	emisión	entrega	problema
+445	socio	socio	socio	socio	socio	socio
+446	tipo	procedimiento	tipo	tipo	tipo	tipo
+447	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+448	socio	socio	socio	socio	socio	socio
+449	socios	socio	socios	socio	socios	socio
+450	explosión	explosión	explosión	explosión	explosión	▁41
+451	concluido	completar	concluido	concluido	concluido	concluir
+452	finalidad	propósito	finalidad	finalidad	finalidad	▁58
+453	rol compañía	rol compañía	rol compañía	rol compañía	rol compañía	▁20
+454	socios	socio	socios	socio	socios	socio
+455	uso	uso	uso	uso	uso	uso
+456	modelo	modelo	modelo	modelo	modelo	modelo
+457	mejora	mejora	mejora	mejora	mejora	mejora
+458	objetivo	objetivo	objetivo	objetivo	objetivo	objetivo
+459	rango	rango	rango	rango	rango	▁61
+460	flujo	iflujo	flujo	flujo	flujo	flujo
+461	modelo de proceso	modelo de proceso	modelo de proceso	modelo de proceso	modelo de proceso	modelo de proceso
+462	beneficios	beneficio	beneficios	beneficio	beneficios	▁9
+463	tipo	tipo	tipo	tipo	tipo	▁62
+464	programación	programación	programación	programación	programación	programación
+465	elimine	eliminar	elimine	eliminar	elimine	eliminar
+466	entidad empresarial	entidad empresarial	entidad empresarial	entidad empresarial	entidad empresarial	entidad empresarial
+467	sitio	sitio	sitio	sitio	sitio	sitio
+468	pedir de compra	orden compra	pedir de compra	orden compra	pedir de compra	▁1
+469	estado de aprobación	estado de aprobación	estado de aprobación	estado de aprobación	estado de aprobación	▁7
+470	aprobación	autorización	aprobación	autorización	aprobación	autorización
+471	trabajo	trabajo	trabajo	job	trabajo	job
+472	tipo	caso de uso	tipo	caso de uso	tipo	▁86
+473	programación	programación	programación	programación	programación	programación
+474	palabra	palabra	palabra	palabra	palabra	▁78
+475	socio	socio	socio	socio	socio	socio
+476	plantilla	modelo	plantilla	modelo	plantilla	modelo
+477	guardar	guardar	guardar	guardar	guardar	guardar
+478	detener	detenga	detener	detener	detener	detener
+479	tipo	tipo	tipo	tipo	tipo	▁31
+480	informe	segmento	informe	informe	informe	informe
+481	socio	socio	socio	socio	socio	socio
+482	job	trabajo	job	job	job	job
+483	socio	socio	socio	socio	socio	socio
+484	evaluación	evaluación	evaluación	evaluación	evaluación	evaluación
+485	tipo	procedimiento	tipo	tipo	tipo	tipo
+486	mora	mora	mora	mora	mora	▁38
+487	mora	mora	mora	mora	mora	▁0
+488	duración	tiempo	duración	tiempo	duración	tiempo
+489	modelo	modelo	modelo	modelo	modelo	modelo
+490	modelo	modelo	modelo	modelo	modelo	modelo
+491	miembro	miembro	miembro	miembro	miembro	miembro
+492	tipo de plantilla	tipo de plantilla	tipo de plantilla	tipo de plantilla	tipo de plantilla	▁77
+493	cambio	cambio	cambio	cambio	cambio	▁18
+494	añadir	agregar	añadir	añadir	añadir	agregar
+495	defecto	▁1	defecto	predeterminado	defecto	predefinir
+496	comentario	comentario	comentario	comentario	comentario	comentario
+497	procesamiento masivo	procesamiento masivo	procesamiento masivo	procesamiento masivo	procesamiento masivo	procesamiento en masa
+498	modelo	modelo	modelo	modelo	modelo	modelo
+499	orden de producción	orden de producción	orden de producción	orden de producción	orden de producción	orden de producción
+500	elemento	posición	elemento	elemento	elemento	artículo
+501	liberación	bloquear	liberación	bloquear	liberación	bloquear
+502	ejecutar	ejecutar	ejecutar	ejecutar	ejecutar	ejecutar
+503	empresarial	localización comercial	empresarial	empresarial	empresarial	▁11
+504	ejecutar	ejecutar	ejecutar	ejecutar	ejecutar	ejecutar
+505	programar	programación	programar	programación	programar	programación
+506	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+507	guardar	guardar	guardar	guardar	guardar	guardar
+508	eliminar	eliminar	eliminar	eliminar	eliminar	eliminar
+509	añadir	agregar	añadir	añadir	añadir	agregar
+510	reparación	reparación	reparación	reparación	reparación	▁44
+511	lista desplegable	lista desplegable	lista desplegable	lista desplegable	lista desplegable	▁54
+512	anexo	anexo	anexo	anexo	anexo	▁8
+513	anexo	anexo	anexo	anexo	anexo	▁8
+514	uso	▁4	uso	usar	uso	usar
+515	código de ejemplo	código de ejemplo	código de ejemplo	código de ejemplo	código de ejemplo	▁67
+516	modelo	modelo	modelo	modelo	modelo	modelo
+517	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+518	programación	programación	programación	programación	programación	programación
+519	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+520	pestaña	pestaña	pestaña	pestaña	pestaña	etiqueta
+521	socio	socio	socio	socio	socio	socio
+522	agente	agente	agente	agente	agente	agente
+523	tipo de documento	tipo de documento	tipo de documento	tipo de documento	tipo de documento	▁36
+524	contrato	procedimiento	contrato	tipo	contrato	tipo
+525	socio comercial	socio comercial	socio comercial	socio comercial	socio comercial	▁12
+526	grupo de autorización	grupo de autorización	grupo de autorización	grupo de autorización	grupo de autorización	grupo de autorización
+527	▔	ejecutar	▔	ejecutar	▔	ejecutar
+528	eliminar	eliminar	eliminar	eliminar	eliminar	eliminar
+529	socio	socio	socio	socio	socio	socio
+530	autorización	autorización	autorización	autorización	autorización	autorización
+531	autorización	autorización	autorización	autorización	autorización	autorización
+532	eliminar	eliminar	eliminar	eliminar	eliminar	eliminar
+533	confirmación de servicio	confirmación de servicio	confirmación de servicio	confirmación de servicio	confirmación de servicio	confirmación de servicio
+534	modelo	modelo	modelo	modelo	modelo	modelo
+535	guardar	guardar	guardar	guardar	guardar	guardar
+536	▔	socio	▔	socio	▔	socio
+537	diseño	diseño	diseño	diseño	diseño	▁50
