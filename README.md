@@ -10,5 +10,14 @@ Everything you need to get going should be present in this repo, either in terms
 
 ## TODO
 
--[ ] You will need to process the test data and adapt the starter script to handle src-only data.
--[ ] If you intend to focus on track2, you will need to adapt the scripts to handle this setting, including evaluation scripts. 
+- [ ] You will need to process the test data and adapt the starter script to handle src-only data.
+- [ ] If you intend to focus on track2, you will need to adapt the scripts to handle this setting, including evaluation scripts.
+- [ ] Choose a model or model family. Below are some suggestions. Sticking with smaller models means you can do more extensive training and experiments, but for final submission you may want to use something larger (7B or even 14B), depending on GPU hour availability.
+
+- Qwen/Qwen3-1.7B 
+- LiquidAI/LFM2-2.6B 
+- Qwen/Qwen3.5-2B (en/zh-centric)
+- meta-llama/Llama-3.2-1B-Instruct (or 3B) (en-centric)
+- CohereLabs/tiny-aya-global (3.35B) (multilingual)
+- HuggingFaceTB/SmolLM-1.7B-Instruct (en-centric)
+- google/gemma-3-1b-it (or 4b) (multilingual)
