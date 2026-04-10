@@ -1,0 +1,60 @@
+\documentclass[11pt]{article}
+
+\usepackage{geometry}
+
+\title{Terminology Translation Project Plan}
+\author{Ark Deliev \\ Izabela Kurek}
+
+\begin{document}
+
+\maketitle
+
+\section{General}
+
+We plan on using Gemma 4, Qwen 3.5, and Ministral 3 model families. From experience different model families can react differently to downstream task finetuning, and both of those families provide a number of size variants and competitive performance. We'll start with the smaller variants and scale later.
+
+We also want to focus on Track 2, as we believe it is more challenging and provides greater value.
+
+\section{RQ 1}
+
+For now we don't have immediate ideas on what would work best, we'll explore (prompting, few-shot, reranking).
+
+\section{RQ 2}
+
+We plan to use Wikipedia for general domain parallel corpus and for legal domain for legal domain specifically we will use
+Hong Kong legislation parallel corpus which contains legislation in Traditional Chinese and English.
+
+\section{RQ 3}
+
+If model outputs from RQ1 prove decent we can do *PO (e.g. GRPO with XCOMET to grade translations and optimize over) since the core ability should allow for smoother training convergence. If the outputs out-of-the-box are bad, we will try SFT first. Both approaches will use LoRA.
+
+\section{RQ 4}
+
+Below is an idea that we have to use the strength of SLMs at atomic tasks but we might change it if during answering earlier questions we see an interesting avenue.
+
+\subsection{Translation+Refinement Model}
+One idea to improve model performance is to have one small model perform translation of the source text and another small model refine it. Refinement data could be synthesised from the first model's inputs fed into a larger model for refinement, which would presumably have more domain-knowledge to refine translation effectively.
+
+
+\section{Plan}
+I = Iza \\
+A = Ark
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|p{0.20\linewidth}|p{0.48\linewidth}|p{0.16\linewidth}|p{0.12\linewidth}|}
+\hline
+\textbf{Activity} & \textbf{Description} & \textbf{Deadline} & \textbf{Assign} \\ \hline
+Baseline experiments & Run starter pipeline for one track-1 pair and three modes (noterm/proper/random). & 13/4/25 &  A + I \\ \hline
+RQ1 experiments & Prompting + few-shot + reranking experiments; pick strongest inference setup. & 20/4/25 &  A \\ \hline
+RQ2 experiments & Build curated/synthetic terminology data and evaluate impact. & 22/4/25 &  I \\ \hline
+Mid-term report & Write intro, related work, RQ setup & 24/4/25 23:59 & I \\ \hline
+Mid-term report & Write method, preliminary results, and next steps. & 24/4/25 23:59 &  A \\ \hline
+RQ3 experiments & LoRA fine-tuning and comparison against best RQ1/RQ2 baselines. & 12/5/25 &  A \\ \hline
+RQ4 experiments & Advanced combined method (best components from RQ1--RQ3) + ablations*. & 12/5/25 &  I \\ \hline
+Final analysis & Final tables/plots, error analysis, and consistency checks. & 22/5/25 &  A +  I \\ \hline
+Final report & Consolidate full paper and submit final version. & 24/5/25 23:59 &  A +  I \\ \hline
+\end{tabular}
+\end{table}
+
+\end{document}
