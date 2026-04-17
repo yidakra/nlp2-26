@@ -16,3 +16,4 @@ stanza
 vllm
 unbabel-comet
 flash-attn
+wandb

@@ -28,6 +28,14 @@ fi
 mkdir -p logs outputs
 source .venv/bin/activate
 
+export WANDB_PROJECT="${WANDB_PROJECT:-nlp2-26}"
+export WANDB_RUN_GROUP="${WANDB_RUN_GROUP:-${PAIR}}"
+
+if ! python -c "import wandb; wandb.login(relogin=False, anonymous='never')" >/dev/null 2>&1; then
+  echo "W&B login not available. Run 'wandb login' (or set WANDB_API_KEY) before submitting."
+  exit 1
+fi
+
 python scripts/inference.py \
   --model-id "${MODEL_ID}" \
   --src-tgt-pair "${PAIR}" \
