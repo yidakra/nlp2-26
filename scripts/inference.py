@@ -67,40 +67,42 @@ def main() -> None:
     codecarbon_output_dir = Path(os.getenv("CODECARBON_OUTPUT_DIR", "outputs/codecarbon"))
     codecarbon_output_dir.mkdir(parents=True, exist_ok=True)
     codecarbon_country_iso = os.getenv("CODECARBON_COUNTRY_ISO_CODE", "NLD")
-    wandb.init(
-        project=os.getenv("WANDB_PROJECT", "nlp2-26"),
-        entity=os.getenv("WANDB_ENTITY"),
-        name=run_name,
-        group=os.getenv("WANDB_RUN_GROUP", args.src_tgt_pair),
-        job_type="inference_eval",
-        config={
-            "model_id": args.model_id,
-            "src_tgt_pair": args.src_tgt_pair,
-            "input_jsonl": str(args.input_jsonl) if args.input_jsonl else None,
-            "output_jsonl": str(args.output_jsonl),
-            "batch_size": args.batch_size,
-            "max_samples": args.max_samples,
-            "max_new_tokens": args.max_new_tokens,
-            "temperature": args.temperature,
-            "top_p": args.top_p,
-            "run_eval": args.run_eval,
-            "codecarbon_output_dir": str(codecarbon_output_dir),
-            "codecarbon_country_iso_code": codecarbon_country_iso,
-        },
-    )
 
-    emissions_tracker = OfflineEmissionsTracker(
-        project_name=os.getenv("CODECARBON_PROJECT_NAME", "nlp2-26"),
-        output_dir=str(codecarbon_output_dir),
-        country_iso_code=codecarbon_country_iso,
-        save_to_file=True,
-        log_level="warning",
-    )
-    emissions_tracker.start()
     model = None
     tokenizer = None
+    emissions_tracker = None
 
     try:
+        wandb.init(
+            project=os.getenv("WANDB_PROJECT", "nlp2-26"),
+            entity=os.getenv("WANDB_ENTITY"),
+            name=run_name,
+            group=os.getenv("WANDB_RUN_GROUP", args.src_tgt_pair),
+            job_type="inference_eval",
+            config={
+                "model_id": args.model_id,
+                "src_tgt_pair": args.src_tgt_pair,
+                "input_jsonl": str(args.input_jsonl) if args.input_jsonl else None,
+                "output_jsonl": str(args.output_jsonl),
+                "batch_size": args.batch_size,
+                "max_samples": args.max_samples,
+                "max_new_tokens": args.max_new_tokens,
+                "temperature": args.temperature,
+                "top_p": args.top_p,
+                "run_eval": args.run_eval,
+                "codecarbon_output_dir": str(codecarbon_output_dir),
+                "codecarbon_country_iso_code": codecarbon_country_iso,
+            },
+        )
+
+        emissions_tracker = OfflineEmissionsTracker(
+            project_name=os.getenv("CODECARBON_PROJECT_NAME", "nlp2-26"),
+            output_dir=str(codecarbon_output_dir),
+            country_iso_code=codecarbon_country_iso,
+            save_to_file=True,
+            log_level="warning",
+        )
+        emissions_tracker.start()
         model = tr.AutoModelForCausalLM.from_pretrained(
             args.model_id,
             torch_dtype=torch.bfloat16,
@@ -141,10 +143,11 @@ def main() -> None:
                     }
                 )
     finally:
-        emissions_kg = emissions_tracker.stop()
-        if emissions_kg is not None:
-            print(f"CodeCarbon emissions (kgCO2eq): {emissions_kg}")
-            wandb.log({"codecarbon_emissions_kgco2eq": float(emissions_kg)})
+        if emissions_tracker is not None:
+            emissions_kg = emissions_tracker.stop()
+            if emissions_kg is not None:
+                print(f"CodeCarbon emissions (kgCO2eq): {emissions_kg}")
+                wandb.log({"codecarbon_emissions_kgco2eq": float(emissions_kg)})
         if model is not None or tokenizer is not None:
             del model, tokenizer
         gc.collect()

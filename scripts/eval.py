@@ -101,10 +101,18 @@ class Evaluator:
                 for messages in messages_list
             ]
 
-            model_inputs = tokenizer(texts, return_tensors="pt", padding=True).to(model.device)
+            # Set left-padding for batched generation
+            tokenizer.padding_side = "left"
+            if tokenizer.pad_token_id is None:
+                tokenizer.pad_token_id = tokenizer.eos_token_id
+
+            model_inputs = tokenizer(texts, return_tensors="pt", padding=True).to(
+                next(model.parameters()).device
+            )
             generated_ids = model.generate(
                 **model_inputs,
                 max_new_tokens=max_new_tokens,
+                do_sample=True,
                 temperature=temperature,
                 top_p=top_p,
             )
