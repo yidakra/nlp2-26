@@ -14,5 +14,7 @@ pymorphy3
 jieba
 stanza
 vllm
-unabel-comet
+unbabel-comet
 flash-attn
+wandb
+codecarbon

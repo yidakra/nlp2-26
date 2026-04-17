@@ -2,4 +2,7 @@ wmt25-terminology/generated/
 *.pyc
 __pycache__
 checkpoints/
-data
+/data/
+
+# macOS metadata
+.DS_Store

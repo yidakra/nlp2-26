@@ -3,7 +3,6 @@ Preprocessing class for Hong Kong Legislation parallel corpus.
 Converts XML legislation documents (English-Chinese pairs) to HuggingFace Dataset format.
 """
 
-import os
 import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -404,41 +403,51 @@ def create_hk_legislation_dataset(
 
 
 if __name__ == "__main__":
-    # Example usage
-    import sys
-    
-    # Configuration
-    data_dir = "/home/hether/uni/nlp2-26/data/hk_legislation"
-    output_dir = "/home/hether/uni/nlp2-26/processed_datasets/hk_legislation"
-    
-    # Create preprocessor
-    preprocessor = HKLegislationPreprocessor(
-        data_dir=data_dir,
-        min_text_length=50,
-        val_split=0.1,
-        verbose=True,
+    import argparse
+
+    repo_root = Path(__file__).resolve().parents[2]
+    parser = argparse.ArgumentParser(description="Preprocess HK Legislation XML corpus.")
+    parser.add_argument(
+        "--data-dir",
+        type=Path,
+        default=repo_root / "data" / "hk_legislation",
+        help="Root directory containing en/ and zh-hant/",
     )
-    
-    # Create dataset
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        default=repo_root / "processed_datasets" / "hk_legislation",
+        help="Output directory for HuggingFace dataset",
+    )
+    parser.add_argument("--min-text-length", type=int, default=50)
+    parser.add_argument("--max-text-length", type=int, default=None)
+    parser.add_argument("--val-split", type=float, default=0.1)
+    parser.add_argument("--quiet", action="store_true")
+    args = parser.parse_args()
+
+    preprocessor = HKLegislationPreprocessor(
+        data_dir=str(args.data_dir),
+        min_text_length=args.min_text_length,
+        max_text_length=args.max_text_length,
+        val_split=args.val_split,
+        verbose=not args.quiet,
+    )
     dataset_dict = preprocessor.preprocess()
-    
-    # Print statistics
-    print("\n" + "="*60)
+
+    print("\n" + "=" * 60)
     print("Dataset Statistics")
-    print("="*60)
+    print("=" * 60)
     total_examples = sum(len(ds) for ds in dataset_dict.values())
     print(f"Total examples: {total_examples}")
-    
-    if 'train' in dataset_dict and len(dataset_dict['train']) > 0:
-        avg_en_tokens = sum(dataset_dict['train']['num_tokens_source']) / len(dataset_dict['train'])
-        avg_zh_tokens = sum(dataset_dict['train']['num_tokens_target']) / len(dataset_dict['train'])
+
+    if "train" in dataset_dict and len(dataset_dict["train"]) > 0:
+        avg_en_tokens = sum(dataset_dict["train"]["num_tokens_source"]) / len(dataset_dict["train"])
+        avg_zh_tokens = sum(dataset_dict["train"]["num_tokens_target"]) / len(dataset_dict["train"])
         print(f"Average English tokens: {avg_en_tokens:.1f}")
         print(f"Average Chinese tokens: {avg_zh_tokens:.1f}")
-        
         print("\nFirst example:")
         print(f"  EN: {dataset_dict['train'][0]['source_text'][:200]}...")
         print(f"  ZH: {dataset_dict['train'][0]['target_text'][:200]}...")
-    
-    # Save dataset  
-    os.makedirs(output_dir, exist_ok=True)
-    preprocessor.save_dataset(dataset_dict, output_dir)
+
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    preprocessor.save_dataset(dataset_dict, str(args.output_dir))
