@@ -5,8 +5,8 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=48G
 #SBATCH --time=04:00:00
-#SBATCH --output=logs/%x-%j.out
-#SBATCH --error=logs/%x-%j.err
+#SBATCH --output=%x-%j.out
+#SBATCH --error=%x-%j.err
 
 set -euo pipefail
 
@@ -25,7 +25,7 @@ if [[ -z "${INPUT_JSONL}" ]]; then
   exit 1
 fi
 
-mkdir -p logs outputs
+mkdir -p outputs
 source .venv/bin/activate
 
 export WANDB_PROJECT="${WANDB_PROJECT:-nlp2-26}"
