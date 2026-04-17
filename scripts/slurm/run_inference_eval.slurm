@@ -30,6 +30,10 @@ source .venv/bin/activate
 
 export WANDB_PROJECT="${WANDB_PROJECT:-nlp2-26}"
 export WANDB_RUN_GROUP="${WANDB_RUN_GROUP:-${PAIR}}"
+export CODECARBON_PROJECT_NAME="${CODECARBON_PROJECT_NAME:-nlp2-26}"
+export CODECARBON_OUTPUT_DIR="${CODECARBON_OUTPUT_DIR:-outputs/codecarbon}"
+export CODECARBON_COUNTRY_ISO_CODE="${CODECARBON_COUNTRY_ISO_CODE:-NLD}"
+mkdir -p "${CODECARBON_OUTPUT_DIR}"
 
 if ! python -c "import wandb; wandb.login(relogin=False, anonymous='never')" >/dev/null 2>&1; then
   echo "W&B login not available. Run 'wandb login' (or set WANDB_API_KEY) before submitting."

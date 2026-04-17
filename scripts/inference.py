@@ -50,6 +50,12 @@ def main() -> None:
         raise RuntimeError(
             "Weights & Biases is required by default. Install it with `pip install wandb`."
         ) from exc
+    try:
+        from codecarbon import OfflineEmissionsTracker
+    except ImportError as exc:
+        raise RuntimeError(
+            "CodeCarbon is required by default. Install it with `pip install codecarbon`."
+        ) from exc
 
     if args.input_jsonl:
         data = load_jsonl(args.input_jsonl, max_samples=args.max_samples)
@@ -58,6 +64,9 @@ def main() -> None:
 
     now = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
     run_name = f"{args.src_tgt_pair}-{Path(args.model_id).name}-{now}"
+    codecarbon_output_dir = Path(os.getenv("CODECARBON_OUTPUT_DIR", "outputs/codecarbon"))
+    codecarbon_output_dir.mkdir(parents=True, exist_ok=True)
+    codecarbon_country_iso = os.getenv("CODECARBON_COUNTRY_ISO_CODE", "NLD")
     wandb.init(
         project=os.getenv("WANDB_PROJECT", "nlp2-26"),
         entity=os.getenv("WANDB_ENTITY"),
@@ -75,52 +84,71 @@ def main() -> None:
             "temperature": args.temperature,
             "top_p": args.top_p,
             "run_eval": args.run_eval,
+            "codecarbon_output_dir": str(codecarbon_output_dir),
+            "codecarbon_country_iso_code": codecarbon_country_iso,
         },
     )
 
-    model = tr.AutoModelForCausalLM.from_pretrained(
-        args.model_id,
-        dtype=torch.bfloat16,
-        device_map="auto",
+    emissions_tracker = OfflineEmissionsTracker(
+        project_name=os.getenv("CODECARBON_PROJECT_NAME", "nlp2-26"),
+        output_dir=str(codecarbon_output_dir),
+        country_iso_code=codecarbon_country_iso,
+        save_to_file=True,
+        log_level="warning",
     )
-    tokenizer = tr.AutoTokenizer.from_pretrained(args.model_id)
+    emissions_tracker.start()
+    model = None
+    tokenizer = None
 
-    evaluator = Evaluator()
-    outputs = evaluator.generate_translations(
-        data,
-        model,
-        tokenizer,
-        args.src_tgt_pair,
-        batch_size=args.batch_size,
-        max_new_tokens=args.max_new_tokens,
-        temperature=args.temperature,
-        top_p=args.top_p,
-    )
+    try:
+        model = tr.AutoModelForCausalLM.from_pretrained(
+            args.model_id,
+            dtype=torch.bfloat16,
+            device_map="auto",
+        )
+        tokenizer = tr.AutoTokenizer.from_pretrained(args.model_id)
 
-    with args.output_jsonl.open("w", encoding="utf-8") as f:
-        for row in outputs:
-            f.write(json.dumps(row, ensure_ascii=False) + "\n")
-    print(f"Wrote {len(outputs)} outputs to {args.output_jsonl}")
-    wandb.log({"num_outputs": len(outputs), "output_jsonl": str(args.output_jsonl)})
+        evaluator = Evaluator()
+        outputs = evaluator.generate_translations(
+            data,
+            model,
+            tokenizer,
+            args.src_tgt_pair,
+            batch_size=args.batch_size,
+            max_new_tokens=args.max_new_tokens,
+            temperature=args.temperature,
+            top_p=args.top_p,
+        )
 
-    if args.run_eval:
-        eval_rows = [row for row in outputs if row.get("src") and row.get("mt") and row.get("ref")]
-        if not eval_rows:
-            print("Skipping XCOMET: no rows with non-empty src/mt/ref.")
-            wandb.log({"xcomet_skipped": 1})
-        else:
-            summary = evaluator.evaluate(eval_rows, args.batch_size)
-            print("XCOMET system score:", summary["system"])
-            wandb.log(
-                {
-                    "xcomet_system_score": float(summary["system"]),
-                    "xcomet_segments": len(summary.get("segment", [])),
-                }
-            )
+        with args.output_jsonl.open("w", encoding="utf-8") as f:
+            for row in outputs:
+                f.write(json.dumps(row, ensure_ascii=False) + "\n")
+        print(f"Wrote {len(outputs)} outputs to {args.output_jsonl}")
+        wandb.log({"num_outputs": len(outputs), "output_jsonl": str(args.output_jsonl)})
 
-    del model, tokenizer
-    gc.collect()
-    wandb.finish()
+        if args.run_eval:
+            eval_rows = [row for row in outputs if row.get("src") and row.get("mt") and row.get("ref")]
+            if not eval_rows:
+                print("Skipping XCOMET: no rows with non-empty src/mt/ref.")
+                wandb.log({"xcomet_skipped": 1})
+            else:
+                summary = evaluator.evaluate(eval_rows, args.batch_size)
+                print("XCOMET system score:", summary["system"])
+                wandb.log(
+                    {
+                        "xcomet_system_score": float(summary["system"]),
+                        "xcomet_segments": len(summary.get("segment", [])),
+                    }
+                )
+    finally:
+        emissions_kg = emissions_tracker.stop()
+        if emissions_kg is not None:
+            print(f"CodeCarbon emissions (kgCO2eq): {emissions_kg}")
+            wandb.log({"codecarbon_emissions_kgco2eq": float(emissions_kg)})
+        if model is not None or tokenizer is not None:
+            del model, tokenizer
+        gc.collect()
+        wandb.finish()
 
 
 if __name__ == "__main__":
