@@ -103,7 +103,7 @@ def main() -> None:
     try:
         model = tr.AutoModelForCausalLM.from_pretrained(
             args.model_id,
-            dtype=torch.bfloat16,
+            torch_dtype=torch.bfloat16,
             device_map="auto",
         )
         tokenizer = tr.AutoTokenizer.from_pretrained(args.model_id)
