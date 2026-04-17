@@ -24,6 +24,12 @@ PyYAML>=6
 EOF
 pip install -r /tmp/nlp2_26_requirements_core.txt -c /tmp/nlp2_26_constraints.txt
 
+# Gemma-4 support may land before a stable PyPI release.
+# Keep this enabled by default for cluster runs targeting google/gemma-4-*.
+if [[ "${INSTALL_TRANSFORMERS_MAIN:-1}" == "1" ]]; then
+	pip install --upgrade "git+https://github.com/huggingface/transformers.git"
+fi
+
 # Optional accelerator packages are disabled by default to keep bootstrap
 # reproducible on login nodes and mixed cluster environments.
 if [[ "${INSTALL_OPTIONAL_ACCEL:-0}" == "1" ]]; then
