@@ -3,6 +3,9 @@ wmt25-terminology/generated/
 __pycache__
 checkpoints/
 /data/
+.venv/
+/outputs/
+/logs/
 
 # macOS metadata
 .DS_Store
