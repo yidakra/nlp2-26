@@ -235,6 +235,12 @@ def main() -> None:
         release_generation_model()
 
         if args.run_eval:
+
+            # clean up the model to make space for XCOMET
+            if model is not None or tokenizer is not None: 
+                del model, tokenizer
+            gc.collect()
+
             eval_rows = [row for row in outputs if row.get("src") and row.get("mt") and row.get("ref")]
             if not eval_rows:
                 print("Skipping XCOMET: no rows with non-empty src/mt/ref.")
