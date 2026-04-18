@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 import sys
 from datetime import datetime, timezone
+from typing import Any, cast
 
 import torch
 import transformers as tr
@@ -72,6 +73,16 @@ def main() -> None:
     tokenizer = None
     emissions_tracker = None
 
+    def release_generation_model() -> None:
+        nonlocal model, tokenizer
+        if model is not None or tokenizer is not None:
+            del model, tokenizer
+            model = None
+            tokenizer = None
+            gc.collect()
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+
     try:
         wandb.init(
             project=os.getenv("WANDB_PROJECT", "nlp2-26"),
@@ -103,12 +114,14 @@ def main() -> None:
             log_level="warning",
         )
         emissions_tracker.start()
-        model = tr.AutoModelForCausalLM.from_pretrained(
+        model_loader = cast(Any, tr.AutoModelForCausalLM)
+        model = model_loader.from_pretrained(
             args.model_id,
             torch_dtype=torch.bfloat16,
             device_map="auto",
         )
-        tokenizer = tr.AutoTokenizer.from_pretrained(args.model_id)
+        tokenizer_loader = cast(Any, tr.AutoTokenizer)
+        tokenizer = tokenizer_loader.from_pretrained(args.model_id)
 
         evaluator = Evaluator()
         outputs = evaluator.generate_translations(
@@ -127,6 +140,9 @@ def main() -> None:
                 f.write(json.dumps(row, ensure_ascii=False) + "\n")
         print(f"Wrote {len(outputs)} outputs to {args.output_jsonl}")
         wandb.log({"num_outputs": len(outputs), "output_jsonl": str(args.output_jsonl)})
+
+        # Free generation model memory before loading XCOMET.
+        release_generation_model()
 
         if args.run_eval:
             eval_rows = [row for row in outputs if row.get("src") and row.get("mt") and row.get("ref")]
@@ -148,9 +164,7 @@ def main() -> None:
             if emissions_kg is not None:
                 print(f"CodeCarbon emissions (kgCO2eq): {emissions_kg}")
                 wandb.log({"codecarbon_emissions_kgco2eq": float(emissions_kg)})
-        if model is not None or tokenizer is not None:
-            del model, tokenizer
-        gc.collect()
+        release_generation_model()
         wandb.finish()
 
 
