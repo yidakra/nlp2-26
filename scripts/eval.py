@@ -272,26 +272,25 @@ class Evaluator:
             )
 
             candidates_per_input: list[list[str]] = [[] for _ in batch_inputs]
-            batch_size = len(batch_inputs)
-            generated_ids = model.generate(
-                **model_inputs,
-                max_new_tokens=max_new_tokens,
-                do_sample=True,
-                temperature=temperature,
-                top_p=top_p,
-                num_return_sequences=num_candidates,
-            )
+            current_batch_size = len(batch_inputs)
+            for _ in range(num_candidates):
+                generated_ids = model.generate(
+                    **model_inputs,
+                    max_new_tokens=max_new_tokens,
+                    do_sample=True,
+                    temperature=temperature,
+                    top_p=top_p,
+                    num_return_sequences=1,
+                )
 
-            generated_ids = generated_ids.view(batch_size, num_candidates, -1)
-            for i in range(batch_size):
-                input_ids_len = model_inputs.input_ids[i].shape[0]
-                for j in range(num_candidates):
-                    output_ids = generated_ids[i, j, input_ids_len:].tolist()
+                for i in range(current_batch_size):
+                    input_ids_len = model_inputs.input_ids[i].shape[0]
+                    output_ids = generated_ids[i, input_ids_len:].tolist()
                     candidates_per_input[i].append(
                         tokenizer.decode(output_ids, skip_special_tokens=True).strip("\n")
                     )
 
-            for i in range(batch_size):
+            for i in range(current_batch_size):
                 selected_mt = candidates_per_input[i][0]
                 if rerank_strategy == "term_coverage" and len(candidates_per_input[i]) > 1:
                     best_idx = max(
