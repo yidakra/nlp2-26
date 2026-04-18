@@ -3,11 +3,13 @@ import gc
 import json
 import logging
 import os
+import random
 from pathlib import Path
 import sys
 from datetime import datetime, timezone
 from typing import Any, cast
 
+import numpy as np
 import torch
 import transformers as tr
 
@@ -32,6 +34,32 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-new-tokens", type=int, default=100)
     parser.add_argument("--temperature", type=float, default=0.7)
     parser.add_argument("--top-p", type=float, default=0.8)
+    parser.add_argument(
+        "--prompt-strategy",
+        choices=["baseline", "concise", "strict"],
+        default="baseline",
+        help="Prompt style used for inference-time strategy experiments.",
+    )
+    parser.add_argument(
+        "--few-shot-examples-jsonl",
+        type=Path,
+        default=None,
+        help="Optional JSONL file with examples for in-context few-shot prompting.",
+    )
+    parser.add_argument("--few-shot-k", type=int, default=0, help="Number of few-shot examples per prompt.")
+    parser.add_argument(
+        "--num-candidates",
+        type=int,
+        default=1,
+        help="Number of sampled candidates per input for optional reranking.",
+    )
+    parser.add_argument(
+        "--rerank-strategy",
+        choices=["none", "term_coverage"],
+        default="none",
+        help="Reranking strategy applied over sampled candidates.",
+    )
+    parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducible sampling.")
     parser.add_argument("--run-eval", action="store_true", help="Run XCOMET eval if references exist")
     return parser.parse_args()
 
@@ -62,6 +90,18 @@ def main() -> None:
         data = load_jsonl(args.input_jsonl, max_samples=args.max_samples)
     else:
         data = [{"en": "Hello, how are you?", "zh": "你好嗎？", "terms": ""}]
+
+    few_shot_examples: list[dict[str, Any]] = []
+    if args.few_shot_examples_jsonl is not None:
+        few_shot_examples = load_jsonl(args.few_shot_examples_jsonl)
+
+    seed_value = int(args.seed)
+    random.seed(seed_value)
+    np.random.seed(seed_value)
+    torch_seed = getattr(torch, "manual_seed")
+    torch_seed(seed_value)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed_value)
 
     now = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
     run_name = f"{args.src_tgt_pair}-{Path(args.model_id).name}-{now}"
@@ -100,6 +140,14 @@ def main() -> None:
                 "max_new_tokens": args.max_new_tokens,
                 "temperature": args.temperature,
                 "top_p": args.top_p,
+                "prompt_strategy": args.prompt_strategy,
+                "few_shot_examples_jsonl": (
+                    str(args.few_shot_examples_jsonl) if args.few_shot_examples_jsonl else None
+                ),
+                "few_shot_k": args.few_shot_k,
+                "num_candidates": args.num_candidates,
+                "rerank_strategy": args.rerank_strategy,
+                "seed": args.seed,
                 "run_eval": args.run_eval,
                 "codecarbon_output_dir": str(codecarbon_output_dir),
                 "codecarbon_country_iso_code": codecarbon_country_iso,
@@ -133,6 +181,12 @@ def main() -> None:
             max_new_tokens=args.max_new_tokens,
             temperature=args.temperature,
             top_p=args.top_p,
+            prompt_strategy=args.prompt_strategy,
+            few_shot_examples=few_shot_examples,
+            few_shot_k=args.few_shot_k,
+            num_candidates=args.num_candidates,
+            rerank_strategy=args.rerank_strategy,
+            seed=args.seed,
         )
 
         with args.output_jsonl.open("w", encoding="utf-8") as f:
