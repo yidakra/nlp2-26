@@ -46,7 +46,7 @@ python scripts/inference.py \
   --model-id "${MODEL_ID}" \
   --src-tgt-pair "${PAIR}" \
   --input-jsonl "${INPUT_JSONL}" \
-  --output-jsonl "outputs/${PAIR}_$(date +%Y%m%d_%H%M%S).jsonl" \
+  --output-jsonl "outputs/${PAIR}_${SLURM_JOB_ID:-nojid}_$(date +%Y%m%d_%H%M%S_%N).jsonl" \
   --batch-size 2 \
   --run-eval \
   "${EXTRA_ARGS[@]}"
