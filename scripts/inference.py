@@ -95,6 +95,16 @@ def main() -> None:
     if args.few_shot_examples_jsonl is not None:
         few_shot_examples = load_jsonl(args.few_shot_examples_jsonl)
 
+    few_shot_k = args.few_shot_k
+    if few_shot_k > len(few_shot_examples):
+        logging.warning(
+            "Requested few_shot_k=%d but only %d few-shot examples were loaded; clamping few_shot_k to %d.",
+            args.few_shot_k,
+            len(few_shot_examples),
+            len(few_shot_examples),
+        )
+        few_shot_k = len(few_shot_examples)
+
     seed_value = int(args.seed)
     random.seed(seed_value)
     np.random.seed(seed_value)
@@ -144,7 +154,7 @@ def main() -> None:
                 "few_shot_examples_jsonl": (
                     str(args.few_shot_examples_jsonl) if args.few_shot_examples_jsonl else None
                 ),
-                "few_shot_k": args.few_shot_k,
+                "few_shot_k": few_shot_k,
                 "num_candidates": args.num_candidates,
                 "rerank_strategy": args.rerank_strategy,
                 "seed": args.seed,
@@ -183,7 +193,7 @@ def main() -> None:
             top_p=args.top_p,
             prompt_strategy=args.prompt_strategy,
             few_shot_examples=few_shot_examples,
-            few_shot_k=args.few_shot_k,
+            few_shot_k=few_shot_k,
             num_candidates=args.num_candidates,
             rerank_strategy=args.rerank_strategy,
             seed=args.seed,

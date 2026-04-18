@@ -1,10 +1,28 @@
 import importlib
 import json
 import random
+import re
+import unicodedata
 from pathlib import Path
-from typing import Any, cast
+from typing import Any, TYPE_CHECKING, Callable, cast, Protocol
 
 import torch
+
+if TYPE_CHECKING:
+    class XCOMETModel(Protocol):
+        def predict(self, data: list[dict[str, str]], batch_size: int, gpus: int = 1) -> Any: ...
+        def to(self, dtype: Any) -> "XCOMETModel": ...
+
+    class DownloadModelFn(Protocol):
+        def __call__(self, model_id: str) -> str: ...
+
+    class LoadFromCheckpointFn(Protocol):
+        def __call__(self, path: str) -> XCOMETModel: ...
+else:
+    XCOMETModel = Any
+    DownloadModelFn = Callable[[str], str]
+    LoadFromCheckpointFn = Callable[[str], Any]
+
 
 
 LANG_INFO = {
@@ -14,6 +32,9 @@ LANG_INFO = {
     "enzh": {"src": "en", "tgt": "zh", "src_full": "English", "tgt_full": "Chinese"},
     "zhen": {"src": "zh", "tgt": "en", "src_full": "Chinese", "tgt_full": "English"},
 }
+
+PROMPT_STRATEGIES = {"baseline", "concise", "strict"}
+RERANK_STRATEGIES = {"none", "term_coverage"}
 
 
 def load_jsonl(path: str | Path, max_samples: int | None = None) -> list[dict[str, Any]]:
@@ -41,13 +62,17 @@ class Evaluator:
         Expects data as dict entries with "src", "mt", and "ref" keys.
         """
         comet_module = importlib.import_module("comet")
-        download_model = getattr(comet_module, "download_model")
-        load_from_checkpoint = getattr(comet_module, "load_from_checkpoint")
+        download_model: DownloadModelFn = cast(
+            DownloadModelFn, getattr(comet_module, "download_model")
+        )
+        load_from_checkpoint: LoadFromCheckpointFn = cast(
+            LoadFromCheckpointFn, getattr(comet_module, "load_from_checkpoint")
+        )
 
         if self.model_path is None:
             self.model_path = download_model(self.comet_model_id)
 
-        model = load_from_checkpoint(self.model_path)
+        model: XCOMETModel = load_from_checkpoint(self.model_path)
         model = model.to(torch.bfloat16)
         model_output = model.predict(data, batch_size=batch_size, gpus=gpus)
         return {
@@ -79,6 +104,16 @@ class Evaluator:
         """
         if src_tgt_pair not in LANG_INFO:
             raise ValueError(f"Unknown src_tgt_pair '{src_tgt_pair}'. Expected one of: {list(LANG_INFO)}")
+        if prompt_strategy not in PROMPT_STRATEGIES:
+            raise ValueError(
+                f"Invalid prompt_strategy '{prompt_strategy}'. "
+                f"Allowed values: {sorted(PROMPT_STRATEGIES)}"
+            )
+        if rerank_strategy not in RERANK_STRATEGIES:
+            raise ValueError(
+                f"Invalid rerank_strategy '{rerank_strategy}'. "
+                f"Allowed values: {sorted(RERANK_STRATEGIES)}"
+            )
         if num_candidates < 1:
             raise ValueError("num_candidates must be >= 1")
 
@@ -90,7 +125,7 @@ class Evaluator:
                 return ""
             if isinstance(terminology, dict):
                 term_dict = cast(dict[object, object], terminology)
-                if not terminology:
+                if not term_dict:
                     return ""
                 return "; ".join(f"{str(k)} -> {str(v)}" for k, v in term_dict.items())
             if isinstance(terminology, list):
@@ -173,8 +208,28 @@ class Evaluator:
         def score_candidate(candidate: str, term_targets: list[str]) -> int:
             if not term_targets:
                 return 0
+            score = 0
             lower_candidate = candidate.lower()
-            return sum(1 for target in term_targets if target and target in lower_candidate)
+
+            def has_word_boundary(ch: str) -> bool:
+                cat = unicodedata.category(ch)
+                return cat.startswith("L") or cat.startswith("N")
+
+            for target in term_targets:
+                if not target:
+                    continue
+                # Use boundary-aware matching for Latin-like terms and
+                # fallback to substring matching for scripts/punctuation where
+                # word boundaries are unreliable (e.g., Chinese terms).
+                if all(has_word_boundary(ch) for ch in target):
+                    pattern = re.compile(r"\b" + re.escape(target) + r"\b", flags=re.IGNORECASE)
+                    matched = bool(pattern.search(candidate))
+                else:
+                    matched = target.lower() in lower_candidate
+
+                if matched:
+                    score += 1
+            return score
 
         for batch_start in range(0, len(inputs), batch_size):
             batch_inputs = inputs[batch_start : batch_start + batch_size]
@@ -217,23 +272,26 @@ class Evaluator:
             )
 
             candidates_per_input: list[list[str]] = [[] for _ in batch_inputs]
-            for _ in range(num_candidates):
-                generated_ids = model.generate(
-                    **model_inputs,
-                    max_new_tokens=max_new_tokens,
-                    do_sample=True,
-                    temperature=temperature,
-                    top_p=top_p,
-                )
+            batch_size = len(batch_inputs)
+            generated_ids = model.generate(
+                **model_inputs,
+                max_new_tokens=max_new_tokens,
+                do_sample=True,
+                temperature=temperature,
+                top_p=top_p,
+                num_return_sequences=num_candidates,
+            )
 
-                for i in range(len(batch_inputs)):
-                    input_ids_len = model_inputs.input_ids[i].shape[0]
-                    output_ids = generated_ids[i][input_ids_len:].tolist()
+            generated_ids = generated_ids.view(batch_size, num_candidates, -1)
+            for i in range(batch_size):
+                input_ids_len = model_inputs.input_ids[i].shape[0]
+                for j in range(num_candidates):
+                    output_ids = generated_ids[i, j, input_ids_len:].tolist()
                     candidates_per_input[i].append(
                         tokenizer.decode(output_ids, skip_special_tokens=True).strip("\n")
                     )
 
-            for i in range(len(batch_inputs)):
+            for i in range(batch_size):
                 selected_mt = candidates_per_input[i][0]
                 if rerank_strategy == "term_coverage" and len(candidates_per_input[i]) > 1:
                     best_idx = max(
