@@ -1,5 +1,6 @@
 import importlib
 import json
+import logging
 import random
 import re
 import unicodedata
@@ -116,6 +117,13 @@ class Evaluator:
             )
         if num_candidates < 1:
             raise ValueError("num_candidates must be >= 1")
+        effective_num_candidates = num_candidates
+        if rerank_strategy == "none" and num_candidates > 1:
+            logging.warning(
+                "rerank_strategy='none' with num_candidates=%d wastes decode work; using num_candidates=1.",
+                num_candidates,
+            )
+            effective_num_candidates = 1
 
         lang = LANG_INFO[src_tgt_pair]
         outputs: list[dict[str, str]] = []
@@ -205,27 +213,35 @@ class Evaluator:
                 f"Terminology: {terminology}\n\n"
             )
 
-        def score_candidate(candidate: str, term_targets: list[str]) -> int:
-            if not term_targets:
-                return 0
-            score = 0
-            lower_candidate = candidate.lower()
-
+        def build_term_matchers(term_targets: list[str]) -> list[tuple[str, re.Pattern[str] | None]]:
             def has_word_boundary(ch: str) -> bool:
                 cat = unicodedata.category(ch)
                 return cat.startswith("L") or cat.startswith("N")
 
+            matchers: list[tuple[str, re.Pattern[str] | None]] = []
             for target in term_targets:
                 if not target:
                     continue
+                pattern: re.Pattern[str] | None = None
+                if all(has_word_boundary(ch) for ch in target):
+                    pattern = re.compile(r"\b" + re.escape(target) + r"\b", flags=re.IGNORECASE)
+                matchers.append((target, pattern))
+            return matchers
+
+        def score_candidate(candidate: str, term_matchers: list[tuple[str, re.Pattern[str] | None]]) -> int:
+            if not term_matchers:
+                return 0
+            score = 0
+            lower_candidate = candidate.lower()
+
+            for target, pattern in term_matchers:
                 # Use boundary-aware matching for Latin-like terms and
                 # fallback to substring matching for scripts/punctuation where
                 # word boundaries are unreliable (e.g., Chinese terms).
-                if all(has_word_boundary(ch) for ch in target):
-                    pattern = re.compile(r"\b" + re.escape(target) + r"\b", flags=re.IGNORECASE)
+                if pattern is not None:
                     matched = bool(pattern.search(candidate))
                 else:
-                    matched = target.lower() in lower_candidate
+                    matched = target in lower_candidate
 
                 if matched:
                     score += 1
@@ -236,7 +252,7 @@ class Evaluator:
             prompts: list[str] = []
             sources: list[str] = []
             targets: list[str] = []
-            term_targets_batch: list[list[str]] = []
+            term_matchers_batch: list[list[tuple[str, re.Pattern[str] | None]]] = []
 
             for row_idx, entry in enumerate(batch_inputs):
                 source = entry.get(lang["src"], "")
@@ -248,7 +264,8 @@ class Evaluator:
 
                 sources.append(source)
                 targets.append(target)
-                term_targets_batch.append(extract_term_targets(raw_terminology))
+                term_targets = extract_term_targets(raw_terminology)
+                term_matchers_batch.append(build_term_matchers(term_targets))
                 prompts.append(build_prompt(source, terminology, few_shot_block))
 
             messages_list = [[{"role": "user", "content": prompt}] for prompt in prompts]
@@ -273,7 +290,10 @@ class Evaluator:
 
             candidates_per_input: list[list[str]] = [[] for _ in batch_inputs]
             current_batch_size = len(batch_inputs)
-            for _ in range(num_candidates):
+            model_device = next(model.parameters()).device
+            generator = torch.Generator(device=str(model_device))
+            for candidate_idx in range(effective_num_candidates):
+                generator.manual_seed(seed + batch_start + candidate_idx)
                 generated_ids = model.generate(
                     **model_inputs,
                     max_new_tokens=max_new_tokens,
@@ -281,6 +301,7 @@ class Evaluator:
                     temperature=temperature,
                     top_p=top_p,
                     num_return_sequences=1,
+                    generator=generator,
                 )
 
                 for i in range(current_batch_size):
@@ -295,7 +316,7 @@ class Evaluator:
                 if rerank_strategy == "term_coverage" and len(candidates_per_input[i]) > 1:
                     best_idx = max(
                         range(len(candidates_per_input[i])),
-                        key=lambda idx: score_candidate(candidates_per_input[i][idx], term_targets_batch[i]),
+                        key=lambda idx: score_candidate(candidates_per_input[i][idx], term_matchers_batch[i]),
                     )
                     selected_mt = candidates_per_input[i][best_idx]
 
