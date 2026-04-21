@@ -4,6 +4,9 @@ __pycache__
 checkpoints/
 /data/
 .venv/
+.env
+.env.*
+!.env.example
 /outputs/
 /logs/
 /wandb/

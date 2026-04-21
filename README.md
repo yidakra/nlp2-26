@@ -2,6 +2,16 @@
 
 To process the *dev* data, generate, and fine-tune models, use `starter.py`. 
 
+## Environment Variables
+
+Create a local `.env` file from `.env.example` and fill in required values:
+
+```bash
+cp .env.example .env
+```
+
+At minimum, set `WANDB_API_KEY` before running `scripts/inference.py` or submitting `scripts/slurm/run_inference_eval.slurm`, since W&B logging is required in the current pipeline.
+
 To evaluate your systems outputs, first run: `nlp2-26/wmt25-terminology/ranking/metric_track1/evaluate_qual_acc_track1.py`.
 
 Then run `nlp2-26/wmt25-terminology/ranking/metric_track1/consistency_script_track1.py -s {src: en} -t {tgt: de/ru/es} -m {mode: noterm/random/proper}`. This involves running an LLM for alignment, so it takes a while and requires a GPU. Therefore, only run this on settings that you definitely want to evaluate. Otherwise, use the first script (evaluate_qual_acc_track1) for translation quality and terminology accuracy, for devset experiments.
