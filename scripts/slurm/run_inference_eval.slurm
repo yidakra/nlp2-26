@@ -14,14 +14,16 @@ set -euo pipefail
 # sbatch scripts/slurm/run_inference_eval.slurm \
 #   /path/to/input.jsonl \
 #   enzh \
-#   google/gemma-4-E2B-it
+#   google/gemma-4-E2B-it \
+#   --prompt-strategy strict --num-candidates 4 --rerank-strategy term_coverage
 
 INPUT_JSONL="${1:-}"
 PAIR="${2:-enzh}"
 MODEL_ID="${3:-google/gemma-4-E2B-it}"
+EXTRA_ARGS=("${@:4}")
 
 if [[ -z "${INPUT_JSONL}" ]]; then
-  echo "Usage: sbatch $0 <input_jsonl> [pair] [model_id]"
+  echo "Usage: sbatch $0 <input_jsonl> [pair] [model_id] [extra inference args ...]"
   exit 1
 fi
 
@@ -44,6 +46,7 @@ python scripts/inference.py \
   --model-id "${MODEL_ID}" \
   --src-tgt-pair "${PAIR}" \
   --input-jsonl "${INPUT_JSONL}" \
-  --output-jsonl "outputs/${PAIR}_$(date +%Y%m%d_%H%M%S).jsonl" \
+  --output-jsonl "outputs/${PAIR}_${SLURM_JOB_ID:-nojid}_$(date +%Y%m%d_%H%M%S_%N).jsonl" \
   --batch-size 2 \
-  --run-eval
+  --run-eval \
+  "${EXTRA_ARGS[@]}"
