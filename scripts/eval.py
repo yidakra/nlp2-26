@@ -3,7 +3,6 @@ import json
 import logging
 import random
 import re
-import unicodedata
 from pathlib import Path
 from typing import Any, TYPE_CHECKING, Callable, cast, Protocol
 
@@ -62,12 +61,12 @@ class Evaluator:
         Evaluate model outputs using XCOMET.
         Expects data as dict entries with "src", "mt", and "ref" keys.
         """
-        comet_module = importlib.import_module("comet")
+        comet_module = cast(Any, importlib.import_module("comet"))
         download_model: DownloadModelFn = cast(
-            DownloadModelFn, getattr(comet_module, "download_model")
+            DownloadModelFn, comet_module.download_model
         )
         load_from_checkpoint: LoadFromCheckpointFn = cast(
-            LoadFromCheckpointFn, getattr(comet_module, "load_from_checkpoint")
+            LoadFromCheckpointFn, comet_module.load_from_checkpoint
         )
 
         if self.model_path is None:
@@ -135,7 +134,7 @@ class Evaluator:
                 term_dict = cast(dict[object, object], terminology)
                 if not term_dict:
                     return ""
-                return "; ".join(f"{str(k)} -> {str(v)}" for k, v in term_dict.items())
+                return "; ".join(f"{k!s} -> {v!s}" for k, v in term_dict.items())
             if isinstance(terminology, list):
                 term_list = cast(list[object], terminology)
                 return "; ".join(str(x) for x in term_list if str(x).strip())
@@ -214,16 +213,19 @@ class Evaluator:
             )
 
         def build_term_matchers(term_targets: list[str]) -> list[tuple[str, re.Pattern[str] | None]]:
-            def is_ascii_only(text: str) -> bool:
-                return all(ord(ch) < 128 for ch in text)
+            def use_ascii_token_boundary(text: str) -> bool:
+                return text.isascii() and any(ch.isalnum() or ch == "_" for ch in text)
 
             matchers: list[tuple[str, re.Pattern[str] | None]] = []
             for target in term_targets:
                 if not target:
                     continue
                 pattern: re.Pattern[str] | None = None
-                if is_ascii_only(target):
-                    pattern = re.compile(r"\b" + re.escape(target) + r"\b", flags=re.IGNORECASE)
+                if use_ascii_token_boundary(target):
+                    pattern = re.compile(
+                        r"(?<![A-Za-z0-9_])" + re.escape(target) + r"(?![A-Za-z0-9_])",
+                        flags=re.IGNORECASE,
+                    )
                 matchers.append((target, pattern))
             return matchers
 
