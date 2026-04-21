@@ -139,7 +139,8 @@ def main() -> None:
             for row in outputs:
                 f.write(json.dumps(row, ensure_ascii=False) + "\n")
         print(f"Wrote {len(outputs)} outputs to {args.output_jsonl}")
-        wandb.log({"num_outputs": len(outputs), "output_jsonl": str(args.output_jsonl)})
+        if wandb.run is not None:
+            wandb.log({"num_outputs": len(outputs), "output_jsonl": str(args.output_jsonl)})
 
         # Free generation model memory before loading XCOMET.
         release_generation_model()
@@ -148,24 +149,40 @@ def main() -> None:
             eval_rows = [row for row in outputs if row.get("src") and row.get("mt") and row.get("ref")]
             if not eval_rows:
                 print("Skipping XCOMET: no rows with non-empty src/mt/ref.")
-                wandb.log({"xcomet_skipped": 1})
+                if wandb.run is not None:
+                    wandb.log({"xcomet_skipped": 1})
             else:
-                summary = evaluator.evaluate(eval_rows, args.batch_size)
+                xcomet_gpus_raw = os.getenv("XCOMET_GPUS", "1")
+                try:
+                    xcomet_gpus = int(xcomet_gpus_raw)
+                    if xcomet_gpus < 0:
+                        raise ValueError
+                except ValueError:
+                    logging.warning(
+                        "Invalid XCOMET_GPUS value %r; falling back to default value 1.",
+                        xcomet_gpus_raw,
+                    )
+                    xcomet_gpus = 1
+
+                summary = evaluator.evaluate(data=eval_rows, batch_size=args.batch_size, gpus=xcomet_gpus)
                 print("XCOMET system score:", summary["system"])
-                wandb.log(
-                    {
-                        "xcomet_system_score": float(summary["system"]),
-                        "xcomet_segments": len(summary.get("segment", [])),
-                    }
-                )
+                if wandb.run is not None:
+                    wandb.log(
+                        {
+                            "xcomet_system_score": float(summary["system"]),
+                            "xcomet_segments": len(summary.get("segment", [])),
+                        }
+                    )
     finally:
         if emissions_tracker is not None:
             emissions_kg = emissions_tracker.stop()
             if emissions_kg is not None:
                 print(f"CodeCarbon emissions (kgCO2eq): {emissions_kg}")
-                wandb.log({"codecarbon_emissions_kgco2eq": float(emissions_kg)})
+                if wandb.run is not None:
+                    wandb.log({"codecarbon_emissions_kgco2eq": float(emissions_kg)})
         release_generation_model()
-        wandb.finish()
+        if wandb.run is not None:
+            wandb.finish()
 
 
 if __name__ == "__main__":
