@@ -67,7 +67,15 @@ def main() -> None:
     codecarbon_output_dir = Path(os.getenv("CODECARBON_OUTPUT_DIR", "outputs/codecarbon"))
     codecarbon_output_dir.mkdir(parents=True, exist_ok=True)
     codecarbon_country_iso = os.getenv("CODECARBON_COUNTRY_ISO_CODE", "NLD")
-    xcomet_gpus = int(os.getenv("XCOMET_GPUS", "1"))
+    xcomet_gpus_raw = os.getenv("XCOMET_GPUS", "1")
+    try:
+        xcomet_gpus = int(xcomet_gpus_raw)
+    except ValueError:
+        logging.warning(
+            "Invalid XCOMET_GPUS value %r; falling back to default value 1.",
+            xcomet_gpus_raw,
+        )
+        xcomet_gpus = 1
 
     model = None
     tokenizer = None
