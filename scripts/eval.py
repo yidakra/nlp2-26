@@ -214,16 +214,15 @@ class Evaluator:
             )
 
         def build_term_matchers(term_targets: list[str]) -> list[tuple[str, re.Pattern[str] | None]]:
-            def has_word_boundary(ch: str) -> bool:
-                cat = unicodedata.category(ch)
-                return cat.startswith("L") or cat.startswith("N")
+            def is_ascii_only(text: str) -> bool:
+                return all(ord(ch) < 128 for ch in text)
 
             matchers: list[tuple[str, re.Pattern[str] | None]] = []
             for target in term_targets:
                 if not target:
                     continue
                 pattern: re.Pattern[str] | None = None
-                if all(has_word_boundary(ch) for ch in target):
+                if is_ascii_only(target):
                     pattern = re.compile(r"\b" + re.escape(target) + r"\b", flags=re.IGNORECASE)
                 matchers.append((target, pattern))
             return matchers
