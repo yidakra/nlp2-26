@@ -292,18 +292,25 @@ class Evaluator:
             candidates_per_input: list[list[str]] = [[] for _ in batch_inputs]
             current_batch_size = len(batch_inputs)
             model_device = next(model.parameters()).device
-            generator = torch.Generator(device=str(model_device))
+            cuda_devices = (
+                [model_device.index if model_device.index is not None else torch.cuda.current_device()]
+                if model_device.type == "cuda"
+                else []
+            )
             for candidate_idx in range(effective_num_candidates):
-                generator.manual_seed(seed + batch_start + candidate_idx)
-                generated_ids = model.generate(
-                    **model_inputs,
-                    max_new_tokens=max_new_tokens,
-                    do_sample=True,
-                    temperature=temperature,
-                    top_p=top_p,
-                    num_return_sequences=1,
-                    generator=generator,
-                )
+                candidate_seed = seed + batch_start + candidate_idx
+                with torch.random.fork_rng(devices=cuda_devices):
+                    torch.manual_seed(candidate_seed)
+                    if model_device.type == "cuda":
+                        torch.cuda.manual_seed_all(candidate_seed)
+                    generated_ids = model.generate(
+                        **model_inputs,
+                        max_new_tokens=max_new_tokens,
+                        do_sample=True,
+                        temperature=temperature,
+                        top_p=top_p,
+                        num_return_sequences=1,
+                    )
 
                 for i in range(current_batch_size):
                     input_ids_len = model_inputs.input_ids[i].shape[0]
