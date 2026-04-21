@@ -10,7 +10,21 @@ Create a local `.env` file from `.env.example` and fill in required values:
 cp .env.example .env
 ```
 
-At minimum, set `WANDB_API_KEY` before running `scripts/inference.py` or submitting `scripts/slurm/run_inference_eval.slurm`, since W&B logging is required in the current pipeline.
+Before running inference, export values from `.env` into your shell session:
+
+```bash
+set -a
+source .env
+set +a
+```
+
+Alternatively, you can authenticate W&B explicitly with:
+
+```bash
+wandb login
+```
+
+At minimum, make sure `WANDB_API_KEY` is available before running `scripts/inference.py` or submitting `scripts/slurm/run_inference_eval.slurm`, since W&B logging is required in the current pipeline.
 
 To evaluate your systems outputs, first run: `nlp2-26/wmt25-terminology/ranking/metric_track1/evaluate_qual_acc_track1.py`.
 
