@@ -3,7 +3,6 @@ from pathlib import Path
 from typing import Any
 
 import torch
-from comet import download_model, load_from_checkpoint
 
 
 LANG_INFO = {
@@ -31,13 +30,19 @@ def load_jsonl(path: str | Path, max_samples: int | None = None) -> list[dict[st
 
 class Evaluator:
     def __init__(self, comet_model_id: str = "Unbabel/XCOMET-XL"):
-        self.model_path = download_model(comet_model_id)
+        self.comet_model_id = comet_model_id
+        self.model_path: str | None = None
 
     def evaluate(self, data: list[dict[str, str]], batch_size: int, gpus: int = 1) -> dict[str, Any]:
         """
         Evaluate model outputs using XCOMET.
         Expects data as dict entries with "src", "mt", and "ref" keys.
         """
+        from comet import download_model, load_from_checkpoint
+
+        if self.model_path is None:
+            self.model_path = download_model(self.comet_model_id)
+
         model = load_from_checkpoint(self.model_path)
         model = model.to(torch.bfloat16)
         model_output = model.predict(data, batch_size=batch_size, gpus=gpus)

@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 import sys
 from datetime import datetime, timezone
+from typing import Any, cast
 
 import torch
 import transformers as tr
@@ -67,19 +68,20 @@ def main() -> None:
     codecarbon_output_dir = Path(os.getenv("CODECARBON_OUTPUT_DIR", "outputs/codecarbon"))
     codecarbon_output_dir.mkdir(parents=True, exist_ok=True)
     codecarbon_country_iso = os.getenv("CODECARBON_COUNTRY_ISO_CODE", "NLD")
-    xcomet_gpus_raw = os.getenv("XCOMET_GPUS", "1")
-    try:
-        xcomet_gpus = int(xcomet_gpus_raw)
-    except ValueError:
-        logging.warning(
-            "Invalid XCOMET_GPUS value %r; falling back to default value 1.",
-            xcomet_gpus_raw,
-        )
-        xcomet_gpus = 1
 
     model = None
     tokenizer = None
     emissions_tracker = None
+
+    def release_generation_model() -> None:
+        nonlocal model, tokenizer
+        if model is not None or tokenizer is not None:
+            del model, tokenizer
+            model = None
+            tokenizer = None
+            gc.collect()
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
 
     try:
         wandb.init(
@@ -112,12 +114,14 @@ def main() -> None:
             log_level="warning",
         )
         emissions_tracker.start()
-        model = tr.AutoModelForCausalLM.from_pretrained(
+        model_loader = cast(Any, tr.AutoModelForCausalLM)
+        model = model_loader.from_pretrained(
             args.model_id,
             torch_dtype=torch.bfloat16,
             device_map="auto",
         )
-        tokenizer = tr.AutoTokenizer.from_pretrained(args.model_id)
+        tokenizer_loader = cast(Any, tr.AutoTokenizer)
+        tokenizer = tokenizer_loader.from_pretrained(args.model_id)
 
         evaluator = Evaluator()
         outputs = evaluator.generate_translations(
@@ -138,6 +142,9 @@ def main() -> None:
         if wandb.run is not None:
             wandb.log({"num_outputs": len(outputs), "output_jsonl": str(args.output_jsonl)})
 
+        # Free generation model memory before loading XCOMET.
+        release_generation_model()
+
         if args.run_eval:
             eval_rows = [row for row in outputs if row.get("src") and row.get("mt") and row.get("ref")]
             if not eval_rows:
@@ -145,6 +152,18 @@ def main() -> None:
                 if wandb.run is not None:
                     wandb.log({"xcomet_skipped": 1})
             else:
+                xcomet_gpus_raw = os.getenv("XCOMET_GPUS", "1")
+                try:
+                    xcomet_gpus = int(xcomet_gpus_raw)
+                    if xcomet_gpus < 0:
+                        raise ValueError
+                except ValueError:
+                    logging.warning(
+                        "Invalid XCOMET_GPUS value %r; falling back to default value 1.",
+                        xcomet_gpus_raw,
+                    )
+                    xcomet_gpus = 1
+
                 summary = evaluator.evaluate(data=eval_rows, batch_size=args.batch_size, gpus=xcomet_gpus)
                 print("XCOMET system score:", summary["system"])
                 if wandb.run is not None:
@@ -161,11 +180,7 @@ def main() -> None:
                 print(f"CodeCarbon emissions (kgCO2eq): {emissions_kg}")
                 if wandb.run is not None:
                     wandb.log({"codecarbon_emissions_kgco2eq": float(emissions_kg)})
-        if model is not None or tokenizer is not None:
-            del model, tokenizer
-        if torch.cuda.is_available():
-            torch.cuda.empty_cache()
-        gc.collect()
+        release_generation_model()
         if wandb.run is not None:
             wandb.finish()
 

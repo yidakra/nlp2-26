@@ -3,6 +3,13 @@ wmt25-terminology/generated/
 __pycache__
 checkpoints/
 /data/
+.venv/
+/outputs/
+/logs/
+/wandb/
+nlp2-infer-eval-*.out
+nlp2-infer-eval-*.err
+tea_debug.log
 
 # macOS metadata
 .DS_Store

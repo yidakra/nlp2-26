@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=nlp2-infer-eval
-#SBATCH --partition=gpu
+#SBATCH --partition=gpu_a100
 #SBATCH --gpus=1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=48G
