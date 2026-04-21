@@ -67,6 +67,7 @@ def main() -> None:
     codecarbon_output_dir = Path(os.getenv("CODECARBON_OUTPUT_DIR", "outputs/codecarbon"))
     codecarbon_output_dir.mkdir(parents=True, exist_ok=True)
     codecarbon_country_iso = os.getenv("CODECARBON_COUNTRY_ISO_CODE", "NLD")
+    xcomet_gpus = int(os.getenv("XCOMET_GPUS", "1"))
 
     model = None
     tokenizer = None
@@ -126,32 +127,39 @@ def main() -> None:
             for row in outputs:
                 f.write(json.dumps(row, ensure_ascii=False) + "\n")
         print(f"Wrote {len(outputs)} outputs to {args.output_jsonl}")
-        wandb.log({"num_outputs": len(outputs), "output_jsonl": str(args.output_jsonl)})
+        if wandb.run is not None:
+            wandb.log({"num_outputs": len(outputs), "output_jsonl": str(args.output_jsonl)})
 
         if args.run_eval:
             eval_rows = [row for row in outputs if row.get("src") and row.get("mt") and row.get("ref")]
             if not eval_rows:
                 print("Skipping XCOMET: no rows with non-empty src/mt/ref.")
-                wandb.log({"xcomet_skipped": 1})
+                if wandb.run is not None:
+                    wandb.log({"xcomet_skipped": 1})
             else:
-                summary = evaluator.evaluate(eval_rows, args.batch_size)
+                summary = evaluator.evaluate(data=eval_rows, batch_size=args.batch_size, gpus=xcomet_gpus)
                 print("XCOMET system score:", summary["system"])
-                wandb.log(
-                    {
-                        "xcomet_system_score": float(summary["system"]),
-                        "xcomet_segments": len(summary.get("segment", [])),
-                    }
-                )
+                if wandb.run is not None:
+                    wandb.log(
+                        {
+                            "xcomet_system_score": float(summary["system"]),
+                            "xcomet_segments": len(summary.get("segment", [])),
+                        }
+                    )
     finally:
         if emissions_tracker is not None:
             emissions_kg = emissions_tracker.stop()
             if emissions_kg is not None:
                 print(f"CodeCarbon emissions (kgCO2eq): {emissions_kg}")
-                wandb.log({"codecarbon_emissions_kgco2eq": float(emissions_kg)})
+                if wandb.run is not None:
+                    wandb.log({"codecarbon_emissions_kgco2eq": float(emissions_kg)})
         if model is not None or tokenizer is not None:
             del model, tokenizer
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
         gc.collect()
-        wandb.finish()
+        if wandb.run is not None:
+            wandb.finish()
 
 
 if __name__ == "__main__":
