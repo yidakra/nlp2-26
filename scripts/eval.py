@@ -259,7 +259,7 @@ class Evaluator:
                 target = entry.get(lang["tgt"], "")
                 raw_terminology = entry.get("terms", "")
                 terminology = format_terminology(raw_terminology)
-                rng = random.Random(seed + batch_start + row_idx)
+                rng = random.Random(seed + batch_start + row_idx)  # noqa: S311 - deterministic sampling, not crypto.
                 few_shot_block = build_few_shot_block(rng)
 
                 sources.append(source)
