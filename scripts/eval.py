@@ -299,8 +299,8 @@ class Evaluator:
             )
             for candidate_idx in range(effective_num_candidates):
                 candidate_seed = seed + batch_start + candidate_idx
-                with torch.random.fork_rng(devices=cuda_devices):
-                    torch.manual_seed(candidate_seed)
+                with torch.random.fork_rng(devices=cuda_devices):  # pyright: ignore[reportUnknownMemberType]
+                    torch.manual_seed(candidate_seed)  # pyright: ignore[reportUnknownMemberType]
                     if model_device.type == "cuda":
                         torch.cuda.manual_seed_all(candidate_seed)
                     generated_ids = model.generate(
