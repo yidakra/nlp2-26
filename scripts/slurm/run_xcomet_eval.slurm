@@ -13,7 +13,7 @@
 # Produces: outputs/metrics/xcomet_scores.json
 
 set -euo pipefail
-cd /home/scur0421/nlp2-26
+cd "$SLURM_SUBMIT_DIR"
 set -o allexport; source .env; set +o allexport
 source .venv/bin/activate
 
@@ -21,7 +21,7 @@ python3 - <<'PYEOF'
 import json, sys, os
 from pathlib import Path
 
-sys.path.insert(0, str(Path("scripts").resolve()))
+sys.path.insert(0, str(Path(".").resolve()))
 from scripts.eval import Evaluator, load_jsonl
 
 PRIORITY_FILES = [
@@ -54,7 +54,7 @@ for fpath in PRIORITY_FILES:
 
 out = "outputs/metrics/xcomet_scores.json"
 os.makedirs("outputs/metrics", exist_ok=True)
-with open(out, "w") as f:
-    json.dump(results, f, indent=2)
+with open(out, "w", encoding="utf-8") as f:
+    json.dump(results, f, indent=2, ensure_ascii=False)
 print(f"\nSaved: {out}")
 PYEOF

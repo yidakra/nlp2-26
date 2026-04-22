@@ -16,4 +16,5 @@ tea_debug.log
 
 # macOS metadata
 .DS_Store
-wmt25-terminology/ranking/submissions/track1/nlp2-26/
+# Ignore generated WMT submission outputs for all teams
+wmt25-terminology/ranking/submissions/
