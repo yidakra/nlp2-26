@@ -24,10 +24,14 @@ STRATEGIES=(
 
 for input_jsonl in "${INPUT_ROOT}"/*.jsonl; do
   fname=$(basename "${input_jsonl}" .jsonl)   # e.g. 2023.enzh.noterm
-  year="${fname%%.*}"                           # 2023
-  rest="${fname#*.}"                            # enzh.noterm
-  pair="${rest%%.*}"                            # enzh
-  mode="${rest#*.}"                             # noterm
+  IFS='.' read -r -a parts <<< "${fname}"
+  if [[ ${#parts[@]} -ne 3 ]]; then
+    echo "ERROR: unexpected input filename format: ${fname}. Expected YEAR.PAIR.MODE" >&2
+    continue
+  fi
+  year="${parts[0]}"
+  pair="${parts[1]}"
+  mode="${parts[2]}"
 
   if [[ ! "${year}" =~ ^[0-9]{4}$ || -z "${pair}" || -z "${mode}" ]]; then
     echo "ERROR: unexpected input filename format: ${fname}. Expected YEAR.PAIR.MODE" >&2

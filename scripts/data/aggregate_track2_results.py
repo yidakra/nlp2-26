@@ -12,6 +12,7 @@ also writes outputs/metrics/track2_aggregated.csv.
 
 import csv
 import json
+import sys
 from collections import defaultdict
 from pathlib import Path
 from statistics import mean
@@ -37,9 +38,18 @@ def load_csv(path: Path) -> list[dict[str, str]]:
 def main() -> None:
     if not CSV_PATH.exists():
         print(f"ERROR: {CSV_PATH} not found. Run compute_track2_metrics.py first.")
-        return
+        sys.exit(1)
 
     rows = load_csv(CSV_PATH)
+
+    required_columns = ("pair", "mode", "strategy")
+    for row_index, row in enumerate(rows, start=1):
+        missing_columns = [col for col in required_columns if not row.get(col)]
+        if missing_columns:
+            raise ValueError(
+                f"Missing required column(s) {missing_columns} in row {row_index} of {CSV_PATH}. "
+                f"Each row must include {', '.join(required_columns)}; 'model' may be omitted and defaults to {DEFAULT_MODEL!r}."
+            )
 
     # Detect models present in CSV (preserve insertion order via dict)
     models = list(dict.fromkeys(r.get("model", DEFAULT_MODEL) for r in rows))
@@ -126,6 +136,11 @@ def main() -> None:
         writer.writerows(agg_rows)
     print(f"\nSaved aggregated results → {OUT_CSV}")
 
+    agg_lookup = {
+        (r["model"], r["pair"], r["mode"], r["strategy"]): r
+        for r in agg_rows
+    }
+
     # Print side-by-side LaTeX table body (one block per condition, models as column groups)
     print("\n" + "="*60)
     print("LaTeX table body (side-by-side per condition):")
@@ -142,11 +157,10 @@ def main() -> None:
                 pair_col = pair_label if si == 0 else ""
                 cells = [f"{pair_col:<8}", f"{strat_col:<20}"]
                 for model in models:
-                    key = (model, pair, mode, strategy)
-                    g = groups[key]
-                    chrf = f"{mean(g['chrf_pp']):.2f}" if g.get("chrf_pp") else "--"
-                    bleu = f"{mean(g['bleu']):.2f}" if g.get("bleu") else "--"
-                    tc = f"{mean(g['tc']):.1f}" if g.get("tc") else "--"
+                    agg = agg_lookup.get((model, pair, mode, strategy), {})
+                    chrf = f"{agg['chrf_pp']:.2f}" if agg.get("chrf_pp") is not None else "--"
+                    bleu = f"{agg['bleu']:.2f}" if agg.get("bleu") is not None else "--"
+                    tc = f"{agg['tc']:.1f}" if agg.get("tc") is not None else "--"
                     cells += [f"{chrf:<8}", f"{bleu:<8}", f"{tc:<6}"]
                 print(" & ".join(cells) + " \\\\")
         print("\\hline")

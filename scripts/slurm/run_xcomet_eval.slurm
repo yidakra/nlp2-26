@@ -19,6 +19,7 @@ source .venv/bin/activate
 
 # Prefer pre-installed dependencies in the job environment.
 # Only install transformers at runtime if it is missing or the version is out of range.
+set +e
 python3 - <<'PYEOF'
 import sys
 try:
@@ -32,6 +33,7 @@ PYEOF
 if [ $? -ne 0 ]; then
     pip install "transformers>=4.17" -q
 fi
+set -e
 
 python3 - <<'PYEOF'
 import json, sys, os
@@ -69,8 +71,13 @@ for fpath in PRIORITY_FILES:
     summary = evaluator.evaluate(eval_rows, batch_size=4)
     results[fpath] = {"system": summary["system"], "n": len(eval_rows)}
     print(f"  XCOMET system score: {summary['system']:.4f}")
-    # Save incrementally to preserve progress
-    with open("outputs/metrics/xcomet_scores.json", "w", encoding="utf-8") as f:
+    # Save incrementally to preserve progress using an atomic write.
+    target_path = Path("outputs/metrics/xcomet_scores.json")
+    tmp_path = target_path.with_suffix(target_path.suffix + ".tmp")
+    with open(tmp_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
+        f.flush()
+        os.fsync(f.fileno())
+    os.replace(tmp_path, target_path)
 print("\nSaved: outputs/metrics/xcomet_scores.json")
 PYEOF

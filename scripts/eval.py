@@ -8,11 +8,16 @@ from typing import Any, TYPE_CHECKING, Callable, cast, Protocol
 
 import torch
 
+logger = logging.getLogger(__name__)
+
 # transformers >= 5.0 removed build_inputs_with_special_tokens from the slow
-# XLMRobertaTokenizer, but COMET's encoder still calls it.  Add it back so the
-# two libraries can coexist without downgrading either.
+# XLMRobertaTokenizer, but COMET's encoder still calls it. Add it back only if
+# the tokenize class is present and missing the hook.
 try:
     import transformers as _tf  # type: ignore[import-untyped]
+except ImportError:
+    _tf = None  # type: ignore[assignment]
+else:
     if hasattr(_tf, "XLMRobertaTokenizer") and not hasattr(
         _tf.XLMRobertaTokenizer, "build_inputs_with_special_tokens"
     ):
@@ -23,11 +28,15 @@ try:
             if ids1 is None:
                 return [bos] + ids0 + [eos]
             return [bos] + ids0 + [eos, eos] + ids1 + [eos]
-        _tf.XLMRobertaTokenizer.build_inputs_with_special_tokens = (  # type: ignore[attr-defined]
-            _xlmr_build_inputs
-        )
-except Exception:
-    pass
+        try:
+            _tf.XLMRobertaTokenizer.build_inputs_with_special_tokens = (  # type: ignore[attr-defined]
+                _xlmr_build_inputs
+            )
+        except AttributeError as err:
+            logging.warning(
+                "Unable to patch transformers.XLMRobertaTokenizer.build_inputs_with_special_tokens: %s",
+                err,
+            )
 
 if TYPE_CHECKING:
     class XCOMETModel(Protocol):
@@ -80,16 +89,27 @@ class Evaluator:
     @staticmethod
     def _split_sentences(text: str) -> list[str]:
         """Split text into sentences, auto-detecting Chinese vs. Latin script."""
-        if any('一' <= c <= '鿿' for c in text):
+        def contains_han(characters: str) -> bool:
+            try:
+                import regex as _regex  # type: ignore[import-untyped]
+            except ImportError:
+                return any('一' <= c <= '鿿' for c in characters)
+            try:
+                return bool(_regex.search(r'\p{Han}', characters))
+            except Exception:
+                return any('一' <= c <= '鿿' for c in characters)
+
+        if contains_han(text):
             parts = re.split(r'(?<=[。！？；…])', text.strip())
             return [p.strip() for p in parts if p.strip()]
         try:
             import nltk  # type: ignore[import-untyped]
             try:
-                nltk.data.find('tokenizers/punkt_tab')
+                nltk.data.find('tokenizers/punkt_tab')  # type: ignore[reportUnknownMemberType]
             except LookupError:
-                nltk.download('punkt_tab', quiet=True)
-            return [s.strip() for s in nltk.sent_tokenize(text) if s.strip()]
+                logger.info("NLTK tokenizer data not found; downloading punkt_tab resource.")
+                nltk.download('punkt_tab', quiet=True)  # type: ignore[reportUnknownMemberType]
+            return [s.strip() for s in nltk.sent_tokenize(text) if s.strip()]  # type: ignore[reportUnknownMemberType]
         except Exception:
             parts = re.split(r'(?<=[.!?])\s+', text.strip())
             return [p.strip() for p in parts if p.strip()]
@@ -159,7 +179,10 @@ class Evaluator:
                 doc_scores.append(0.0)
 
         system_score: float = sum(doc_scores) / len(doc_scores) if doc_scores else 0.0
-        return {"segment": doc_scores, "system": system_score}
+        error_spans = []
+        if hasattr(model_output, "metadata") and hasattr(model_output.metadata, "error_spans"):
+            error_spans = model_output.metadata.error_spans
+        return {"segment": doc_scores, "system": system_score, "error": error_spans}
 
     def generate_translations(
         self,
@@ -240,23 +263,23 @@ class Evaluator:
 
             source_lower = source.lower()
             term_targets = [str(k).strip() for k in term_dict.keys() if str(k).strip()]
-            term_matchers = build_term_matchers(term_targets)
+            matcher_map: dict[str, re.Pattern[str] | None] = {}
+            for matcher_target, pattern in build_term_matchers(term_targets):
+                if matcher_target not in matcher_map:
+                    matcher_map[matcher_target] = pattern
 
             filtered: dict[object, object] = {}
             for k, v in term_dict.items():
                 target = str(k).strip()
                 if not target:
                     continue
-                for matcher_target, pattern in term_matchers:
-                    if matcher_target != target:
-                        continue
-                    if pattern is not None:
-                        matched = bool(pattern.search(source))
-                    else:
-                        matched = target.lower() in source_lower
-                    if matched:
-                        filtered[k] = v
-                        break
+                pattern = matcher_map.get(target)
+                if pattern is not None:
+                    matched = bool(pattern.search(source))
+                else:
+                    matched = target.lower() in source_lower
+                if matched:
+                    filtered[k] = v
 
             return filtered
 

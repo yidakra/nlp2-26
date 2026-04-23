@@ -370,9 +370,14 @@ class HKLegislationPreprocessor:
             Processed HuggingFace DatasetDict with train/validation splits
         """
         if data_dir:
-            self.data_dir = Path(data_dir)
-            self.en_dir = self.data_dir / "en"
-            self.zh_dir = self.data_dir / "zh-hant"
+            preprocessor = HKLegislationPreprocessor(
+                data_dir=data_dir,
+                min_text_length=self.min_text_length,
+                max_text_length=self.max_text_length,
+                val_split=self.val_split,
+                verbose=self.verbose,
+            )
+            return preprocessor.preprocess()
 
         return self.preprocess()
 

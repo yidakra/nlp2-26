@@ -40,7 +40,7 @@ if [[ ! -d .venv ]]; then
   exit 1
 fi
 source .venv/bin/activate
-if ! python -c "import transformers; v=tuple(int(x) for x in transformers.__version__.split('.')[:2]); assert v>=(4,50)" >/dev/null 2>&1; then
+if ! python -c "import re; import transformers; v=tuple(int(re.sub(r'[^0-9]','',x) or 0) for x in transformers.__version__.split('.')[:2]); assert v>=(4,50)" >/dev/null 2>&1; then
   echo "ERROR: transformers>=4.50 is not installed in .venv. Prepare the environment with scripts/slurm/setup_env.sh and retry." >&2
   exit 1
 fi
