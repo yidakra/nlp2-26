@@ -8,6 +8,27 @@ from typing import Any, TYPE_CHECKING, Callable, cast, Protocol
 
 import torch
 
+# transformers >= 5.0 removed build_inputs_with_special_tokens from the slow
+# XLMRobertaTokenizer, but COMET's encoder still calls it.  Add it back so the
+# two libraries can coexist without downgrading either.
+try:
+    import transformers as _tf  # type: ignore[import-untyped]
+    if hasattr(_tf, "XLMRobertaTokenizer") and not hasattr(
+        _tf.XLMRobertaTokenizer, "build_inputs_with_special_tokens"
+    ):
+        def _xlmr_build_inputs(
+            self: Any, ids0: list[int], ids1: list[int] | None = None
+        ) -> list[int]:
+            bos, eos = self.bos_token_id, self.eos_token_id
+            if ids1 is None:
+                return [bos] + ids0 + [eos]
+            return [bos] + ids0 + [eos, eos] + ids1 + [eos]
+        _tf.XLMRobertaTokenizer.build_inputs_with_special_tokens = (  # type: ignore[attr-defined]
+            _xlmr_build_inputs
+        )
+except Exception:
+    pass
+
 if TYPE_CHECKING:
     class XCOMETModel(Protocol):
         def predict(self, data: list[dict[str, str]], batch_size: int, gpus: int = 1) -> Any: ...
@@ -29,8 +50,8 @@ LANG_INFO = {
     "ende": {"src": "en", "tgt": "de", "src_full": "English", "tgt_full": "German"},
     "enes": {"src": "en", "tgt": "es", "src_full": "English", "tgt_full": "Spanish"},
     "enru": {"src": "en", "tgt": "ru", "src_full": "English", "tgt_full": "Russian"},
-    "enzh": {"src": "en", "tgt": "zh", "src_full": "English", "tgt_full": "Chinese"},
-    "zhen": {"src": "zh", "tgt": "en", "src_full": "Chinese", "tgt_full": "English"},
+    "enzh": {"src": "en", "tgt": "zh", "src_full": "English", "tgt_full": "Traditional Chinese"},
+    "zhen": {"src": "zh", "tgt": "en", "src_full": "Traditional Chinese", "tgt_full": "English"},
 }
 
 PROMPT_STRATEGIES = {"baseline", "concise", "strict"}
@@ -56,10 +77,37 @@ class Evaluator:
         self.comet_model_id = comet_model_id
         self.model_path: str | None = None
 
-    def evaluate(self, data: list[dict[str, str]], batch_size: int, gpus: int = 1) -> dict[str, Any]:
+    @staticmethod
+    def _split_sentences(text: str) -> list[str]:
+        """Split text into sentences, auto-detecting Chinese vs. Latin script."""
+        if any('一' <= c <= '鿿' for c in text):
+            parts = re.split(r'(?<=[。！？；…])', text.strip())
+            return [p.strip() for p in parts if p.strip()]
+        try:
+            import nltk  # type: ignore[import-untyped]
+            try:
+                nltk.data.find('tokenizers/punkt_tab')
+            except LookupError:
+                nltk.download('punkt_tab', quiet=True)
+            return [s.strip() for s in nltk.sent_tokenize(text) if s.strip()]
+        except Exception:
+            parts = re.split(r'(?<=[.!?])\s+', text.strip())
+            return [p.strip() for p in parts if p.strip()]
+
+    def evaluate(
+        self,
+        data: list[dict[str, str]],
+        batch_size: int,
+        gpus: int = 1,
+        sentence_level: bool = True,
+    ) -> dict[str, Any]:
         """
         Evaluate model outputs using XCOMET.
         Expects data as dict entries with "src", "mt", and "ref" keys.
+
+        When sentence_level=True (default), each document is split into sentences
+        and scored individually; per-document scores are averaged. This avoids the
+        512-token encoder limit for document-level inputs.
         """
         comet_module = cast(Any, importlib.import_module("comet"))
         download_model: DownloadModelFn = cast(
@@ -74,12 +122,44 @@ class Evaluator:
 
         model: XCOMETModel = load_from_checkpoint(model_path)
         model = model.to(torch.bfloat16)
-        model_output = model.predict(data, batch_size=batch_size, gpus=gpus)
-        return {
-            "segment": model_output.scores,
-            "system": model_output.system_score,
-            "error": model_output.metadata.error_spans,
-        }
+
+        if not sentence_level:
+            model_output = model.predict(data, batch_size=batch_size, gpus=gpus)
+            return {
+                "segment": model_output.scores,
+                "system": model_output.system_score,
+                "error": model_output.metadata.error_spans,
+            }
+
+        # Expand each document into sentence pairs, preserving doc boundaries.
+        expanded: list[dict[str, str]] = []
+        boundaries: list[tuple[int, int]] = []
+        for row in data:
+            mt_sents = self._split_sentences(row["mt"])
+            ref_sents = self._split_sentences(row["ref"])
+            n = min(len(mt_sents), len(ref_sents))
+            if len(mt_sents) != len(ref_sents):
+                logging.warning(
+                    "Sentence count mismatch: mt=%d ref=%d; scoring first %d pairs",
+                    len(mt_sents), len(ref_sents), n,
+                )
+            start = len(expanded)
+            for j in range(n):
+                expanded.append({"src": row["src"], "mt": mt_sents[j], "ref": ref_sents[j]})
+            boundaries.append((start, len(expanded)))
+
+        model_output = model.predict(expanded, batch_size=batch_size, gpus=gpus)
+        all_scores: list[float] = model_output.scores
+
+        doc_scores: list[float] = []
+        for start, end in boundaries:
+            if end > start:
+                doc_scores.append(sum(all_scores[start:end]) / (end - start))
+            else:
+                doc_scores.append(0.0)
+
+        system_score: float = sum(doc_scores) / len(doc_scores) if doc_scores else 0.0
+        return {"segment": doc_scores, "system": system_score}
 
     def generate_translations(
         self,

@@ -3,7 +3,7 @@
 #SBATCH --partition=gpu_a100
 #SBATCH --gpus=1
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=48G
+#SBATCH --mem=80G
 #SBATCH --time=04:00:00
 #SBATCH --output=%x-%j.out
 #SBATCH --error=%x-%j.err
@@ -24,13 +24,13 @@ import sys
 try:
     import transformers
     version = tuple(int(x) for x in transformers.__version__.split('.')[:2])
-    if version < (4, 17) or version >= (5, 0):
+    if version < (4, 17):
         raise ImportError
 except Exception:
     sys.exit(1)
 PYEOF
 if [ $? -ne 0 ]; then
-    pip install "transformers>=4.17,<5.0" -q
+    pip install "transformers>=4.17" -q
 fi
 
 python3 - <<'PYEOF'
