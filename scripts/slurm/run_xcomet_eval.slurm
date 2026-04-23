@@ -8,7 +8,7 @@
 #SBATCH --output=%x-%j.out
 #SBATCH --error=%x-%j.err
 
-# Runs XCOMET-XL on the 9 priority-subset enriched files.
+# Runs XCOMET-XL on all enriched files.
 # Files must already exist (run midterm_fill_gaps.sh steps 1-3 first).
 # Produces: outputs/metrics/xcomet_scores.json
 
@@ -16,6 +16,7 @@ set -euo pipefail
 cd "$SLURM_SUBMIT_DIR"
 set -o allexport; source .env; set +o allexport
 source .venv/bin/activate
+pip install "transformers>=4.17,<5.0" -q
 
 python3 - <<'PYEOF'
 import json, sys, os
@@ -24,20 +25,22 @@ from pathlib import Path
 sys.path.insert(0, str(Path(".").resolve()))
 from scripts.eval import Evaluator, load_jsonl
 
-PRIORITY_FILES = [
-    "outputs/enriched/enes.noterm.baseline_fsk0.jsonl",
-    "outputs/enriched/enes.noterm.strict_fsk0.jsonl",
-    "outputs/enriched/enes.noterm.strict_fsk3.jsonl",
-    "outputs/enriched/enes.proper.baseline_fsk0.jsonl",
-    "outputs/enriched/enes.proper.strict_fsk0.jsonl",
-    "outputs/enriched/enes.proper.strict_fsk3.jsonl",
-    "outputs/enriched/enru.noterm.baseline_fsk0.jsonl",
-    "outputs/enriched/enru.proper.baseline_fsk0.jsonl",
-    "outputs/enriched/enru.proper.strict_fsk0.jsonl",
-]
+import glob
+PRIORITY_FILES = sorted(
+    glob.glob("outputs/enriched/*.jsonl") +
+    glob.glob("outputs/enriched/**/*.jsonl")
+)
+
+# Skip already-scored files
+existing = {}
+if os.path.exists("outputs/metrics/xcomet_scores.json"):
+    with open("outputs/metrics/xcomet_scores.json") as f:
+        existing = json.load(f)
+PRIORITY_FILES = [f for f in PRIORITY_FILES if f not in existing]
+print(f"Files to evaluate: {len(PRIORITY_FILES)} (skipping {len(existing)} already done)")
 
 evaluator = Evaluator()
-results = {}
+results = existing.copy()
 for fpath in PRIORITY_FILES:
     if not os.path.exists(fpath):
         print(f"MISSING: {fpath}")

@@ -10,8 +10,8 @@ checkpoints/
 /outputs/
 /logs/
 /wandb/
-nlp2-infer-eval-*.out
-nlp2-infer-eval-*.err
+nlp2-*.out
+nlp2-*.err
 tea_debug.log
 
 # macOS metadata

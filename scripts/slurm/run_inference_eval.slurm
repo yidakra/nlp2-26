@@ -9,8 +9,11 @@
 #SBATCH --error=%x-%j.err
 
 set -euo pipefail
+cd "$SLURM_SUBMIT_DIR"
+set -o allexport; source .env; set +o allexport
 
 # Example:
+# (Gemma 4 requires transformers nightly; XCOMET jobs pin <5.0 separately)
 # sbatch scripts/slurm/run_inference_eval.slurm \
 #   /path/to/input.jsonl \
 #   enzh \
@@ -29,6 +32,7 @@ fi
 
 mkdir -p outputs
 source .venv/bin/activate
+pip install --upgrade "transformers>=4.50" --pre -q
 
 export WANDB_PROJECT="${WANDB_PROJECT:-nlp2-26}"
 export WANDB_RUN_GROUP="${WANDB_RUN_GROUP:-${PAIR}}"

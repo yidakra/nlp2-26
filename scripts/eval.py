@@ -72,7 +72,7 @@ class Evaluator:
         if self.model_path is None:
             self.model_path = download_model(self.comet_model_id)
 
-        model: XCOMETModel = load_from_checkpoint(self.model_path)
+        model: XCOMETModel = load_from_checkpoint(cast(str, self.model_path))
         model = model.to(torch.bfloat16)
         model_output = model.predict(data, batch_size=batch_size, gpus=gpus)
         return {
@@ -126,6 +126,23 @@ class Evaluator:
 
         lang = LANG_INFO[src_tgt_pair]
         outputs: list[dict[str, str]] = []
+
+        def filter_terminology_by_source(terminology: object, source: str) -> object:
+            """Retain only terms whose source side appears in the source text.
+
+            For large glossaries (e.g. Track 2 proper condition with 1000+ entries),
+            including all terms in the prompt exceeds GPU memory. Filtering to source-
+            present terms is both memory-safe and semantically correct: terms absent
+            from the source cannot be applied anyway.
+            """
+            if not isinstance(terminology, dict):
+                return terminology
+            term_dict = cast(dict[object, object], terminology)
+            if not term_dict:
+                return terminology
+            source_lower = source.lower()
+            filtered = {k: v for k, v in term_dict.items() if str(k).lower() in source_lower}
+            return filtered if filtered else term_dict
 
         def format_terminology(terminology: object) -> str:
             if terminology is None:
@@ -259,7 +276,8 @@ class Evaluator:
                 source = entry.get(lang["src"], "")
                 target = entry.get(lang["tgt"], "")
                 raw_terminology = entry.get("terms", "")
-                terminology = format_terminology(raw_terminology)
+                filtered_terminology = filter_terminology_by_source(raw_terminology, source)
+                terminology = format_terminology(filtered_terminology)
                 rng = random.Random(seed + batch_start + row_idx)  # noqa: S311 - deterministic sampling, not crypto.
                 few_shot_block = build_few_shot_block(rng)
 
