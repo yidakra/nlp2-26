@@ -5,6 +5,9 @@ Post-process Track 2 inference outputs:
   2. Enrich with references from reference files
   3. Compute ChrF++, BLEU, term coverage
   4. Write outputs/enriched/track2/*.jsonl and outputs/metrics/track2_quality_metrics.csv
+
+Enriched filenames include the model slug so multiple models can coexist:
+  {year}.{pair}.{mode}.{strategy}.{model_slug}.jsonl
 """
 
 import csv
@@ -54,7 +57,7 @@ def parse_wandb_args(args: list[str]) -> dict:
 
 
 def scan_wandb_runs() -> dict[str, dict]:
-    """Return mapping: output_jsonl_rel_path -> {input_jsonl, prompt_strategy, rerank_strategy}."""
+    """Return mapping: output_jsonl_rel_path -> {input_jsonl, prompt_strategy, rerank_strategy, model_id}."""
     mapping: dict[str, dict] = {}
     for meta_file in sorted(WANDB_DIR.glob("run-*/files/wandb-metadata.json")):
         try:
@@ -73,6 +76,7 @@ def scan_wandb_runs() -> dict[str, dict]:
                 "input_jsonl": str(input_jsonl),
                 "prompt_strategy": str(d.get("prompt_strategy", "baseline")),
                 "rerank_strategy": str(d.get("rerank_strategy", "none")),
+                "model_id": str(d.get("model_id", "google/gemma-4-E2B-it")),
             }
         except Exception:
             continue
@@ -150,6 +154,9 @@ def main() -> None:
         if not output_path.exists():
             continue
 
+        model_id = meta["model_id"]
+        model_slug = Path(model_id).name  # e.g. "gemma-4-E2B-it" or "Qwen3.5-9B"
+
         input_fname = Path(meta["input_jsonl"]).stem  # e.g. "2023.enzh.noterm"
         parts = input_fname.split(".")
         if len(parts) != 3:
@@ -202,24 +209,24 @@ def main() -> None:
 
         chrf_pp = sacrebleu.corpus_chrf(mt_texts, [ref_texts], word_order=2).score
         bleu = sacrebleu.corpus_bleu(mt_texts, [ref_texts]).score
-        # TC: count only terms whose source side appears in each document's source text
         tc = compute_tc(mt_texts, term_dicts, src_texts=src_texts)
         tc_pct = round(tc * 100, 1) if tc is not None else None
 
         label = f"{strategy}_k0"
         print(
-            f"  {year} {pair:4s} {mode:7s} {label:18s} "
+            f"  [{model_slug}] {year} {pair:4s} {mode:7s} {label:18s} "
             f"ChrF++={chrf_pp:.2f}  BLEU={bleu:.2f}  TC={f'{tc_pct}%' if tc_pct is not None else 'N/A'}"
         )
 
-        # Write enriched file
-        enriched_path = ENRICHED_DIR / f"{year}.{pair}.{mode}.{strategy}.jsonl"
+        # Write enriched file (model slug in filename so multiple models coexist)
+        enriched_path = ENRICHED_DIR / f"{year}.{pair}.{mode}.{strategy}.{model_slug}.jsonl"
         with open(enriched_path, "w", encoding="utf-8") as f:
             for out_row, ref_text in zip(outputs, ref_texts):
                 enriched = {"src": out_row["src"], "ref": ref_text, "mt": out_row["mt"]}
                 f.write(json.dumps(enriched, ensure_ascii=False) + "\n")
 
         csv_rows.append({
+            "model": model_slug,
             "year": year,
             "pair": pair,
             "mode": mode,
@@ -233,11 +240,11 @@ def main() -> None:
 
     if csv_rows:
         csv_path = METRICS_DIR / "track2_quality_metrics.csv"
-        fieldnames = ["year", "pair", "mode", "strategy", "rerank", "n_docs", "chrf_pp", "bleu", "tc"]
+        fieldnames = ["model", "year", "pair", "mode", "strategy", "rerank", "n_docs", "chrf_pp", "bleu", "tc"]
         with open(csv_path, "w", newline="", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
-            writer.writerows(sorted(csv_rows, key=lambda r: (r["pair"], r["year"], r["mode"], r["strategy"])))
+            writer.writerows(sorted(csv_rows, key=lambda r: (r["model"], r["pair"], r["year"], r["mode"], r["strategy"])))
         print(f"\nSaved {len(csv_rows)} rows → {csv_path}")
     else:
         print("No complete runs to summarise yet.")
