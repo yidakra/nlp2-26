@@ -15,6 +15,7 @@ import json
 from collections import defaultdict
 from pathlib import Path
 from statistics import mean
+from typing import cast
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 CSV_PATH = REPO_ROOT / "outputs" / "metrics" / "track2_quality_metrics.csv"
@@ -25,11 +26,12 @@ PAIRS = ["enzh", "zhen"]
 PAIR_LABEL = {"enzh": "en--zh", "zhen": "zh--en"}
 CONDITIONS = ["noterm", "proper", "random"]
 STRATEGIES = ["baseline", "strict"]
+DEFAULT_MODEL = "gemma-4-E2B-it"
 
 
-def load_csv(path: Path) -> list[dict]:
+def load_csv(path: Path) -> list[dict[str, str]]:
     with open(path, newline="", encoding="utf-8") as f:
-        return list(csv.DictReader(f))
+        return [dict(row) for row in csv.DictReader(f)]
 
 
 def main() -> None:
@@ -40,7 +42,7 @@ def main() -> None:
     rows = load_csv(CSV_PATH)
 
     # Detect models present in CSV (preserve insertion order via dict)
-    models = list(dict.fromkeys(r.get("model", "gemma-4-E2B-it") for r in rows))
+    models = list(dict.fromkeys(r.get("model", DEFAULT_MODEL) for r in rows))
 
     # Load XCOMET scores — keyed by enriched file path
     xcomet: dict[str, float] = {}
@@ -48,14 +50,17 @@ def main() -> None:
         with open(XCOMET_PATH, encoding="utf-8") as f:
             raw = json.load(f)
         for fpath, info in raw.items():
-            xcomet[fpath] = info["system"]
+            if "system" in info:
+                xcomet[fpath] = info["system"]
     else:
         print(f"WARNING: {XCOMET_PATH} not found — XCOMET column will be empty.")
 
     # Group by (model, pair, mode, strategy) -> lists of metric values
-    groups: dict[tuple, dict[str, list]] = defaultdict(lambda: defaultdict(list))
+    groups: dict[tuple[str, str, str, str], dict[str, list[float]]] = defaultdict(
+        lambda: cast(dict[str, list[float]], defaultdict(list))
+    )
     for row in rows:
-        model = row.get("model", "gemma-4-E2B-it")
+        model = row.get("model", DEFAULT_MODEL)
         pair = row["pair"]
         mode = row["mode"]
         strategy = row["strategy"]
@@ -75,7 +80,7 @@ def main() -> None:
             groups[key]["xcomet"].append(xcomet[enriched_path])
 
     # Print aggregated table and collect rows
-    agg_rows = []
+    agg_rows: list[dict[str, object]] = []
     for model in models:
         print(f"\n{'='*60}")
         print(f"Model: {model}")
@@ -89,10 +94,14 @@ def main() -> None:
                     key = (model, pair, mode, strategy)
                     g = groups[key]
                     n = len(g.get("chrf_pp", []))
-                    chrf = f"{mean(g['chrf_pp']):.2f}" if g.get("chrf_pp") else "--"
-                    bleu = f"{mean(g['bleu']):.2f}" if g.get("bleu") else "--"
-                    tc = f"{mean(g['tc']):.1f}" if g.get("tc") else "--"
-                    xc = f"{mean(g['xcomet']):.4f}" if g.get("xcomet") else "--"
+                    chrf_mean = mean(g["chrf_pp"]) if g.get("chrf_pp") else None
+                    bleu_mean = mean(g["bleu"]) if g.get("bleu") else None
+                    tc_mean = mean(g["tc"]) if g.get("tc") else None
+                    xcomet_mean = mean(g["xcomet"]) if g.get("xcomet") else None
+                    chrf = f"{chrf_mean:.2f}" if chrf_mean is not None else "--"
+                    bleu = f"{bleu_mean:.2f}" if bleu_mean is not None else "--"
+                    tc = f"{tc_mean:.1f}" if tc_mean is not None else "--"
+                    xc = f"{xcomet_mean:.4f}" if xcomet_mean is not None else "--"
                     strat_label = "strict k=0" if strategy == "strict" else strategy
                     print(f"  {PAIR_LABEL[pair]:<10} {strat_label:<10} {chrf:<8} {bleu:<8} {xc:<8} {tc:<8} {n}")
                     agg_rows.append({
@@ -102,10 +111,10 @@ def main() -> None:
                         "mode": mode,
                         "strategy": strategy,
                         "n_years": n,
-                        "chrf_pp": round(mean(g["chrf_pp"]), 2) if g.get("chrf_pp") else None,
-                        "bleu": round(mean(g["bleu"]), 2) if g.get("bleu") else None,
-                        "xcomet": round(mean(g["xcomet"]), 4) if g.get("xcomet") else None,
-                        "tc": round(mean(g["tc"]), 1) if g.get("tc") else None,
+                        "chrf_pp": round(chrf_mean, 2) if chrf_mean is not None else None,
+                        "bleu": round(bleu_mean, 2) if bleu_mean is not None else None,
+                        "xcomet": round(xcomet_mean, 4) if xcomet_mean is not None else None,
+                        "tc": round(tc_mean, 1) if tc_mean is not None else None,
                     })
 
     # Write aggregated CSV

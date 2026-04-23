@@ -69,10 +69,10 @@ class Evaluator:
             LoadFromCheckpointFn, comet_module.load_from_checkpoint
         )
 
-        if self.model_path is None:
-            self.model_path = download_model(self.comet_model_id)
+        model_path: str = self.model_path or download_model(self.comet_model_id)
+        self.model_path = model_path
 
-        model: XCOMETModel = load_from_checkpoint(cast(str, self.model_path))
+        model: XCOMETModel = load_from_checkpoint(model_path)
         model = model.to(torch.bfloat16)
         model_output = model.predict(data, batch_size=batch_size, gpus=gpus)
         return {
@@ -127,6 +127,23 @@ class Evaluator:
         lang = LANG_INFO[src_tgt_pair]
         outputs: list[dict[str, str]] = []
 
+        def build_term_matchers(term_targets: list[str]) -> list[tuple[str, re.Pattern[str] | None]]:
+            def use_ascii_token_boundary(text: str) -> bool:
+                return text.isascii() and any(ch.isalnum() or ch == "_" for ch in text)
+
+            matchers: list[tuple[str, re.Pattern[str] | None]] = []
+            for target in term_targets:
+                if not target:
+                    continue
+                pattern: re.Pattern[str] | None = None
+                if use_ascii_token_boundary(target):
+                    pattern = re.compile(
+                        r"(?<![A-Za-z0-9_])" + re.escape(target) + r"(?![A-Za-z0-9_])",
+                        flags=re.IGNORECASE,
+                    )
+                matchers.append((target, pattern))
+            return matchers
+
         def filter_terminology_by_source(terminology: object, source: str) -> object:
             """Retain only terms whose source side appears in the source text.
 
@@ -139,10 +156,29 @@ class Evaluator:
                 return terminology
             term_dict = cast(dict[object, object], terminology)
             if not term_dict:
-                return terminology
+                return term_dict
+
             source_lower = source.lower()
-            filtered = {k: v for k, v in term_dict.items() if str(k).lower() in source_lower}
-            return filtered if filtered else term_dict
+            term_targets = [str(k).strip() for k in term_dict.keys() if str(k).strip()]
+            term_matchers = build_term_matchers(term_targets)
+
+            filtered: dict[object, object] = {}
+            for k, v in term_dict.items():
+                target = str(k).strip()
+                if not target:
+                    continue
+                for matcher_target, pattern in term_matchers:
+                    if matcher_target != target:
+                        continue
+                    if pattern is not None:
+                        matched = bool(pattern.search(source))
+                    else:
+                        matched = target.lower() in source_lower
+                    if matched:
+                        filtered[k] = v
+                        break
+
+            return filtered
 
         def format_terminology(terminology: object) -> str:
             if terminology is None:
@@ -228,23 +264,6 @@ class Evaluator:
                 f"Source: {source}\n"
                 f"Terminology: {terminology}\n\n"
             )
-
-        def build_term_matchers(term_targets: list[str]) -> list[tuple[str, re.Pattern[str] | None]]:
-            def use_ascii_token_boundary(text: str) -> bool:
-                return text.isascii() and any(ch.isalnum() or ch == "_" for ch in text)
-
-            matchers: list[tuple[str, re.Pattern[str] | None]] = []
-            for target in term_targets:
-                if not target:
-                    continue
-                pattern: re.Pattern[str] | None = None
-                if use_ascii_token_boundary(target):
-                    pattern = re.compile(
-                        r"(?<![A-Za-z0-9_])" + re.escape(target) + r"(?![A-Za-z0-9_])",
-                        flags=re.IGNORECASE,
-                    )
-                matchers.append((target, pattern))
-            return matchers
 
         def score_candidate(candidate: str, term_matchers: list[tuple[str, re.Pattern[str] | None]]) -> int:
             if not term_matchers:

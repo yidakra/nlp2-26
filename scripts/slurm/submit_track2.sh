@@ -29,6 +29,11 @@ for input_jsonl in "${INPUT_ROOT}"/*.jsonl; do
   pair="${rest%%.*}"                            # enzh
   mode="${rest#*.}"                             # noterm
 
+  if [[ ! "${year}" =~ ^[0-9]{4}$ || -z "${pair}" || -z "${mode}" ]]; then
+    echo "ERROR: unexpected input filename format: ${fname}. Expected YEAR.PAIR.MODE" >&2
+    continue
+  fi
+
   for strategy_spec in "${STRATEGIES[@]}"; do
     IFS=':' read -r prompt_strategy rerank_strategy num_candidates few_shot_k <<<"${strategy_spec}"
 

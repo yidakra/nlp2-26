@@ -177,8 +177,11 @@ def main() -> None:
             continue
         refs = load_jsonl(ref_file)
 
-        src_lang = PAIR_SRC[pair]
-        tgt_lang = PAIR_TGT[pair]
+        src_lang = PAIR_SRC.get(pair)
+        tgt_lang = PAIR_TGT.get(pair)
+        if src_lang is None or tgt_lang is None:
+            print(f"  WARNING: unknown pair {pair!r}, skipping {output_rel}")
+            continue
 
         # Build ref lookup by first 120 chars of source text
         ref_by_src: dict[str, dict] = {}
@@ -190,6 +193,7 @@ def main() -> None:
         src_texts: list[str] = []
         ref_texts: list[str] = []
         term_dicts: list[dict] = []
+        matched_rows: list[tuple[dict, str]] = []
 
         for out_row in outputs:
             src_text = out_row.get("src", "")
@@ -200,8 +204,10 @@ def main() -> None:
                 continue
             src_texts.append(src_text)
             mt_texts.append(out_row.get("mt", ""))
-            ref_texts.append(ref_row.get(tgt_lang, ""))
+            ref_text = ref_row.get(tgt_lang, "")
+            ref_texts.append(ref_text)
             term_dicts.append(ref_row.get(mode, {}) if mode in ("proper", "random") else {})
+            matched_rows.append((out_row, ref_text))
 
         if not mt_texts:
             print(f"  SKIP (no matched rows): {output_rel}")
@@ -221,8 +227,8 @@ def main() -> None:
         # Write enriched file (model slug in filename so multiple models coexist)
         enriched_path = ENRICHED_DIR / f"{year}.{pair}.{mode}.{strategy}.{model_slug}.jsonl"
         with open(enriched_path, "w", encoding="utf-8") as f:
-            for out_row, ref_text in zip(outputs, ref_texts):
-                enriched = {"src": out_row["src"], "ref": ref_text, "mt": out_row["mt"]}
+            for out_row, ref_text in matched_rows:
+                enriched = {"src": out_row.get("src", ""), "ref": ref_text, "mt": out_row.get("mt", "")}
                 f.write(json.dumps(enriched, ensure_ascii=False) + "\n")
 
         csv_rows.append({

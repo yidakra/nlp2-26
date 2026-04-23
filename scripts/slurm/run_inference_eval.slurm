@@ -10,7 +10,11 @@
 
 set -euo pipefail
 cd "$SLURM_SUBMIT_DIR"
-set -o allexport; source .env; set +o allexport
+if [[ -f .env ]]; then
+  set -o allexport; source .env; set +o allexport
+else
+  echo "Warning: .env not found in ${SLURM_SUBMIT_DIR}, skipping."
+fi
 
 # Example:
 # (Gemma 4 requires transformers nightly; XCOMET jobs pin <5.0 separately)
@@ -31,8 +35,15 @@ if [[ -z "${INPUT_JSONL}" ]]; then
 fi
 
 mkdir -p outputs
+if [[ ! -d .venv ]]; then
+  echo "ERROR: .venv not found. Create the environment before submitting, e.g. via scripts/slurm/setup_env.sh." >&2
+  exit 1
+fi
 source .venv/bin/activate
-pip install --upgrade "transformers>=4.50" --pre -q
+if ! python -c "import transformers; v=tuple(int(x) for x in transformers.__version__.split('.')[:2]); assert v>=(4,50)" >/dev/null 2>&1; then
+  echo "ERROR: transformers>=4.50 is not installed in .venv. Prepare the environment with scripts/slurm/setup_env.sh and retry." >&2
+  exit 1
+fi
 
 export WANDB_PROJECT="${WANDB_PROJECT:-nlp2-26}"
 export WANDB_RUN_GROUP="${WANDB_RUN_GROUP:-${PAIR}}"

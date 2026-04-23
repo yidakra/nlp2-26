@@ -26,10 +26,9 @@ sys.path.insert(0, str(Path(".").resolve()))
 from scripts.eval import Evaluator, load_jsonl
 
 import glob
-PRIORITY_FILES = sorted(
-    glob.glob("outputs/enriched/*.jsonl") +
-    glob.glob("outputs/enriched/**/*.jsonl")
-)
+PRIORITY_FILES = sorted(set(
+    glob.glob("outputs/enriched/**/*.jsonl", recursive=True)
+))
 
 # Skip already-scored files
 existing = {}
@@ -54,7 +53,10 @@ for fpath in PRIORITY_FILES:
     summary = evaluator.evaluate(eval_rows, batch_size=4)
     results[fpath] = {"system": summary["system"], "n": len(eval_rows)}
     print(f"  XCOMET system score: {summary['system']:.4f}")
-
+    # Save incrementally to preserve progress
+    os.makedirs("outputs/metrics", exist_ok=True)
+    with open("outputs/metrics/xcomet_scores.json", "w", encoding="utf-8") as f:
+        json.dump(results, f, indent=2, ensure_ascii=False)
 out = "outputs/metrics/xcomet_scores.json"
 os.makedirs("outputs/metrics", exist_ok=True)
 with open(out, "w", encoding="utf-8") as f:
