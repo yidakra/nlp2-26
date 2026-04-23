@@ -58,6 +58,8 @@ class HKLegislationPreprocessor:
         self.min_text_length = min_text_length
         self.max_text_length = max_text_length
         self.verbose = verbose
+        if not (0 <= val_split < 1):
+            raise ValueError(f"val_split must be in [0, 1), got {val_split}")
         self.val_split = val_split
 
         # XML namespace
@@ -112,7 +114,7 @@ class HKLegislationPreprocessor:
         text = text.replace('\\n', ' ').replace('\\t', ' ')
         return text
 
-    def _parse_legislation_xml(self, xml_path: str) -> dict[str, object]:
+    def _parse_legislation_xml(self, xml_path: str) -> dict[str, Any]:
         """
         Parse a legislation XML file and extract text content.
 
@@ -130,7 +132,7 @@ class HKLegislationPreprocessor:
                 print(f"Error parsing {xml_path}: {e}")
             return {}
 
-        result: dict[str, object] = {}
+        result: dict[str, Any] = {}
 
         # Extract metadata
         meta = root.find('hklm:meta', self.ns)
@@ -376,7 +378,7 @@ class HKLegislationPreprocessor:
 
 
 def create_hk_legislation_dataset(
-    data_dir: str = "/home/hether/uni/nlp2-26/data/hk_legislation",
+    data_dir: str,
     min_text_length: int = 10,
     **kwargs: Any,
 ) -> datasets.DatasetDict:

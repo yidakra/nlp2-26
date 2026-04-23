@@ -16,7 +16,22 @@ set -euo pipefail
 cd "$SLURM_SUBMIT_DIR"
 set -o allexport; source .env; set +o allexport
 source .venv/bin/activate
-pip install "transformers>=4.17,<5.0" -q
+
+# Prefer pre-installed dependencies in the job environment.
+# Only install transformers at runtime if it is missing or the version is out of range.
+python3 - <<'PYEOF'
+import sys
+try:
+    import transformers
+    version = tuple(int(x) for x in transformers.__version__.split('.')[:2])
+    if version < (4, 17) or version >= (5, 0):
+        raise ImportError
+except Exception:
+    sys.exit(1)
+PYEOF
+if [ $? -ne 0 ]; then
+    pip install "transformers>=4.17,<5.0" -q
+fi
 
 python3 - <<'PYEOF'
 import json, sys, os
@@ -40,6 +55,7 @@ print(f"Files to evaluate: {len(PRIORITY_FILES)} (skipping {len(existing)} alrea
 
 evaluator = Evaluator()
 results = existing.copy()
+os.makedirs("outputs/metrics", exist_ok=True)
 for fpath in PRIORITY_FILES:
     if not os.path.exists(fpath):
         print(f"MISSING: {fpath}")
@@ -54,12 +70,7 @@ for fpath in PRIORITY_FILES:
     results[fpath] = {"system": summary["system"], "n": len(eval_rows)}
     print(f"  XCOMET system score: {summary['system']:.4f}")
     # Save incrementally to preserve progress
-    os.makedirs("outputs/metrics", exist_ok=True)
     with open("outputs/metrics/xcomet_scores.json", "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
-out = "outputs/metrics/xcomet_scores.json"
-os.makedirs("outputs/metrics", exist_ok=True)
-with open(out, "w", encoding="utf-8") as f:
-    json.dump(results, f, indent=2, ensure_ascii=False)
-print(f"\nSaved: {out}")
+print("\nSaved: outputs/metrics/xcomet_scores.json")
 PYEOF

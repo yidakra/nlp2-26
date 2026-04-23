@@ -12,11 +12,15 @@ Enriched filenames include the model slug so multiple models can coexist:
 
 import csv
 import json
+import logging
 import re
 import sys
 from pathlib import Path
+from typing import Any, cast
 
 import sacrebleu
+
+logger = logging.getLogger(__name__)
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 WANDB_DIR = REPO_ROOT / "wandb"
@@ -28,8 +32,8 @@ PAIR_SRC = {"enzh": "en", "zhen": "zh"}
 PAIR_TGT = {"enzh": "zh", "zhen": "en"}
 
 
-def load_jsonl(path: Path) -> list[dict]:
-    rows = []
+def load_jsonl(path: Path) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
     with open(path, encoding="utf-8") as f:
         for line in f:
             line = line.strip()
@@ -38,7 +42,7 @@ def load_jsonl(path: Path) -> list[dict]:
     return rows
 
 
-def parse_wandb_args(args: list[str]) -> dict:
+def parse_wandb_args(args: list[str]) -> dict[str, object]:
     d: dict[str, object] = {}
     i = 0
     while i < len(args):
@@ -56,9 +60,9 @@ def parse_wandb_args(args: list[str]) -> dict:
     return d
 
 
-def scan_wandb_runs() -> dict[str, dict]:
+def scan_wandb_runs() -> dict[str, dict[str, str]]:
     """Return mapping: output_jsonl_rel_path -> {input_jsonl, prompt_strategy, rerank_strategy, model_id}."""
-    mapping: dict[str, dict] = {}
+    mapping: dict[str, dict[str, str]] = {}
     for meta_file in sorted(WANDB_DIR.glob("run-*/files/wandb-metadata.json")):
         try:
             with open(meta_file, encoding="utf-8") as f:
@@ -78,12 +82,15 @@ def scan_wandb_runs() -> dict[str, dict]:
                 "rerank_strategy": str(d.get("rerank_strategy", "none")),
                 "model_id": str(d.get("model_id", "google/gemma-4-E2B-it")),
             }
-        except Exception:
+        except BaseException as e:
+            if isinstance(e, (KeyboardInterrupt, SystemExit)):
+                raise
+            logger.exception("Failed to parse WandB metadata for %s", meta_file)
             continue
     return mapping
 
 
-def filter_terms_by_source(terms: dict, src: str) -> dict:
+def filter_terms_by_source(terms: dict[str, Any], src: str) -> dict[str, Any]:
     """Keep only terms whose source side appears in the source text."""
     src_lower = src.lower()
     filtered = {k: v for k, v in terms.items() if str(k).lower() in src_lower}
@@ -92,7 +99,7 @@ def filter_terms_by_source(terms: dict, src: str) -> dict:
 
 def compute_tc(
     mt_texts: list[str],
-    term_dicts: list[dict],
+    term_dicts: list[dict[str, Any]],
     src_texts: list[str] | None = None,
 ) -> float | None:
     """Compute naive term coverage.
@@ -112,7 +119,7 @@ def compute_tc(
                 continue
         mt_lower = mt.lower()
         for tgt_val in terms.values():
-            targets: list[str] = tgt_val if isinstance(tgt_val, list) else [str(tgt_val)]
+            targets: list[str] = [str(x) for x in cast(list[object], tgt_val)] if isinstance(tgt_val, list) else [str(tgt_val)]
             for target in targets:
                 target_lower = target.lower().strip()
                 if not target_lower:
@@ -147,7 +154,7 @@ def main() -> None:
         for p in sorted(missing_outputs)[:5]:
             print(f"  {p}")
 
-    csv_rows: list[dict] = []
+    csv_rows: list[dict[str, object]] = []
 
     for output_rel, meta in sorted(mapping.items()):
         output_path = REPO_ROOT / output_rel
@@ -184,7 +191,7 @@ def main() -> None:
             continue
 
         # Build ref lookup by first 120 chars of source text
-        ref_by_src: dict[str, dict] = {}
+        ref_by_src: dict[str, dict[str, Any]] = {}
         for r in refs:
             key = r.get(src_lang, "").strip()[:120]
             ref_by_src[key] = r
@@ -192,8 +199,8 @@ def main() -> None:
         mt_texts: list[str] = []
         src_texts: list[str] = []
         ref_texts: list[str] = []
-        term_dicts: list[dict] = []
-        matched_rows: list[tuple[dict, str]] = []
+        term_dicts: list[dict[str, Any]] = []
+        matched_rows: list[tuple[dict[str, Any], str, str, str]] = []
 
         for out_row in outputs:
             src_text = out_row.get("src", "")
@@ -202,19 +209,20 @@ def main() -> None:
             if ref_row is None:
                 print(f"  WARNING: no ref match in {year} for a src row")
                 continue
-            src_texts.append(src_text)
-            mt_texts.append(out_row.get("mt", ""))
+            mt_text = out_row.get("mt", "")
             ref_text = ref_row.get(tgt_lang, "")
+            src_texts.append(src_text)
+            mt_texts.append(mt_text)
             ref_texts.append(ref_text)
             term_dicts.append(ref_row.get(mode, {}) if mode in ("proper", "random") else {})
-            matched_rows.append((out_row, ref_text))
+            matched_rows.append((out_row, ref_text, src_text, mt_text))
 
         if not mt_texts:
             print(f"  SKIP (no matched rows): {output_rel}")
             continue
 
-        chrf_pp = sacrebleu.corpus_chrf(mt_texts, [ref_texts], word_order=2).score
-        bleu = sacrebleu.corpus_bleu(mt_texts, [ref_texts]).score
+        chrf_pp = sacrebleu.corpus_chrf(mt_texts, [ref_texts], word_order=2).score  # type: ignore[reportUnknownMemberType]
+        bleu = sacrebleu.corpus_bleu(mt_texts, [ref_texts]).score  # type: ignore[reportUnknownMemberType]
         tc = compute_tc(mt_texts, term_dicts, src_texts=src_texts)
         tc_pct = round(tc * 100, 1) if tc is not None else None
 
@@ -227,8 +235,8 @@ def main() -> None:
         # Write enriched file (model slug in filename so multiple models coexist)
         enriched_path = ENRICHED_DIR / f"{year}.{pair}.{mode}.{strategy}.{model_slug}.jsonl"
         with open(enriched_path, "w", encoding="utf-8") as f:
-            for out_row, ref_text in matched_rows:
-                enriched = {"src": out_row.get("src", ""), "ref": ref_text, "mt": out_row.get("mt", "")}
+            for _, ref_text, src_text, mt_text in matched_rows:
+                enriched = {"src": src_text, "ref": ref_text, "mt": mt_text}
                 f.write(json.dumps(enriched, ensure_ascii=False) + "\n")
 
         csv_rows.append({
