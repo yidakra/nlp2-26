@@ -60,9 +60,25 @@ def parse_wandb_args(args: list[str]) -> dict[str, object]:
     return d
 
 
+def _job_id_from_path(output_jsonl: str) -> int:
+    """Extract SLURM job ID from output filename for recency comparison."""
+    stem = Path(output_jsonl).stem  # e.g. "enzh_22181042_20260423_..."
+    parts = stem.split("_")
+    for part in parts:
+        if part.isdigit() and len(part) >= 7:
+            return int(part)
+    return 0
+
+
 def scan_wandb_runs() -> dict[str, dict[str, str]]:
-    """Return mapping: output_jsonl_rel_path -> {input_jsonl, prompt_strategy, rerank_strategy, model_id}."""
-    mapping: dict[str, dict[str, str]] = {}
+    """Return mapping: output_jsonl_rel_path -> {input_jsonl, prompt_strategy, rerank_strategy, model_id}.
+
+    When multiple runs share the same logical configuration (same input, strategy,
+    and model), only the most recent one (highest SLURM job ID) is kept.
+    """
+    # key -> (job_id, output_jsonl, meta_dict)
+    best: dict[tuple[str, str, str, str], tuple[int, str, dict[str, str]]] = {}
+
     for meta_file in sorted(WANDB_DIR.glob("run-*/files/wandb-metadata.json")):
         try:
             with open(meta_file, encoding="utf-8") as f:
@@ -76,16 +92,26 @@ def scan_wandb_runs() -> dict[str, dict[str, str]]:
                 continue
             if d.get("max_new_tokens") != "4096":
                 continue
-            mapping[str(output_jsonl)] = {
+            meta_dict = {
                 "input_jsonl": str(input_jsonl),
                 "prompt_strategy": str(d.get("prompt_strategy", "baseline")),
                 "rerank_strategy": str(d.get("rerank_strategy", "none")),
                 "model_id": str(d.get("model_id", "google/gemma-4-E2B-it")),
             }
+            config_key = (
+                meta_dict["input_jsonl"],
+                meta_dict["prompt_strategy"],
+                meta_dict["rerank_strategy"],
+                meta_dict["model_id"],
+            )
+            job_id = _job_id_from_path(str(output_jsonl))
+            if config_key not in best or job_id > best[config_key][0]:
+                best[config_key] = (job_id, str(output_jsonl), meta_dict)
         except Exception:
             logger.exception("Failed to parse WandB metadata for %s", meta_file)
             continue
-    return mapping
+
+    return {output_jsonl: meta_dict for _, output_jsonl, meta_dict in best.values()}
 
 
 def filter_terms_by_source(terms: dict[str, Any], src: str) -> dict[str, Any]:
