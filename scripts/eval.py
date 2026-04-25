@@ -8,6 +8,36 @@ from typing import Any, TYPE_CHECKING, Callable, cast, Protocol
 
 import torch
 
+logger = logging.getLogger(__name__)
+
+# transformers >= 5.0 removed build_inputs_with_special_tokens from the slow
+# XLMRobertaTokenizer, but COMET's encoder still calls it. Add it back only if
+# the tokenize class is present and missing the hook.
+try:
+    import transformers as _tf  # type: ignore[import-untyped]
+except ImportError:
+    _tf = None  # type: ignore[assignment]
+else:
+    if hasattr(_tf, "XLMRobertaTokenizer") and not hasattr(
+        _tf.XLMRobertaTokenizer, "build_inputs_with_special_tokens"
+    ):
+        def _xlmr_build_inputs(
+            self: Any, ids0: list[int], ids1: list[int] | None = None
+        ) -> list[int]:
+            bos, eos = self.bos_token_id, self.eos_token_id
+            if ids1 is None:
+                return [bos] + ids0 + [eos]
+            return [bos] + ids0 + [eos, eos] + ids1 + [eos]
+        try:
+            _tf.XLMRobertaTokenizer.build_inputs_with_special_tokens = (  # type: ignore[attr-defined]
+                _xlmr_build_inputs
+            )
+        except AttributeError as err:
+            logging.warning(
+                "Unable to patch transformers.XLMRobertaTokenizer.build_inputs_with_special_tokens: %s",
+                err,
+            )
+
 if TYPE_CHECKING:
     class XCOMETModel(Protocol):
         def predict(self, data: list[dict[str, str]], batch_size: int, gpus: int = 1) -> Any: ...
@@ -29,8 +59,8 @@ LANG_INFO = {
     "ende": {"src": "en", "tgt": "de", "src_full": "English", "tgt_full": "German"},
     "enes": {"src": "en", "tgt": "es", "src_full": "English", "tgt_full": "Spanish"},
     "enru": {"src": "en", "tgt": "ru", "src_full": "English", "tgt_full": "Russian"},
-    "enzh": {"src": "en", "tgt": "zh", "src_full": "English", "tgt_full": "Chinese"},
-    "zhen": {"src": "zh", "tgt": "en", "src_full": "Chinese", "tgt_full": "English"},
+    "enzh": {"src": "en", "tgt": "zh", "src_full": "English", "tgt_full": "Traditional Chinese"},
+    "zhen": {"src": "zh", "tgt": "en", "src_full": "Traditional Chinese", "tgt_full": "English"},
 }
 
 PROMPT_STRATEGIES = {"baseline", "concise", "strict"}
@@ -56,10 +86,48 @@ class Evaluator:
         self.comet_model_id = comet_model_id
         self.model_path: str | None = None
 
-    def evaluate(self, data: list[dict[str, str]], batch_size: int, gpus: int = 1) -> dict[str, Any]:
+    @staticmethod
+    def _split_sentences(text: str) -> list[str]:
+        """Split text into sentences, auto-detecting Chinese vs. Latin script."""
+        def contains_han(characters: str) -> bool:
+            try:
+                import regex as _regex  # type: ignore[import-untyped]
+            except ImportError:
+                return any('一' <= c <= '鿿' for c in characters)
+            try:
+                return bool(_regex.search(r'\p{Han}', characters))
+            except Exception:
+                return any('一' <= c <= '鿿' for c in characters)
+
+        if contains_han(text):
+            parts = re.split(r'(?<=[。！？；…])', text.strip())
+            return [p.strip() for p in parts if p.strip()]
+        try:
+            import nltk  # type: ignore[import-untyped]
+            try:
+                nltk.data.find('tokenizers/punkt_tab')  # type: ignore[reportUnknownMemberType]
+            except LookupError:
+                logger.info("NLTK tokenizer data not found; downloading punkt_tab resource.")
+                nltk.download('punkt_tab', quiet=True)  # type: ignore[reportUnknownMemberType]
+            return [s.strip() for s in nltk.sent_tokenize(text) if s.strip()]  # type: ignore[reportUnknownMemberType]
+        except Exception:
+            parts = re.split(r'(?<=[.!?])\s+', text.strip())
+            return [p.strip() for p in parts if p.strip()]
+
+    def evaluate(
+        self,
+        data: list[dict[str, str]],
+        batch_size: int,
+        gpus: int = 1,
+        sentence_level: bool = True,
+    ) -> dict[str, Any]:
         """
         Evaluate model outputs using XCOMET.
         Expects data as dict entries with "src", "mt", and "ref" keys.
+
+        When sentence_level=True (default), each document is split into sentences
+        and scored individually; per-document scores are averaged. This avoids the
+        512-token encoder limit for document-level inputs.
         """
         comet_module = cast(Any, importlib.import_module("comet"))
         download_model: DownloadModelFn = cast(
@@ -69,17 +137,52 @@ class Evaluator:
             LoadFromCheckpointFn, comet_module.load_from_checkpoint
         )
 
-        if self.model_path is None:
-            self.model_path = download_model(self.comet_model_id)
+        model_path: str = self.model_path or download_model(self.comet_model_id)
+        self.model_path = model_path
 
-        model: XCOMETModel = load_from_checkpoint(self.model_path)
+        model: XCOMETModel = load_from_checkpoint(model_path)
         model = model.to(torch.bfloat16)
-        model_output = model.predict(data, batch_size=batch_size, gpus=gpus)
-        return {
-            "segment": model_output.scores,
-            "system": model_output.system_score,
-            "error": model_output.metadata.error_spans,
-        }
+
+        if not sentence_level:
+            model_output = model.predict(data, batch_size=batch_size, gpus=gpus)
+            return {
+                "segment": model_output.scores,
+                "system": model_output.system_score,
+                "error": model_output.metadata.error_spans,
+            }
+
+        # Expand each document into sentence pairs, preserving doc boundaries.
+        expanded: list[dict[str, str]] = []
+        boundaries: list[tuple[int, int]] = []
+        for row in data:
+            mt_sents = self._split_sentences(row["mt"])
+            ref_sents = self._split_sentences(row["ref"])
+            n = min(len(mt_sents), len(ref_sents))
+            if len(mt_sents) != len(ref_sents):
+                logging.warning(
+                    "Sentence count mismatch: mt=%d ref=%d; scoring first %d pairs",
+                    len(mt_sents), len(ref_sents), n,
+                )
+            start = len(expanded)
+            for j in range(n):
+                expanded.append({"src": row["src"], "mt": mt_sents[j], "ref": ref_sents[j]})
+            boundaries.append((start, len(expanded)))
+
+        model_output = model.predict(expanded, batch_size=batch_size, gpus=gpus)
+        all_scores: list[float] = model_output.scores
+
+        doc_scores: list[float] = []
+        for start, end in boundaries:
+            if end > start:
+                doc_scores.append(sum(all_scores[start:end]) / (end - start))
+            else:
+                doc_scores.append(0.0)
+
+        system_score: float = sum(doc_scores) / len(doc_scores) if doc_scores else 0.0
+        error_spans = []
+        if hasattr(model_output, "metadata") and hasattr(model_output.metadata, "error_spans"):
+            error_spans = model_output.metadata.error_spans
+        return {"segment": doc_scores, "system": system_score, "error": error_spans}
 
     def generate_translations(
         self,
@@ -126,6 +229,59 @@ class Evaluator:
 
         lang = LANG_INFO[src_tgt_pair]
         outputs: list[dict[str, str]] = []
+
+        def build_term_matchers(term_targets: list[str]) -> list[tuple[str, re.Pattern[str] | None]]:
+            def use_ascii_token_boundary(text: str) -> bool:
+                return text.isascii() and any(ch.isalnum() or ch == "_" for ch in text)
+
+            matchers: list[tuple[str, re.Pattern[str] | None]] = []
+            for target in term_targets:
+                if not target:
+                    continue
+                pattern: re.Pattern[str] | None = None
+                if use_ascii_token_boundary(target):
+                    pattern = re.compile(
+                        r"(?<![A-Za-z0-9_])" + re.escape(target) + r"(?![A-Za-z0-9_])",
+                        flags=re.IGNORECASE,
+                    )
+                matchers.append((target, pattern))
+            return matchers
+
+        def filter_terminology_by_source(terminology: object, source: str) -> object:
+            """Retain only terms whose source side appears in the source text.
+
+            For large glossaries (e.g. Track 2 proper condition with 1000+ entries),
+            including all terms in the prompt exceeds GPU memory. Filtering to source-
+            present terms is both memory-safe and semantically correct: terms absent
+            from the source cannot be applied anyway.
+            """
+            if not isinstance(terminology, dict):
+                return terminology
+            term_dict = cast(dict[object, object], terminology)
+            if not term_dict:
+                return term_dict
+
+            source_lower = source.lower()
+            term_targets = [str(k).strip() for k in term_dict.keys() if str(k).strip()]
+            matcher_map: dict[str, re.Pattern[str] | None] = {}
+            for matcher_target, pattern in build_term_matchers(term_targets):
+                if matcher_target not in matcher_map:
+                    matcher_map[matcher_target] = pattern
+
+            filtered: dict[object, object] = {}
+            for k, v in term_dict.items():
+                target = str(k).strip()
+                if not target:
+                    continue
+                pattern = matcher_map.get(target)
+                if pattern is not None:
+                    matched = bool(pattern.search(source))
+                else:
+                    matched = target.lower() in source_lower
+                if matched:
+                    filtered[k] = v
+
+            return filtered
 
         def format_terminology(terminology: object) -> str:
             if terminology is None:
@@ -212,23 +368,6 @@ class Evaluator:
                 f"Terminology: {terminology}\n\n"
             )
 
-        def build_term_matchers(term_targets: list[str]) -> list[tuple[str, re.Pattern[str] | None]]:
-            def use_ascii_token_boundary(text: str) -> bool:
-                return text.isascii() and any(ch.isalnum() or ch == "_" for ch in text)
-
-            matchers: list[tuple[str, re.Pattern[str] | None]] = []
-            for target in term_targets:
-                if not target:
-                    continue
-                pattern: re.Pattern[str] | None = None
-                if use_ascii_token_boundary(target):
-                    pattern = re.compile(
-                        r"(?<![A-Za-z0-9_])" + re.escape(target) + r"(?![A-Za-z0-9_])",
-                        flags=re.IGNORECASE,
-                    )
-                matchers.append((target, pattern))
-            return matchers
-
         def score_candidate(candidate: str, term_matchers: list[tuple[str, re.Pattern[str] | None]]) -> int:
             if not term_matchers:
                 return 0
@@ -259,7 +398,8 @@ class Evaluator:
                 source = entry.get(lang["src"], "")
                 target = entry.get(lang["tgt"], "")
                 raw_terminology = entry.get("terms", "")
-                terminology = format_terminology(raw_terminology)
+                filtered_terminology = filter_terminology_by_source(raw_terminology, source)
+                terminology = format_terminology(filtered_terminology)
                 rng = random.Random(seed + batch_start + row_idx)  # noqa: S311 - deterministic sampling, not crypto.
                 few_shot_block = build_few_shot_block(rng)
 
@@ -299,8 +439,8 @@ class Evaluator:
             )
             for candidate_idx in range(effective_num_candidates):
                 candidate_seed = seed + batch_start + candidate_idx
-                with torch.random.fork_rng(devices=cuda_devices):
-                    torch.manual_seed(candidate_seed)
+                with torch.random.fork_rng(devices=cuda_devices):  # pyright: ignore[reportUnknownMemberType]
+                    torch.manual_seed(candidate_seed)  # pyright: ignore[reportUnknownMemberType]
                     if model_device.type == "cuda":
                         torch.cuda.manual_seed_all(candidate_seed)
                     generated_ids = model.generate(
