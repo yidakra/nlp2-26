@@ -16,6 +16,7 @@ if [[ ! -d "${INPUT_ROOT}" ]]; then
   exit 1
 fi
 
+shopt -s nullglob
 for input_jsonl in "${INPUT_ROOT}"/*.jsonl; do
   fname=$(basename "${input_jsonl}" .jsonl)
   IFS='.' read -r -a parts <<< "${fname}"
@@ -23,6 +24,10 @@ for input_jsonl in "${INPUT_ROOT}"/*.jsonl; do
     echo "ERROR: unexpected filename format: ${fname}" >&2
     continue
   fi
+  # Expect input filenames like year.pair.mode.jsonl, where the basename is
+  # split on '.' into [year, pair, mode]. For example: 2023.enzh.proper.jsonl.
+  # This parsing assumes a single dot separator between those three parts and
+  # strips the .jsonl extension via basename.
   year="${parts[0]}"
   pair="${parts[1]}"
   mode="${parts[2]}"

@@ -456,9 +456,17 @@ class Evaluator:
                 for i in range(current_batch_size):
                     input_ids_len = model_inputs.input_ids[i].shape[0]
                     output_ids = generated_ids[i, input_ids_len:].tolist()
-                    decoded = tokenizer.decode(output_ids, skip_special_tokens=True).strip("\n")
+                    decoded = tokenizer.decode(output_ids, skip_special_tokens=False).strip("\n")
                     if enable_thinking:
-                        decoded = re.sub(r"<think>.*?</think>\s*", "", decoded, flags=re.DOTALL).strip()
+                        decoded = re.sub(r"<think>.*?</think>\s*", "", decoded, flags=re.DOTALL)
+                        if "<think>" in decoded and "</think>" not in decoded:
+                            decoded = decoded[: decoded.index("<think>")]
+                    decoded = decoded.strip()
+                    skip_special_tokens_requested = True
+                    if skip_special_tokens_requested:
+                        for token in tokenizer.all_special_tokens:
+                            decoded = decoded.replace(token, "")
+                        decoded = decoded.strip()
                     candidates_per_input[i].append(decoded)
 
             for i in range(current_batch_size):

@@ -69,6 +69,14 @@ def main() -> None:
     args = parse_args()
     args.output_jsonl.parent.mkdir(parents=True, exist_ok=True)
 
+    model_slug = Path(args.model_id).name
+    supported_thinking_prefixes = ("qwen3",)
+    if args.enable_thinking and not model_slug.lower().startswith(supported_thinking_prefixes):
+        logging.warning(
+            "--enable-thinking is set but %s is not a Qwen3 model. Thinking mode is only supported for Qwen3 variants, so this flag will be ignored.",
+            args.model_id,
+        )
+
     repo_root = Path(__file__).resolve().parents[1]
     if str(repo_root) not in sys.path:
         sys.path.insert(0, str(repo_root))
