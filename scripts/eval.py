@@ -200,6 +200,7 @@ class Evaluator:
         num_candidates: int = 1,
         rerank_strategy: str = "none",
         seed: int = 42,
+        enable_thinking: bool = False,
     ) -> list[dict[str, str]]:
         """
         Generate translations for input examples.
@@ -415,7 +416,7 @@ class Evaluator:
                     messages,
                     tokenize=False,
                     add_generation_prompt=True,
-                    enable_thinking=False,
+                    enable_thinking=enable_thinking,
                 )
                 for messages in messages_list
             ]
@@ -455,9 +456,10 @@ class Evaluator:
                 for i in range(current_batch_size):
                     input_ids_len = model_inputs.input_ids[i].shape[0]
                     output_ids = generated_ids[i, input_ids_len:].tolist()
-                    candidates_per_input[i].append(
-                        tokenizer.decode(output_ids, skip_special_tokens=True).strip("\n")
-                    )
+                    decoded = tokenizer.decode(output_ids, skip_special_tokens=True).strip("\n")
+                    if enable_thinking:
+                        decoded = re.sub(r"<think>.*?</think>\s*", "", decoded, flags=re.DOTALL).strip()
+                    candidates_per_input[i].append(decoded)
 
             for i in range(current_batch_size):
                 selected_mt = candidates_per_input[i][0]

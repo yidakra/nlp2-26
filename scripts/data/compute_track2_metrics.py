@@ -90,11 +90,17 @@ def scan_wandb_runs() -> dict[str, dict[str, str]]:
                 continue
             if "track2" not in str(input_jsonl):
                 continue
-            if d.get("max_new_tokens") != "4096":
+            try:
+                if int(str(d.get("max_new_tokens", 0))) < 4096:
+                    continue
+            except (ValueError, TypeError):
                 continue
+            enable_thinking = str(d.get("enable_thinking", "False")).lower() in ("true", "1")
+            prompt_strategy = str(d.get("prompt_strategy", "baseline"))
+            effective_strategy = f"{prompt_strategy}_thinking" if enable_thinking else prompt_strategy
             meta_dict = {
                 "input_jsonl": str(input_jsonl),
-                "prompt_strategy": str(d.get("prompt_strategy", "baseline")),
+                "prompt_strategy": effective_strategy,
                 "rerank_strategy": str(d.get("rerank_strategy", "none")),
                 "model_id": str(d.get("model_id", "google/gemma-4-E2B-it")),
             }
