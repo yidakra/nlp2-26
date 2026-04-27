@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 
 import torch
 import transformers as tr
+from peft import PeftModel
 
 
 logging.getLogger("urllib3").setLevel(logging.WARNING)
@@ -24,6 +25,7 @@ def parse_args() -> argparse.Namespace:
         choices=["ende", "enes", "enru", "enzh", "zhen"],
         help="Language direction key",
     )
+    parser.add_argument("--adapter", type=Path, default=None, help="Path to adapter")
     parser.add_argument("--input-jsonl", type=Path, help="Path to JSONL inputs")
     parser.add_argument("--output-jsonl", type=Path, default=Path("outputs/inference_outputs.jsonl"))
     parser.add_argument("--batch-size", type=int, default=2)
@@ -108,6 +110,10 @@ def main() -> None:
             torch_dtype=torch.bfloat16,
             device_map="auto",
         )
+        print(f"Loading LoRA adapter at {args.adapter}")
+        if args.adapter is not None:
+            model = PeftModel.from_pretrained(model, args.adapter)
+            model = model.merge_and_unload()
         tokenizer = tr.AutoTokenizer.from_pretrained(args.model_id)
 
         evaluator = Evaluator()

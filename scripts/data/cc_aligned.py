@@ -20,8 +20,8 @@ from tqdm import tqdm
 @dataclass
 class ParallelExample:
     """Represents a parallel text example."""
-    source_text: str
-    target_text: str
+    en: str
+    zh: str
     domain: str
     source_url: str
     target_url: str
@@ -35,7 +35,8 @@ class CCSAlignTSVPreprocessor:
         tsv_path: Path to the TSV file (en_XX-zh_TW.tsv)
         min_length: Minimum character length for valid text (default: 10)
         max_length: Maximum character length for valid text (default: 10000)
-        val_split: Fraction for validation split (default: 0.1)
+        train_size: Number of training examples to keep (default: 15000)
+        val_size: Number of validation examples to keep (default: 2000)
     """
 
     def __init__(
@@ -43,12 +44,14 @@ class CCSAlignTSVPreprocessor:
         tsv_path: Path,
         min_length: int = 10,
         max_length: int = 10000,
-        val_split: float = 0.1,
+        train_size: int = 15000,
+        val_size: int = 2000,
     ):
         self.tsv_path = Path(tsv_path)
         self.min_length = min_length
         self.max_length = max_length
-        self.val_split = val_split
+        self.train_size = train_size
+        self.val_size = val_size
 
         if not self.tsv_path.exists():
             raise FileNotFoundError(f"TSV file not found: {self.tsv_path}")
@@ -93,8 +96,8 @@ class CCSAlignTSVPreprocessor:
             return None
         
         return ParallelExample(
-            source_text=en_text,
-            target_text=zh_text,
+            en=en_text,
+            zh=zh_text,
             domain=domain,
             source_url=en_url,
             target_url=zh_url,
@@ -116,8 +119,8 @@ class CCSAlignTSVPreprocessor:
                     example = self._parse_line(line)
                     if example:
                         yield {
-                            'source_text': example.source_text,
-                            'target_text': example.target_text,
+                            'en': example.en,
+                            'zh': example.zh,
                             'domain': example.domain,
                             'source_url': example.source_url,
                             'target_url': example.target_url,
@@ -147,8 +150,8 @@ class CCSAlignTSVPreprocessor:
         
         # Define dataset schema
         features = datasets.Features({
-            'source_text': datasets.Value('string'),
-            'target_text': datasets.Value('string'),
+            'en': datasets.Value('string'),
+            'zh': datasets.Value('string'),
             'domain': datasets.Value('string'),
             'source_url': datasets.Value('string'),
             'target_url': datasets.Value('string'),
@@ -163,17 +166,24 @@ class CCSAlignTSVPreprocessor:
         
         print(f"Created dataset with {len(dataset)} total examples")
         
-        # Split into train/validation
-        if self.val_split > 0:
-            split_dataset = dataset.train_test_split(test_size=self.val_split, seed=42)
-            dataset_dict = datasets.DatasetDict({
-                'train': split_dataset['train'],
-                'validation': split_dataset['test']
-            })
-            print(f"Train split: {len(dataset_dict['train'])} examples")
-            print(f"Validation split: {len(dataset_dict['validation'])} examples")
-        else:
-            dataset_dict = datasets.DatasetDict({'train': dataset})
+        # Keep only the requested number of examples
+        max_examples = self.train_size + self.val_size
+        if len(dataset) > max_examples:
+            dataset = dataset.shuffle(seed=42).select(range(max_examples))
+
+        # Create train/validation splits from the first N examples
+        train_examples = min(self.train_size, len(dataset))
+        val_examples = min(self.val_size, max(0, len(dataset) - train_examples))
+
+        train_dataset = dataset.select(range(train_examples))
+        validation_dataset = dataset.select(range(train_examples, train_examples + val_examples))
+
+        dataset_dict = datasets.DatasetDict({
+            'train': train_dataset,
+            'validation': validation_dataset
+        })
+        print(f"Train split: {len(dataset_dict['train'])} examples")
+        print(f"Validation split: {len(dataset_dict['validation'])} examples")
         
         # Save dataset (use compression to save disk space)
         dataset_dict.save_to_disk(
@@ -216,10 +226,16 @@ if __name__ == "__main__":
         help="Maximum text length",
     )
     parser.add_argument(
-        "--val-split",
-        type=float,
-        default=0.1,
-        help="Validation split ratio (0.0-1.0)",
+        "--train-size",
+        type=int,
+        default=15000,
+        help="Number of training examples to keep",
+    )
+    parser.add_argument(
+        "--val-size",
+        type=int,
+        default=2000,
+        help="Number of validation examples to keep",
     )
     
     args = parser.parse_args()
@@ -228,7 +244,8 @@ if __name__ == "__main__":
         tsv_path=args.tsv_path,
         min_length=args.min_length,
         max_length=args.max_length,
-        val_split=args.val_split,
+        train_size=args.train_size,
+        val_size=args.val_size,
     )
     
     dataset_dict = preprocessor.preprocess(args.output_dir)

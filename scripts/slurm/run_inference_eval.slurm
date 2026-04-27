@@ -40,8 +40,9 @@ if ! python -c "import wandb; wandb.login(relogin=False, anonymous='never')" >/d
   exit 1
 fi
 
-python scripts/inference.py \
+srun python scripts/inference.py \
   --model-id "${MODEL_ID}" \
+  --adapter "./outputs/cc_aligned_qwen" \
   --src-tgt-pair "${PAIR}" \
   --input-jsonl "${INPUT_JSONL}" \
   --output-jsonl "outputs/${PAIR}_$(date +%Y%m%d_%H%M%S).jsonl" \
