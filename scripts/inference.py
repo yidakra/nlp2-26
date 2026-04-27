@@ -12,6 +12,7 @@ from typing import Any, cast
 import numpy as np
 import torch
 import transformers as tr
+from peft import PeftModel
 
 
 logging.getLogger("urllib3").setLevel(logging.WARNING)
@@ -27,6 +28,7 @@ def parse_args() -> argparse.Namespace:
         choices=["ende", "enes", "enru", "enzh", "zhen"],
         help="Language direction key",
     )
+    parser.add_argument("--adapter", type=Path, default=None, help="Path to adapter")
     parser.add_argument("--input-jsonl", type=Path, help="Path to JSONL inputs")
     parser.add_argument("--output-jsonl", type=Path, default=Path("outputs/inference_outputs.jsonl"))
     parser.add_argument("--batch-size", type=int, default=2)
@@ -188,6 +190,10 @@ def main() -> None:
             torch_dtype=torch.bfloat16,
             device_map="auto",
         )
+        print(f"Loading LoRA adapter at {args.adapter}")
+        if args.adapter is not None:
+            model = PeftModel.from_pretrained(model, args.adapter)
+            model = model.merge_and_unload()
         tokenizer_loader = cast(Any, tr.AutoTokenizer)
         tokenizer = tokenizer_loader.from_pretrained(args.model_id)
 
@@ -221,6 +227,12 @@ def main() -> None:
         release_generation_model()
 
         if args.run_eval:
+
+            # clean up the model to make space for XCOMET
+            if model is not None or tokenizer is not None: 
+                del model, tokenizer
+            gc.collect()
+
             eval_rows = [row for row in outputs if row.get("src") and row.get("mt") and row.get("ref")]
             if not eval_rows:
                 print("Skipping XCOMET: no rows with non-empty src/mt/ref.")

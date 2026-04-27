@@ -17,8 +17,8 @@ from tqdm import tqdm
 @dataclass
 class ParallelExample:
     """Represents a parallel text pair"""
-    source_text: str  # English
-    target_text: str  # Traditional Chinese
+    en: str  # English
+    zh: str  # Traditional Chinese
     doc_id: str
     source_lang: str = "en"
     target_lang: str = "zh_TW"
@@ -281,8 +281,8 @@ class HKLegislationPreprocessor:
 
         # Create parallel example
         example = ParallelExample(
-            source_text=en_text,
-            target_text=zh_text,
+            en=en_text,
+            zh=zh_text,
             doc_id=doc_id,
         )
         examples.append(example)
@@ -318,12 +318,12 @@ class HKLegislationPreprocessor:
             print(f"Extracted {len(all_examples)} parallel examples")
 
         # Convert to dataset format
-        data_dict: dict[str, list[str] | list[int]] = {
-            'source_text': [ex.source_text for ex in all_examples],
-            'target_text': [ex.target_text for ex in all_examples],
+        data_dict = {
+            'en': [ex.en for ex in all_examples],
+            'zh': [ex.zh for ex in all_examples],
             'doc_id': [ex.doc_id for ex in all_examples],
-            'num_tokens_source': [len(ex.source_text.split()) for ex in all_examples],
-            'num_tokens_target': [len(ex.target_text.split()) for ex in all_examples],
+            'num_tokens_source': [len(ex.en.split()) for ex in all_examples],
+            'num_tokens_target': [len(ex.zh.split()) for ex in all_examples],
         }
 
         dataset = Dataset.from_dict(data_dict)  # type: ignore[reportUnknownMemberType]
@@ -452,9 +452,8 @@ if __name__ == "__main__":
         print(f"Average English tokens: {avg_en_tokens:.1f}")
         print(f"Average Chinese tokens: {avg_zh_tokens:.1f}")
         print("\nFirst example:")
-        first = dataset_dict["train"][0]  # type: ignore[reportUnknownVariableType]
-        print(f"  EN: {first['source_text'][:200]}...")  # type: ignore[index]
-        print(f"  ZH: {first['target_text'][:200]}...")  # type: ignore[index]
+        print(f"  EN: {dataset_dict['train'][0]['en'][:200]}...")
+        print(f"  ZH: {dataset_dict['train'][0]['zh'][:200]}...")
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
     preprocessor.save_dataset(dataset_dict, str(args.output_dir))
