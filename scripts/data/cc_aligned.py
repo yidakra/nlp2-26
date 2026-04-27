@@ -9,11 +9,10 @@ The content columns contain web text with pipe-delimited segments.
 """
 
 from pathlib import Path
-from typing import Optional
 from dataclasses import dataclass
 import re
 
-import datasets
+import datasets  # type: ignore[import-untyped]
 from tqdm import tqdm
 
 
@@ -74,7 +73,7 @@ class CCSAlignTSVPreprocessor:
         cleaned = self._clean_text(text)
         return self.min_length <= len(cleaned) <= self.max_length
 
-    def _parse_line(self, line: str) -> Optional[ParallelExample]:
+    def _parse_line(self, line: str) -> ParallelExample | None:
         """Parse a single TSV line."""
         parts = line.rstrip('\n').split('\t')
         
@@ -158,10 +157,10 @@ class CCSAlignTSVPreprocessor:
         })
         
         # Create dataset from generator (streams data, doesn't load all to memory)
-        dataset = datasets.Dataset.from_generator(
+        dataset = datasets.Dataset.from_generator(  # type: ignore[reportUnknownMemberType]
             self._example_generator,
             features=features,
-            cache_dir=None,  # Disable caching to save space
+            cache_dir=None,  # type: ignore[arg-type]
         )
         
         print(f"Created dataset with {len(dataset)} total examples")
@@ -186,9 +185,9 @@ class CCSAlignTSVPreprocessor:
         print(f"Validation split: {len(dataset_dict['validation'])} examples")
         
         # Save dataset (use compression to save disk space)
-        dataset_dict.save_to_disk(
+        dataset_dict.save_to_disk(  # type: ignore[reportUnknownMemberType]
             str(output_dir),
-            max_shard_size='1GB',  # Split into 1GB shards
+            max_shard_size='1GB',
         )
         print(f"Dataset saved to {output_dir}")
         

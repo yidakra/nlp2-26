@@ -4,12 +4,17 @@ __pycache__
 checkpoints/
 /data/
 .venv/
+.env
+.env.*
+!.env.example
 /outputs/
 /logs/
 /wandb/
-nlp2-infer-eval-*.out
-nlp2-infer-eval-*.err
+nlp2-*.out
+nlp2-*.err
 tea_debug.log
 
 # macOS metadata
 .DS_Store
+# Ignore generated WMT submission outputs for all teams
+wmt25-terminology/ranking/submissions/
