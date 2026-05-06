@@ -300,9 +300,11 @@ def main():
     )
 
     # Model Loading
-    model = AutoModelForCausalLM.from_pretrained(args.model, dtype=torch.bfloat16, device_map="auto", attn_implementation="eager")
     tokenizer = AutoTokenizer.from_pretrained(args.model)
-    if tokenizer.pad_token is None: tokenizer.pad_token = tokenizer.eos_token
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
+    model = AutoModelForCausalLM.from_pretrained(args.model, dtype=torch.bfloat16, device_map="auto", attn_implementation="eager")
+    model.config.pad_token_id = tokenizer.pad_token_id
 
     # Convert the raw HF dataset using our mapping function
     train_dataset = dataset['train'].map(
