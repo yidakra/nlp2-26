@@ -98,17 +98,20 @@ def scan_wandb_runs() -> dict[str, dict[str, str]]:
             enable_thinking = str(d.get("enable_thinking", "False")).lower() in ("true", "1")
             prompt_strategy = str(d.get("prompt_strategy", "baseline"))
             effective_strategy = f"{prompt_strategy}_thinking" if enable_thinking else prompt_strategy
+            adapter = str(d["adapter"]) if d.get("adapter") else ""
             meta_dict = {
                 "input_jsonl": str(input_jsonl),
                 "prompt_strategy": effective_strategy,
                 "rerank_strategy": str(d.get("rerank_strategy", "none")),
                 "model_id": str(d.get("model_id", "google/gemma-4-E2B-it")),
+                "adapter": adapter,
             }
             config_key = (
                 meta_dict["input_jsonl"],
                 meta_dict["prompt_strategy"],
                 meta_dict["rerank_strategy"],
                 meta_dict["model_id"],
+                meta_dict["adapter"],
             )
             job_id = _job_id_from_path(str(output_jsonl))
             if config_key not in best or job_id > best[config_key][0]:
@@ -195,7 +198,9 @@ def main() -> None:
             continue
 
         model_id = meta["model_id"]
-        model_slug = Path(model_id).name  # e.g. "gemma-4-E2B-it" or "Qwen3.5-9B"
+        adapter = meta.get("adapter", "")
+        base_slug = Path(model_id).name  # e.g. "gemma-4-E2B-it" or "Qwen3.5-9B"
+        model_slug = f"{base_slug}-{Path(adapter).name}" if adapter else base_slug
 
         input_fname = Path(meta["input_jsonl"]).stem  # e.g. "2023.enzh.noterm"
         parts = input_fname.split(".")
