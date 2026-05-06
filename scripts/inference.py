@@ -69,7 +69,12 @@ def parse_args() -> argparse.Namespace:
         help="Max tokens for the <think> reasoning block (Qwen3 thinking mode only). "
              "Caps reasoning so remaining tokens are available for the translation.",
     )
-    return parser.parse_args()
+    args = parser.parse_args()
+    if args.thinking_budget is not None and args.thinking_budget <= 0:
+        parser.error("--thinking-budget must be a positive integer.")
+    if args.thinking_budget is not None and not args.enable_thinking:
+        parser.error("--thinking-budget requires --enable-thinking.")
+    return args
 
 
 def main() -> None:
