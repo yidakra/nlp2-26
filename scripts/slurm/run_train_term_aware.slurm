@@ -13,7 +13,7 @@ set -euo pipefail
 # Example:
 # sbatch scripts/slurm/run_train_term_aware.slurm \
 #   /path/to/data_dir \
-#   google/gemma-4-E2B-it \
+#   google/gemma-3-1b-it \
 #   outputs/term_aware_lora \
 #   4 \
 #   3 \

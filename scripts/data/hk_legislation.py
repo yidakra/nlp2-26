@@ -13,6 +13,13 @@ import datasets  # type: ignore[import-untyped]
 from datasets import Dataset  # type: ignore[import-untyped]
 from tqdm import tqdm
 
+# Try to import jieba for Chinese word segmentation
+try:
+    import jieba
+    JIEBA_AVAILABLE = True
+except ImportError:
+    JIEBA_AVAILABLE = False
+
 
 @dataclass
 class ParallelExample:
@@ -318,12 +325,18 @@ class HKLegislationPreprocessor:
             print(f"Extracted {len(all_examples)} parallel examples")
 
         # Convert to dataset format
+        # Use jieba for Chinese word segmentation if available, otherwise fall back to character count
+        if JIEBA_AVAILABLE:
+            num_tokens_target = [len(jieba.lcut(ex.zh)) for ex in all_examples]
+        else:
+            num_tokens_target = [len(ex.zh) for ex in all_examples]
+
         data_dict = {
             'en': [ex.en for ex in all_examples],
             'zh': [ex.zh for ex in all_examples],
             'doc_id': [ex.doc_id for ex in all_examples],
             'num_tokens_source': [len(ex.en.split()) for ex in all_examples],
-            'num_tokens_target': [len(ex.zh.split()) for ex in all_examples],
+            'num_tokens_target': num_tokens_target,
         }
 
         dataset = Dataset.from_dict(data_dict)  # type: ignore[reportUnknownMemberType]

@@ -35,6 +35,9 @@ LANG_INFO = {
     "zhen": {"src": "zh", "tgt": "en", "src_full": "Traditional Chinese", "tgt_full": "English"},
 }
 
+# Seeded RNG for reproducibility
+rng = random.Random(42)
+
 def build_cccedict_mapping():
     """Builds a cached mapping from Traditional Chinese tokens to clean English definitions."""
     cccedict = CcCedict()
@@ -63,22 +66,23 @@ def extract_alignments(dataset, desc="Extracting alignments"):
     zh_to_en = build_cccedict_mapping()
     alignments = []
     word_pattern = re.compile(r"[a-z0-9\-]+")
-    
+
     for example in tqdm(dataset, desc=desc):
         source_en = example['en'].lower()
         target_zh = example['zh']
         en_words = word_pattern.findall(source_en)
         clean_source_en = " " + " ".join(en_words) + " "
         tgt_tokens = [tok for tok in jieba.lcut(target_zh) if tok.strip()]
-        
+
         terms = []
         for zh_word in tgt_tokens:
             if zh_word in zh_to_en:
-                for en_def in zh_to_en[zh_word]:
+                # Sort to ensure deterministic selection
+                for en_def in sorted(zh_to_en[zh_word]):
                     if f" {en_def} " in clean_source_en:
                         terms.append((en_def, zh_word))
                         break
-                        
+
         terms = normalize_term_pairs(terms)
         # Note: We limit extracted terms here to the 50-170 range
         alignments.append(limit_terms_per_document(terms, min_terms=50, max_terms=170))
@@ -124,8 +128,8 @@ def limit_terms_per_document(terms, min_terms=50, max_terms=170):
     """Keep at most a random number of term pairs per document."""
     if len(terms) <= min_terms:
         return terms
-    max_keep = random.randint(min_terms, max_terms)
-    return random.sample(terms, min(len(terms), max_keep))
+    max_keep = rng.randint(min_terms, max_terms)
+    return rng.sample(terms, min(len(terms), max_keep))
 
 def save_extracted_terms_dataset(dataset, alignments, output_dir, split_name):
     output_path = Path(output_dir) / split_name
@@ -144,9 +148,9 @@ def augment_terminology(terms):
     CHANGE 1: 50/50 chance of showing terms or showing nothing.
     Since extraction already limited the range to 50-170, we display what is available.
     """
-    if not terms or random.random() < 0.5:
+    if not terms or rng.random() < 0.5:
         return ""
-    
+
     # Terms are already pre-filtered/limited to 50-170 in extract_alignments
     return ', '.join(f'{src} -> {tgt}' for src, tgt in terms)
 
@@ -160,23 +164,23 @@ class TermAwareDataset(Dataset):
     
     def __getitem__(self, idx):
         example = self.dataset[idx]
-        is_zh_to_en = random.random() < 0.5
-        
+        is_zh_to_en = rng.random() < 0.5
+
         if not is_zh_to_en:
             # English to Chinese
             lang = LANG_INFO["enzh"]
             source, target = example['en'], example['zh']
             # CHANGE 2: (src: en, tgt: zh)
-            terms = self.alignments[idx] 
+            terms = self.alignments[idx]
         else:
             # Chinese to English
             lang = LANG_INFO["zhen"]
             source, target = example['zh'], example['en']
             # CHANGE 2: Swap order (src: zh, tgt: en)
             terms = [(zh, en) for en, zh in self.alignments[idx]]
-        
+
         terminology = augment_terminology(terms)
-        
+
         prompt = (
             f"Translate the following sentence from {lang['src_full']} to {lang['tgt_full']}, "
             "respecting the given terminology. Output the translation and nothing else.\n\n"
@@ -188,11 +192,11 @@ class TermAwareDataset(Dataset):
 
 def process_data_for_sft(example, idx, alignments, tokenizer):
     # Randomly decide direction
-    is_zh_to_en = random.random() < 0.5
-    
+    is_zh_to_en = rng.random() < 0.5
+
     # Get the base alignment for this index
     base_terms = alignments[idx]
-    
+
     if not is_zh_to_en:
         lang = LANG_INFO["enzh"]
         source, target = example['en'], example['zh']
@@ -201,22 +205,22 @@ def process_data_for_sft(example, idx, alignments, tokenizer):
         lang = LANG_INFO["zhen"]
         source, target = example['zh'], example['en']
         terms = [(zh, en) for en, zh in base_terms] # Swap to (zh, en)
-    
+
     terminology = augment_terminology(terms)
-    
+
     prompt = (
         f"Translate the following sentence from {lang['src_full']} to {lang['tgt_full']}, "
         "respecting the given terminology. Output the translation and nothing else.\n\n"
         f"Source: {source}\n"
         f"Terminology: {terminology}\n\n"
     )
-    
+
     # Format for chat template
     messages = [
         {"role": "user", "content": prompt},
         {"role": "assistant", "content": target}
     ]
-    
+
     return {"text": tokenizer.apply_chat_template(messages, tokenize=False)}
 
 def main():
@@ -228,8 +232,10 @@ def main():
     parser.add_argument("--output_dir", required=True)
     parser.add_argument("--save_terms_dir", default=None)
     parser.add_argument("--lora_rank", type=int, default=16)
+    parser.add_argument("--max_length", type=int, default=4096)
     parser.add_argument("--wandb", action="store_true")
     parser.add_argument("--wandb_project", default="nlp2-26")
+    parser.add_argument("--wandb_group", default=None)
     parser.add_argument("--codecarbon", action="store_true")
     args = parser.parse_args()
     
@@ -255,16 +261,13 @@ def main():
             save_extracted_terms_dataset(dataset['train'], alignments_train, args.save_terms_dir, "train")
             save_extracted_terms_dataset(dataset['validation'], alignments_val, args.save_terms_dir, "validation")
 
-    train_dataset = TermAwareDataset(dataset['train'], alignments_train)
-    val_dataset = TermAwareDataset(dataset['validation'], alignments_val)
-    
-    steps_per_epoch = max(1, len(train_dataset) // (args.batch_size * 8))
+    steps_per_epoch = max(1, len(dataset['train']) // (args.batch_size * 8))
     eval_steps = max(1, steps_per_epoch // 10)
 
     if args.wandb:
         wandb.init(
             project=args.wandb_project,
-            group=os.getenv("WANDB_RUN_GROUP"),
+            group=args.wandb_group or os.getenv("WANDB_RUN_GROUP"),
             entity=os.getenv("WANDB_ENTITY"),
             config={
                 "output_dir": args.output_dir,
@@ -275,7 +278,7 @@ def main():
                 "eval_steps": eval_steps,
                 "save_steps": eval_steps,
                 "metric_for_best_model": "eval_loss",
-                "max_length": 2048,
+                "max_length": args.max_length,
             },
             name=f"nmt-sft-{datetime.now().strftime('%Y%m%d-%H%M')}"
         )
@@ -294,7 +297,7 @@ def main():
         load_best_model_at_end=True,
         metric_for_best_model="eval_loss",
         report_to=["wandb"] if args.wandb else ["none"],
-        max_length=4096,
+        max_length=args.max_length,
         bf16=True,
         gradient_checkpointing=True,
     )

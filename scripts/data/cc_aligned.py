@@ -164,25 +164,32 @@ class CCSAlignTSVPreprocessor:
         )
         
         print(f"Created dataset with {len(dataset)} total examples")
-        
+
+        # Always shuffle the dataset before selecting ranges to avoid domain-skewed validation sets
+        shuffled_dataset = dataset.shuffle(seed=42)
+
         # Keep only the requested number of examples
         max_examples = self.train_size + self.val_size
-        if len(dataset) > max_examples:
-            dataset = dataset.shuffle(seed=42).select(range(max_examples))
+        if len(shuffled_dataset) > max_examples:
+            shuffled_dataset = shuffled_dataset.select(range(max_examples))
 
-        # Create train/validation splits from the first N examples
-        train_examples = min(self.train_size, len(dataset))
-        val_examples = min(self.val_size, max(0, len(dataset) - train_examples))
+        # Create train/validation splits from the shuffled data
+        train_examples = min(self.train_size, len(shuffled_dataset))
+        val_examples = min(self.val_size, max(0, len(shuffled_dataset) - train_examples))
 
-        train_dataset = dataset.select(range(train_examples))
-        validation_dataset = dataset.select(range(train_examples, train_examples + val_examples))
+        train_dataset = shuffled_dataset.select(range(train_examples))
+        validation_dataset = shuffled_dataset.select(range(train_examples, train_examples + val_examples))
+
+        # Warn if no validation data was created
+        if val_examples == 0:
+            print(f"WARNING: No validation data created (train_size={self.train_size}, val_size={self.val_size}, train_examples={train_examples}, val_examples={val_examples})")
 
         dataset_dict = datasets.DatasetDict({
             'train': train_dataset,
             'validation': validation_dataset
         })
-        print(f"Train split: {len(dataset_dict['train'])} examples")
-        print(f"Validation split: {len(dataset_dict['validation'])} examples")
+        print(f"Train split: {len(train_dataset)} examples")
+        print(f"Validation split: {len(validation_dataset)} examples")
         
         # Save dataset (use compression to save disk space)
         dataset_dict.save_to_disk(  # type: ignore[reportUnknownMemberType]
