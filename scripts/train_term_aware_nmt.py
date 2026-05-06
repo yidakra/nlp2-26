@@ -23,8 +23,6 @@ from peft import LoraConfig
 from trl import SFTTrainer, SFTConfig
 from tqdm import tqdm
 
-import wandb
-from codecarbon import OfflineEmissionsTracker
 
 LANG_INFO = {
     "enzh": {"src": "en", "tgt": "zh", "src_full": "English", "tgt_full": "Traditional Chinese"},
@@ -192,7 +190,8 @@ def main():
 
     tracker = None
     if args.codecarbon:
-        tracker = OfflineEmissionsTracker(output_dir=os.getenv('CODECARBON_OUTPUT_DIR'), project_name=args.wandb_project, country_iso_code=os.getenv('CODECARBON_COUNTRY_ISO_CODE', 'NLD'))
+        from codecarbon import OfflineEmissionsTracker
+        tracker = OfflineEmissionsTracker(output_dir=os.getenv('CODECARBON_OUTPUT_DIR', 'outputs/codecarbon'), project_name=args.wandb_project, country_iso_code=os.getenv('CODECARBON_COUNTRY_ISO_CODE', 'NLD'))
         tracker.start()
     
     alignments_train = None
@@ -214,6 +213,7 @@ def main():
     eval_steps = max(1, steps_per_epoch // 10)
 
     if args.wandb:
+        import wandb
         wandb.init(
             project=args.wandb_project,
             group=args.wandb_group or os.getenv("WANDB_RUN_GROUP"),
