@@ -256,8 +256,6 @@ def main():
             save_extracted_terms_dataset(dataset['validation'], alignments_val, args.save_terms_dir, "validation")
 
     train_dataset = TermAwareDataset(dataset['train'], alignments_train)
-    print(train_dataset[0])  # Debug: Check first training example with terms
-    print(train_dataset[1])  # Debug: Check second training example with terms
     val_dataset = TermAwareDataset(dataset['validation'], alignments_val)
     
     steps_per_epoch = max(1, len(train_dataset) // (args.batch_size * 8))
