@@ -27,6 +27,7 @@ def parse_args() -> argparse.Namespace:
         choices=["ende", "enes", "enru", "enzh", "zhen"],
         help="Language direction key",
     )
+    parser.add_argument("--adapter", type=Path, default=None, help="Path to adapter")
     parser.add_argument("--input-jsonl", type=Path, help="Path to JSONL inputs")
     parser.add_argument("--output-jsonl", type=Path, default=Path("outputs/inference_outputs.jsonl"))
     parser.add_argument("--batch-size", type=int, default=2)
@@ -201,6 +202,11 @@ def main() -> None:
             torch_dtype=torch.bfloat16,
             device_map="auto",
         )
+        if args.adapter is not None:
+            from peft import PeftModel
+            print(f"Loading LoRA adapter at {args.adapter}")
+            model = PeftModel.from_pretrained(model, args.adapter)
+            model = model.merge_and_unload()
         tokenizer_loader = cast(Any, tr.AutoTokenizer)
         tokenizer = tokenizer_loader.from_pretrained(args.model_id)
 

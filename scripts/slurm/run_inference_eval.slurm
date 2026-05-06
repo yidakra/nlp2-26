@@ -57,8 +57,14 @@ if ! python -c "import wandb; wandb.login(relogin=False, anonymous='never')" >/d
   exit 1
 fi
 
-python scripts/inference.py \
+ADAPTER_ARGS=()
+if [[ -n "${ADAPTER:-}" ]]; then
+  ADAPTER_ARGS=(--adapter "${ADAPTER}")
+fi
+
+srun python scripts/inference.py \
   --model-id "${MODEL_ID}" \
+  "${ADAPTER_ARGS[@]}" \
   --src-tgt-pair "${PAIR}" \
   --input-jsonl "${INPUT_JSONL}" \
   --output-jsonl "outputs/${PAIR}_${SLURM_JOB_ID:-nojid}_$(date +%Y%m%d_%H%M%S_%N).jsonl" \
