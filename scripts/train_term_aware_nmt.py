@@ -12,18 +12,14 @@ import os
 import random
 from datetime import datetime, timezone
 from pathlib import Path
-import itertools
 import re
-import string
 
 import jieba
 from pycccedict.cccedict import CcCedict
 import torch
-from torch.utils.data import Dataset
 import datasets
-from datasets import load_dataset
 from transformers import AutoTokenizer, AutoModelForCausalLM
-from peft import LoraConfig, get_peft_model
+from peft import LoraConfig
 from trl import SFTTrainer, SFTConfig
 from tqdm import tqdm
 
@@ -34,9 +30,6 @@ LANG_INFO = {
     "enzh": {"src": "en", "tgt": "zh", "src_full": "English", "tgt_full": "Traditional Chinese"},
     "zhen": {"src": "zh", "tgt": "en", "src_full": "Traditional Chinese", "tgt_full": "English"},
 }
-
-# Seeded RNG for reproducibility
-rng = random.Random(42)
 
 def build_cccedict_mapping():
     """Builds a cached mapping from Traditional Chinese tokens to clean English definitions."""
@@ -67,7 +60,7 @@ def extract_alignments(dataset, desc="Extracting alignments"):
     alignments = []
     word_pattern = re.compile(r"[a-z0-9\-]+")
 
-    for example in tqdm(dataset, desc=desc):
+    for i, example in enumerate(tqdm(dataset, desc=desc)):
         source_en = example['en'].lower()
         target_zh = example['zh']
         en_words = word_pattern.findall(source_en)
@@ -77,15 +70,13 @@ def extract_alignments(dataset, desc="Extracting alignments"):
         terms = []
         for zh_word in tgt_tokens:
             if zh_word in zh_to_en:
-                # Sort to ensure deterministic selection
                 for en_def in sorted(zh_to_en[zh_word]):
                     if f" {en_def} " in clean_source_en:
                         terms.append((en_def, zh_word))
                         break
 
         terms = normalize_term_pairs(terms)
-        # Note: We limit extracted terms here to the 50-170 range
-        alignments.append(limit_terms_per_document(terms, min_terms=50, max_terms=170))
+        alignments.append(limit_terms_per_document(terms, random.Random(42 + i), min_terms=50, max_terms=170))
     return alignments
 
 STOPWORDS_EN = {
@@ -124,7 +115,7 @@ def normalize_term_pairs(terms):
             cleaned.append(pair)
     return cleaned
 
-def limit_terms_per_document(terms, min_terms=50, max_terms=170):
+def limit_terms_per_document(terms, rng, min_terms=50, max_terms=170):
     """Keep at most a random number of term pairs per document."""
     if len(terms) <= min_terms:
         return terms
@@ -143,70 +134,29 @@ def load_extracted_terms_dataset(input_dir, split_name):
     term_dataset = datasets.load_from_disk(str(dataset_path))
     return [[(p["src"], p["tgt"]) for p in ex.get("terms", [])] for ex in term_dataset]
 
-def augment_terminology(terms):
-    """
-    CHANGE 1: 50/50 chance of showing terms or showing nothing.
-    Since extraction already limited the range to 50-170, we display what is available.
-    """
+def augment_terminology(terms, rng):
+    """50/50 chance of showing terms or showing nothing."""
     if not terms or rng.random() < 0.5:
         return ""
-
-    # Terms are already pre-filtered/limited to 50-170 in extract_alignments
     return ', '.join(f'{src} -> {tgt}' for src, tgt in terms)
 
-class TermAwareDataset(Dataset):
-    def __init__(self, dataset, alignments):
-        self.dataset = dataset
-        self.alignments = alignments
-    
-    def __len__(self):
-        return len(self.dataset)
-    
-    def __getitem__(self, idx):
-        example = self.dataset[idx]
-        is_zh_to_en = rng.random() < 0.5
-
-        if not is_zh_to_en:
-            # English to Chinese
-            lang = LANG_INFO["enzh"]
-            source, target = example['en'], example['zh']
-            # CHANGE 2: (src: en, tgt: zh)
-            terms = self.alignments[idx]
-        else:
-            # Chinese to English
-            lang = LANG_INFO["zhen"]
-            source, target = example['zh'], example['en']
-            # CHANGE 2: Swap order (src: zh, tgt: en)
-            terms = [(zh, en) for en, zh in self.alignments[idx]]
-
-        terminology = augment_terminology(terms)
-
-        prompt = (
-            f"Translate the following sentence from {lang['src_full']} to {lang['tgt_full']}, "
-            "respecting the given terminology. Output the translation and nothing else.\n\n"
-            f"Source: {source}\n"
-            f"Terminology: {terminology}\n\n"
-        )
-        return {"text": prompt, "target": target}
-
-
 def process_data_for_sft(example, idx, alignments, tokenizer):
-    # Randomly decide direction
+    # Seed per-example so results are reproducible regardless of .map() parallelism
+    rng = random.Random(42 + idx)
     is_zh_to_en = rng.random() < 0.5
 
-    # Get the base alignment for this index
     base_terms = alignments[idx]
 
     if not is_zh_to_en:
         lang = LANG_INFO["enzh"]
         source, target = example['en'], example['zh']
-        terms = base_terms # (en, zh)
+        terms = base_terms
     else:
         lang = LANG_INFO["zhen"]
         source, target = example['zh'], example['en']
-        terms = [(zh, en) for en, zh in base_terms] # Swap to (zh, en)
+        terms = [(zh, en) for en, zh in base_terms]
 
-    terminology = augment_terminology(terms)
+    terminology = augment_terminology(terms, rng)
 
     prompt = (
         f"Translate the following sentence from {lang['src_full']} to {lang['tgt_full']}, "
@@ -215,7 +165,6 @@ def process_data_for_sft(example, idx, alignments, tokenizer):
         f"Terminology: {terminology}\n\n"
     )
 
-    # Format for chat template
     messages = [
         {"role": "user", "content": prompt},
         {"role": "assistant", "content": target}
@@ -306,7 +255,7 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(args.model)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
-    model = AutoModelForCausalLM.from_pretrained(args.model, dtype=torch.bfloat16, device_map="auto", attn_implementation="eager")
+    model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=torch.bfloat16, device_map="auto", attn_implementation="eager")
     model.config.pad_token_id = tokenizer.pad_token_id
 
     # Convert the raw HF dataset using our mapping function
