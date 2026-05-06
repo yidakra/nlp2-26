@@ -62,7 +62,19 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducible sampling.")
     parser.add_argument("--run-eval", action="store_true", help="Run XCOMET eval if references exist")
     parser.add_argument("--enable-thinking", action="store_true", help="Enable thinking mode (Qwen3 models only)")
-    return parser.parse_args()
+    parser.add_argument(
+        "--thinking-budget",
+        type=int,
+        default=None,
+        help="Max tokens for the <think> reasoning block (Qwen3 thinking mode only). "
+             "Caps reasoning so remaining tokens are available for the translation.",
+    )
+    args = parser.parse_args()
+    if args.thinking_budget is not None and args.thinking_budget <= 0:
+        parser.error("--thinking-budget must be a positive integer.")
+    if args.thinking_budget is not None and not args.enable_thinking:
+        parser.error("--thinking-budget requires --enable-thinking.")
+    return args
 
 
 def main() -> None:
@@ -168,6 +180,7 @@ def main() -> None:
                 "rerank_strategy": args.rerank_strategy,
                 "seed": args.seed,
                 "enable_thinking": args.enable_thinking,
+                "thinking_budget": args.thinking_budget,
                 "run_eval": args.run_eval,
                 "codecarbon_output_dir": str(codecarbon_output_dir),
                 "codecarbon_country_iso_code": codecarbon_country_iso,
@@ -208,6 +221,7 @@ def main() -> None:
             rerank_strategy=args.rerank_strategy,
             seed=args.seed,
             enable_thinking=args.enable_thinking,
+            thinking_budget=args.thinking_budget,
         )
 
         with args.output_jsonl.open("w", encoding="utf-8") as f:

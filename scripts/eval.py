@@ -201,6 +201,7 @@ class Evaluator:
         rerank_strategy: str = "none",
         seed: int = 42,
         enable_thinking: bool = False,
+        thinking_budget: int | None = None,
     ) -> list[dict[str, str]]:
         """
         Generate translations for input examples.
@@ -411,12 +412,37 @@ class Evaluator:
                 prompts.append(build_prompt(source, terminology, few_shot_block))
 
             messages_list = [[{"role": "user", "content": prompt}] for prompt in prompts]
+            thinking_kwargs: dict[str, Any] = {}
+            if enable_thinking and thinking_budget is not None:
+                validated_thinking_budget = thinking_budget
+                if max_new_tokens <= 1:
+                    logger.warning(
+                        "Ignoring thinking_budget=%s because max_new_tokens=%s leaves no room for translation output.",
+                        thinking_budget,
+                        max_new_tokens,
+                    )
+                else:
+                    if validated_thinking_budget <= 0:
+                        logger.warning(
+                            "Clamping non-positive thinking_budget=%s to 1.",
+                            thinking_budget,
+                        )
+                        validated_thinking_budget = 1
+                    if validated_thinking_budget >= max_new_tokens:
+                        logger.warning(
+                            "Clamping thinking_budget=%s to %s so generation leaves room for translation output.",
+                            thinking_budget,
+                            max_new_tokens - 1,
+                        )
+                        validated_thinking_budget = max_new_tokens - 1
+                    thinking_kwargs["thinking_budget"] = validated_thinking_budget
             texts = [
                 tokenizer.apply_chat_template(
                     messages,
                     tokenize=False,
                     add_generation_prompt=True,
                     enable_thinking=enable_thinking,
+                    **thinking_kwargs,
                 )
                 for messages in messages_list
             ]

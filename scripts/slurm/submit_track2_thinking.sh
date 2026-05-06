@@ -2,8 +2,9 @@
 set -euo pipefail
 
 # Track 2 thinking-mode launcher: baseline inference with Qwen3 thinking enabled.
-# Runs Qwen3.5-9B with enable_thinking=True on all 30 Track 2 test files.
-# Uses max-new-tokens=8192 to accommodate reasoning chains.
+# Runs Qwen3.5-9B with enable_thinking=True and a capped thinking_budget=2048 on
+# all 30 Track 2 test files. max-new-tokens=6144 gives ~4096 tokens for the
+# translation after the 2048-token reasoning block.
 #
 # Usage (from repo root):
 #   bash scripts/slurm/submit_track2_thinking.sh [model_id]
@@ -47,8 +48,9 @@ for input_jsonl in "${INPUT_ROOT}"/*.jsonl; do
     --temperature 0.7 \
     --top-p 0.8 \
     --seed 42 \
-    --max-new-tokens 8192 \
-    --enable-thinking)
+    --max-new-tokens 6144 \
+    --enable-thinking \
+    --thinking-budget 2048)
 
   echo "submitted year=${year} pair=${pair} mode=${mode} strategy=thinking job=${jid}"
 done
