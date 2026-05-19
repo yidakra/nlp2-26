@@ -73,14 +73,16 @@ def main() -> None:
     parser.add_argument("--wandb-group", default="ape")
     parser.add_argument("--codecarbon", action="store_true")
     args = parser.parse_args()
+    if not 0 < args.val_fraction < 1:
+        raise ValueError("--val-fraction must be in the open interval (0, 1).")
 
     random.seed(args.seed)
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
     records = [
-        json.loads(l)
-        for l in args.training_jsonl.read_text(encoding="utf-8").splitlines()
-        if l.strip()
+        json.loads(line)
+        for line in args.training_jsonl.read_text(encoding="utf-8").splitlines()
+        if line.strip()
     ]
     random.shuffle(records)
     print(f"Loaded {len(records)} training records from {args.training_jsonl}")
@@ -90,7 +92,9 @@ def main() -> None:
         tokenizer.pad_token = tokenizer.eos_token
 
     texts = [build_example(r, tokenizer) for r in records]
-    n_val = max(1, int(len(texts) * args.val_fraction))
+    if len(texts) < 2:
+        raise ValueError("Need at least 2 training records to create train/val splits.")
+    n_val = min(max(1, int(len(texts) * args.val_fraction)), len(texts) - 1)
     train_ds = Dataset.from_dict({"text": texts[n_val:]})
     val_ds = Dataset.from_dict({"text": texts[:n_val]})
     print(f"Train: {len(train_ds)}, Val: {len(val_ds)}")

@@ -124,12 +124,17 @@ def main() -> None:
         data = [{"en": "Hello, how are you?", "zh": "你好嗎？", "terms": ""}]
 
     if args.draft_jsonl is not None:
-        drafts = load_jsonl(args.draft_jsonl)
+        drafts = load_jsonl(args.draft_jsonl, max_samples=args.max_samples)
         if len(drafts) != len(data):
             raise ValueError(
                 f"--draft-jsonl has {len(drafts)} rows but input has {len(data)} rows."
             )
-        data = [{**row, "draft": drafts[i].get("mt", "")} for i, row in enumerate(data)]
+        for i, draft_row in enumerate(drafts):
+            if "mt" not in draft_row:
+                raise ValueError(f"Missing 'mt' in --draft-jsonl at row {i}.")
+            if not str(draft_row["mt"]).strip():
+                raise ValueError(f"Empty 'mt' in --draft-jsonl at row {i}.")
+        data = [{**row, "draft": drafts[i]["mt"]} for i, row in enumerate(data)]
 
     few_shot_examples: list[dict[str, Any]] = []
     if args.few_shot_examples_jsonl is not None:
