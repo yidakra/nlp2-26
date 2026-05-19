@@ -63,7 +63,7 @@ LANG_INFO = {
     "zhen": {"src": "zh", "tgt": "en", "src_full": "Traditional Chinese", "tgt_full": "English"},
 }
 
-PROMPT_STRATEGIES = {"baseline", "concise", "strict"}
+PROMPT_STRATEGIES = {"baseline", "concise", "strict", "ape"}
 RERANK_STRATEGIES = {"none", "term_coverage"}
 
 
@@ -345,7 +345,15 @@ class Evaluator:
                 )
             return "\n".join(lines) + "\n\n"
 
-        def build_prompt(source: str, terminology: str, few_shot_block: str) -> str:
+        def build_prompt(source: str, terminology: str, few_shot_block: str, draft: str = "") -> str:
+            if prompt_strategy == "ape":
+                return (
+                    f"Post-edit the following machine translation from {lang['src_full']} to {lang['tgt_full']}, "
+                    "respecting the given terminology. Output only the corrected translation.\n\n"
+                    f"Source: {source}\n"
+                    f"Draft translation: {draft}\n"
+                    f"Terminology: {terminology}\n\n"
+                )
             if prompt_strategy == "concise":
                 instruction = (
                     f"Translate from {lang['src_full']} to {lang['tgt_full']}. "
@@ -405,11 +413,12 @@ class Evaluator:
                 rng = random.Random(seed + batch_start + row_idx)  # noqa: S311 - deterministic sampling, not crypto.
                 few_shot_block = build_few_shot_block(rng)
 
+                draft = entry.get("draft", "")
                 sources.append(source)
                 targets.append(target)
                 term_targets = extract_term_targets(raw_terminology)
                 term_matchers_batch.append(build_term_matchers(term_targets))
-                prompts.append(build_prompt(source, terminology, few_shot_block))
+                prompts.append(build_prompt(source, terminology, few_shot_block, draft))
 
             messages_list = [[{"role": "user", "content": prompt}] for prompt in prompts]
             thinking_kwargs: dict[str, Any] = {}
