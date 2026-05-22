@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from typing import Any, cast
 
 import numpy as np
+import sacrebleu
 import torch
 import transformers as tr
 
@@ -260,6 +261,16 @@ def main() -> None:
         print(f"Wrote {len(outputs)} outputs to {args.output_jsonl}")
         if wandb.run is not None:
             wandb.log({"num_outputs": len(outputs), "output_jsonl": str(args.output_jsonl)})
+
+        # Log ChrF++ and BLEU to WandB (fast, CPU-only).
+        scoreable = [row for row in outputs if row.get("mt") and row.get("ref")]
+        if scoreable and wandb.run is not None:
+            hyps = [row["mt"] for row in scoreable]
+            refs = [[row["ref"] for row in scoreable]]
+            chrf_score = sacrebleu.corpus_chrf(hyps, refs, word_order=2).score
+            bleu_score = sacrebleu.corpus_bleu(hyps, refs).score
+            wandb.log({"chrf_pp": chrf_score, "bleu": bleu_score, "n_scored": len(scoreable)})
+            print(f"ChrF++: {chrf_score:.2f}  BLEU: {bleu_score:.2f}  (n={len(scoreable)})")
 
         # Free generation model memory before loading XCOMET.
         release_generation_model()
