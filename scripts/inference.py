@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from typing import Any, cast
 
 import numpy as np
+import sacrebleu
 import torch
 import transformers as tr
 
@@ -37,9 +38,17 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--top-p", type=float, default=0.8)
     parser.add_argument(
         "--prompt-strategy",
-        choices=["baseline", "concise", "strict"],
+        choices=["baseline", "concise", "strict", "ape"],
         default="baseline",
         help="Prompt style used for inference-time strategy experiments.",
+    )
+    parser.add_argument(
+        "--draft-jsonl",
+        type=Path,
+        default=None,
+        help="JSONL file with draft translations (one per row, field 'mt'). "
+             "Required when --prompt-strategy=ape. Each row is merged into the "
+             "corresponding input row as a 'draft' field.",
     )
     parser.add_argument(
         "--few-shot-examples-jsonl",
@@ -75,6 +84,8 @@ def parse_args() -> argparse.Namespace:
         parser.error("--thinking-budget must be a positive integer.")
     if args.thinking_budget is not None and not args.enable_thinking:
         parser.error("--thinking-budget requires --enable-thinking.")
+    if args.prompt_strategy == "ape" and args.draft_jsonl is None:
+        parser.error("--prompt-strategy=ape requires --draft-jsonl.")
     return args
 
 
@@ -112,6 +123,19 @@ def main() -> None:
         data = load_jsonl(args.input_jsonl, max_samples=args.max_samples)
     else:
         data = [{"en": "Hello, how are you?", "zh": "你好嗎？", "terms": ""}]
+
+    if args.draft_jsonl is not None:
+        drafts = load_jsonl(args.draft_jsonl, max_samples=args.max_samples)
+        if len(drafts) != len(data):
+            raise ValueError(
+                f"--draft-jsonl has {len(drafts)} rows but input has {len(data)} rows."
+            )
+        for i, draft_row in enumerate(drafts):
+            if "mt" not in draft_row:
+                raise ValueError(f"Missing 'mt' in --draft-jsonl at row {i}.")
+            if not str(draft_row["mt"]).strip():
+                raise ValueError(f"Empty 'mt' in --draft-jsonl at row {i}.")
+        data = [{**row, "draft": drafts[i]["mt"]} for i, row in enumerate(data)]
 
     few_shot_examples: list[dict[str, Any]] = []
     if args.few_shot_examples_jsonl is not None:
@@ -182,6 +206,7 @@ def main() -> None:
                 "seed": args.seed,
                 "enable_thinking": args.enable_thinking,
                 "thinking_budget": args.thinking_budget,
+                "draft_jsonl": str(args.draft_jsonl) if args.draft_jsonl else None,
                 "run_eval": args.run_eval,
                 "codecarbon_output_dir": str(codecarbon_output_dir),
                 "codecarbon_country_iso_code": codecarbon_country_iso,
@@ -236,6 +261,16 @@ def main() -> None:
         print(f"Wrote {len(outputs)} outputs to {args.output_jsonl}")
         if wandb.run is not None:
             wandb.log({"num_outputs": len(outputs), "output_jsonl": str(args.output_jsonl)})
+
+        # Log ChrF++ and BLEU to WandB (fast, CPU-only).
+        scoreable = [row for row in outputs if row.get("mt") and row.get("ref")]
+        if scoreable and wandb.run is not None:
+            hyps = [row["mt"] for row in scoreable]
+            refs = [[row["ref"] for row in scoreable]]
+            chrf_score = sacrebleu.corpus_chrf(hyps, refs, word_order=2).score
+            bleu_score = sacrebleu.corpus_bleu(hyps, refs).score
+            wandb.log({"chrf_pp": chrf_score, "bleu": bleu_score, "n_scored": len(scoreable)})
+            print(f"ChrF++: {chrf_score:.2f}  BLEU: {bleu_score:.2f}  (n={len(scoreable)})")
 
         # Free generation model memory before loading XCOMET.
         release_generation_model()
