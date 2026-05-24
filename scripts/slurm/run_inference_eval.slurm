@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=nlp2-infer-eval
 #SBATCH --partition=gpu_a100
+#SBATCH --ntasks=1
 #SBATCH --gpus=1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=48G
@@ -62,7 +63,7 @@ if [[ -n "${ADAPTER:-}" ]]; then
   ADAPTER_ARGS=(--adapter "${ADAPTER}")
 fi
 
-srun python scripts/inference.py \
+srun --ntasks=1 python scripts/inference.py \
   --model-id "${MODEL_ID}" \
   "${ADAPTER_ARGS[@]}" \
   --src-tgt-pair "${PAIR}" \
