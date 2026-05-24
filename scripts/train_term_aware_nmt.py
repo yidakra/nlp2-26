@@ -23,13 +23,8 @@ import numpy as np
 from pycccedict.cccedict import CcCedict
 import torch
 import datasets
-<<<<<<< HEAD
-from transformers import AutoTokenizer, AutoModelForCausalLM
-from peft import LoraConfig
-=======
 from transformers import AutoTokenizer, AutoModelForCausalLM, TrainerCallback
 from peft import LoraConfig, PeftModel
->>>>>>> 02a1c46 (FINAL TRAINING CODe)
 from trl import SFTTrainer, SFTConfig
 from tqdm import tqdm
 
@@ -43,57 +38,6 @@ LANG_INFO = {
     "zhen": {"src": "zh", "tgt": "en", "src_full": "Traditional Chinese", "tgt_full": "English"},
 }
 
-<<<<<<< HEAD
-def build_cccedict_mapping():
-    """Builds a cached mapping from Traditional Chinese tokens to clean English definitions."""
-    cccedict = CcCedict()
-    zh_to_en = {}
-    for entry in cccedict.get_entries():
-        zh_trad = entry['traditional']
-        if zh_trad not in zh_to_en:
-            zh_to_en[zh_trad] = set()
-            
-        for d in entry['definitions']:
-            d = re.sub(r'\(.*?\)', '', d)
-            if 'CL:' in d: continue
-            if d.startswith('to '): d = d[3:]
-            d = d.replace('lit. ', '').replace('fig. ', '')
-            d = d.strip().lower()
-            
-            for sub_d in re.split(r'[,/]', d):
-                sub_d = re.sub(r'[^a-z0-9\-\s]', '', sub_d).strip()
-                sub_d = re.sub(r'\s+', ' ', sub_d)
-                if len(sub_d) > 2:
-                    zh_to_en[zh_trad].add(sub_d)
-    return zh_to_en
-
-def extract_alignments(dataset, desc="Extracting alignments"):
-    """Extract word-aligned term pairs using pycccedict and jieba."""
-    zh_to_en = build_cccedict_mapping()
-    alignments = []
-    word_pattern = re.compile(r"[a-z0-9\-]+")
-
-    for i, example in enumerate(tqdm(dataset, desc=desc)):
-        source_en = example['en'].lower()
-        target_zh = example['zh']
-        en_words = word_pattern.findall(source_en)
-        clean_source_en = " " + " ".join(en_words) + " "
-        tgt_tokens = [tok for tok in jieba.lcut(target_zh) if tok.strip()]
-
-        terms = []
-        for zh_word in tgt_tokens:
-            if zh_word in zh_to_en:
-                for en_def in sorted(zh_to_en[zh_word]):
-                    if f" {en_def} " in clean_source_en:
-                        terms.append((en_def, zh_word))
-                        break
-
-        terms = normalize_term_pairs(terms)
-        alignments.append(limit_terms_per_document(terms, random.Random(42 + i), min_terms=50, max_terms=170))
-    return alignments
-
-=======
->>>>>>> 02a1c46 (FINAL TRAINING CODe)
 STOPWORDS_EN = {
     'a', 'an', 'and', 'the', 'of', 'in', 'to', 'for', 'by', 'with', 'on', 'at', 'from', 'as',
     'is', 'are', 'was', 'were', 'be', 'been', 'being', 'or', 'not', 'that', 'this', 'these', 'those',
@@ -164,18 +108,12 @@ def normalize_term_pairs(terms):
             cleaned.append(pair)
     return cleaned
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 02a1c46 (FINAL TRAINING CODe)
 def limit_terms_per_document(terms, rng, min_terms=50, max_terms=170):
     """Keep at most a random number of term pairs per document."""
     if len(terms) <= min_terms:
         return terms
     max_keep = rng.randint(min_terms, max_terms)
     return rng.sample(terms, min(len(terms), max_keep))
-<<<<<<< HEAD
-=======
 
 
 def extract_alignments(dataset, desc="Extracting alignments"):
@@ -208,7 +146,6 @@ def extract_alignments(dataset, desc="Extracting alignments"):
 # ---------------------------------------------------------------------------
 # Term dataset persistence
 # ---------------------------------------------------------------------------
->>>>>>> 02a1c46 (FINAL TRAINING CODe)
 
 def save_extracted_terms_dataset(dataset, alignments, output_dir, split_name):
     output_path = Path(output_dir) / split_name
@@ -225,38 +162,6 @@ def load_extracted_terms_dataset(input_dir, split_name):
     term_dataset = datasets.load_from_disk(str(dataset_path))
     return [[(p["src"], p["tgt"]) for p in ex.get("terms", [])] for ex in term_dataset]
 
-<<<<<<< HEAD
-def augment_terminology(terms, rng):
-    """50/50 chance of showing terms or showing nothing."""
-    if not terms or rng.random() < 0.5:
-        return ""
-    return ', '.join(f'{src} -> {tgt}' for src, tgt in terms)
-
-def process_data_for_sft(example, idx, alignments, tokenizer):
-    # Seed per-example so results are reproducible regardless of .map() parallelism
-    rng = random.Random(42 + idx)
-    is_zh_to_en = rng.random() < 0.5
-
-    base_terms = alignments[idx]
-
-    if not is_zh_to_en:
-        lang = LANG_INFO["enzh"]
-        source, target = example['en'], example['zh']
-        terms = base_terms
-    else:
-        lang = LANG_INFO["zhen"]
-        source, target = example['zh'], example['en']
-        terms = [(zh, en) for en, zh in base_terms]
-
-    terminology = augment_terminology(terms, rng)
-
-    prompt = (
-        f"Translate the following sentence from {lang['src_full']} to {lang['tgt_full']}, "
-        "respecting the given terminology. Output the translation and nothing else.\n\n"
-        f"Source: {source}\n"
-        f"Terminology: {terminology}\n\n"
-    )
-=======
 
 # ---------------------------------------------------------------------------
 # Document chunking
@@ -412,16 +317,12 @@ def format_chunk(chunk, rng, tokenizer):
             f"Output the translation and nothing else.\n\n"
             f"Source: {source}\n\n"
         )
->>>>>>> 02a1c46 (FINAL TRAINING CODe)
 
     messages = [
         {"role": "user", "content": prompt},
         {"role": "assistant", "content": target},
     ]
 
-<<<<<<< HEAD
-    return {"text": tokenizer.apply_chat_template(messages, tokenize=False)}
-=======
     text = tokenizer.apply_chat_template(messages, tokenize=False)
     return {"text": text}
 
@@ -468,7 +369,6 @@ class EpochReaugmentCallback(TrainerCallback):
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
->>>>>>> 02a1c46 (FINAL TRAINING CODe)
 
 def main():
     parser = argparse.ArgumentParser(description="Train terminology-aware NMT with SFT and LoRA")
@@ -480,12 +380,9 @@ def main():
     parser.add_argument("--save_terms_dir", default=None)
     parser.add_argument("--lora_rank", type=int, default=16)
     parser.add_argument("--max_length", type=int, default=4096)
-<<<<<<< HEAD
-=======
     parser.add_argument("--target_chunk_tokens", type=int, default=3000,
                         help="Max src+tgt tokens per chunk before prompt/terms overhead")
     parser.add_argument("--adapter", default=None)
->>>>>>> 02a1c46 (FINAL TRAINING CODe)
     parser.add_argument("--wandb", action="store_true")
     parser.add_argument("--wandb_project", default="nlp2-26")
     parser.add_argument("--wandb_group", default=None)
@@ -575,9 +472,6 @@ def main():
             save_extracted_terms_dataset(dataset['validation'], alignments_val,
                                         args.save_terms_dir, "validation")
 
-<<<<<<< HEAD
-    steps_per_epoch = max(1, len(dataset['train']) // (args.batch_size * 8))
-=======
 
 
     # ------------------------------------------------------------------
@@ -691,7 +585,6 @@ def main():
     # Training config
     # ------------------------------------------------------------------
     steps_per_epoch = max(1, len(train_dataset) // (args.batch_size * 8))
->>>>>>> 02a1c46 (FINAL TRAINING CODe)
     eval_steps = max(1, steps_per_epoch // 10)
 
     if args.wandb:
@@ -710,13 +603,10 @@ def main():
                 "save_steps": eval_steps,
                 "metric_for_best_model": "eval_loss",
                 "max_length": args.max_length,
-<<<<<<< HEAD
-=======
                 "lora_rank": args.lora_rank,
                 "target_chunk_tokens": args.target_chunk_tokens,
                 "train_chunks": len(train_chunks),
                 "val_chunks": len(val_chunks),
->>>>>>> 02a1c46 (FINAL TRAINING CODe)
             },
             name=f"nmt-sft-{datetime.now().strftime('%Y%m%d-%H%M')}",
         )
@@ -743,15 +633,6 @@ def main():
         packing=True
     )
 
-<<<<<<< HEAD
-    # Model Loading
-    tokenizer = AutoTokenizer.from_pretrained(args.model)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
-    model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=torch.bfloat16, device_map="auto", attn_implementation="eager")
-    model.config.pad_token_id = tokenizer.pad_token_id
-=======
->>>>>>> 02a1c46 (FINAL TRAINING CODe)
 
 
     model.gradient_checkpointing_enable()
